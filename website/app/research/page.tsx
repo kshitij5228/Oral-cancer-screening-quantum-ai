@@ -87,14 +87,14 @@ const MODELS = [
     champion: false, phase: 'Phase 3',
   },
   {
-    name: 'Cascade Ensemble (ConvNeXt-V2 + EfficientNet-B3)',
+    name: 'Cascade Ensemble (ConvNeXt-V2 + DenseNet-121)',
     desc: 'Sequential routing ensemble',
     detail: 'Cascade routing. OCA dropped vs solo ConvNeXt. Backbone diversity insufficient.',
     accuracy: '70.23', f1: '71.04', ocaF1: '79.60', binary: '--', fnr: '--',
     champion: false, phase: 'Phase 4',
   },
   {
-    name: 'Soft-Vote Ensemble (ConvNeXt-V2 + EfficientNet-B3)',
+    name: 'Soft-Vote Ensemble (ConvNeXt-V2 + DenseNet-121)',
     desc: 'Probability averaging ensemble',
     detail: 'Soft voting improves over cascade but still below single EMA-tuned ConvNeXt.',
     accuracy: '72.90', f1: '73.04', ocaF1: '82.23', binary: '--', fnr: '--',

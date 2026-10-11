@@ -7,7 +7,7 @@ This directory contains the exact **3 core model weight checkpoints** that form 
 |---|---|:---:|---|:---:|
 | **`01_mahanet_convnextv2_tiny.pth`** | **ConvNeXt-V2-Tiny** | 107.1 MB | **Spatial Vision & Border Specialist** (Ulcer edges, texture features) | 70.06% Acc (83.2% OCA F1) |
 | **`02_mahanet_densenet121.pth`** | **DenseNet-121** | 28.1 MB | **Cellular Morphology & Cancer Specialist** (Dense gradient flow) | 61.60% Acc (80.5% OCA F1) |
-| **`03_mahanet_quantum_8q_vqc.pth`** | **ConvNeXt-V2 + EfficientNet-B3 + 8-Qubit VQC Hybrid** | 152.1 MB | **Quantum Hilbert Space Decider** (Resolves Benign vs OPMD ambiguity) | 78.64% Acc (84.9% OCA F1) |
+| **`03_mahanet_quantum_8q_vqc.pth`** | **8-Qubit VQC Quantum Hybrid Decider** | 152.1 MB | **Quantum Hilbert Space Decider** (Resolves Benign vs OPMD ambiguity) | 78.64% Acc (84.9% OCA F1) |
 
 ---
 
