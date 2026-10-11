@@ -44,9 +44,9 @@ def generate_graph1_per_class_metrics():
     specificity = [98.40, 96.20, 91.80, 97.40, 95.95]
 
     x = np.arange(len(classes))
-    width = 0.19
+    width = 0.18
 
-    fig, ax = plt.subplots(figsize=(13, 7.5), dpi=300)
+    fig, ax = plt.subplots(figsize=(14, 8), dpi=300)
     fig.patch.set_facecolor('#ffffff')
     ax.set_facecolor('#fafbfc')
 
@@ -61,34 +61,33 @@ def generate_graph1_per_class_metrics():
     rects3 = ax.bar(x + 0.5*width, f1_score,    width, label='F1-Score (%)',    color=c_f1,   edgecolor='#1e293b', linewidth=0.9, zorder=3)
     rects4 = ax.bar(x + 1.5*width, specificity, width, label='Specificity (%)', color=c_spec, edgecolor='#1e293b', linewidth=0.9, zorder=3)
 
-    # Add values on top of bars
-    def autolabel(rects, is_macro=False):
+    # Vertical annotations (90°) guarantee zero horizontal collisions and never intersect neighboring bars
+    for rects in [rects1, rects2, rects3, rects4]:
         for rect in rects:
-            height = rect.get_height()
-            ax.annotate(f'{height:.1f}%',
-                        xy=(rect.get_x() + rect.get_width() / 2, height),
-                        xytext=(0, 3),  # 3 points vertical offset
+            h = rect.get_height()
+            ax.annotate(f'{h:.1f}%',
+                        xy=(rect.get_x() + rect.get_width() / 2, h),
+                        xytext=(0, 4),
                         textcoords="offset points",
-                        ha='center', va='bottom', fontsize=8.5, fontweight='bold', color='#1e293b')
-
-    autolabel(rects1)
-    autolabel(rects2)
-    autolabel(rects3)
-    autolabel(rects4)
+                        ha='center', va='bottom',
+                        rotation=90,
+                        fontsize=8.5, fontweight='bold', color='#1e293b')
 
     ax.set_ylabel('Performance Score (%)', fontsize=14, fontweight='bold', labelpad=10)
     ax.set_title('Proposed Q-ConX-Dense: Per-Class Diagnostic Performance\n(Precision, Recall, F1-Score, and Specificity across N=487 Held-Out Test Cohort)',
-                 fontsize=15, fontweight='bold', pad=15, color='#0f172a')
+                 fontsize=15, fontweight='bold', pad=35, color='#0f172a')
     ax.set_xticks(x)
     ax.set_xticklabels(classes, fontsize=12, fontweight='bold')
-    ax.set_ylim(0, 112)
+    ax.set_ylim(0, 118)
     ax.set_yticks(np.arange(0, 101, 10))
     ax.grid(axis='y', linestyle='--', alpha=0.5, zorder=0)
 
     # Highlight Macro Average section
     ax.axvline(3.5, color='#94a3b8', linestyle=':', linewidth=1.5)
 
-    ax.legend(loc='upper left', frameon=True, facecolor='#ffffff', edgecolor='#cbd5e1', fontsize=11, shadow=True)
+    # Position legend above the chart canvas so it never overlaps any bar or annotation
+    ax.legend(loc='lower center', bbox_to_anchor=(0.5, 1.01), ncol=4, frameon=True,
+              facecolor='#ffffff', edgecolor='#cbd5e1', fontsize=11, shadow=True, framealpha=0.95)
 
     plt.tight_layout()
     out_path = os.path.join(FIGURES_DIR, 'figure_qai_oli_per_class_metrics.png')
@@ -117,9 +116,9 @@ def generate_graph2_models_comparison_multi_parameter():
     f1_score  = [48.26, 61.67, 62.25, 70.24, 72.46, 77.17, 82.90]
 
     x = np.arange(len(models))
-    width = 0.20
+    width = 0.18
 
-    fig, ax = plt.subplots(figsize=(15, 8), dpi=300)
+    fig, ax = plt.subplots(figsize=(16.5, 8.5), dpi=300)
     fig.patch.set_facecolor('#ffffff')
     ax.set_facecolor('#fafbfc')
 
@@ -133,7 +132,7 @@ def generate_graph2_models_comparison_multi_parameter():
     rects3 = ax.bar(x + 0.5*width, recall,    width, label='Recall (%)',    color=c_rec,  edgecolor='#0f172a', linewidth=0.8, zorder=3)
     rects4 = ax.bar(x + 1.5*width, f1_score,  width, label='F1-Score (%)',  color=c_f1,   edgecolor='#0f172a', linewidth=0.8, zorder=3)
 
-    # Highlight the champion bars with distinct outline or marker
+    # Vertical annotations (90°) keep all 28 bar numbers strictly within their column
     for i in range(len(models)):
         for r_group in [rects1, rects2, rects3, rects4]:
             r = r_group[i]
@@ -141,26 +140,28 @@ def generate_graph2_models_comparison_multi_parameter():
             is_sota = (i == len(models) - 1)
             ax.annotate(f'{height:.1f}%',
                         xy=(r.get_x() + r.get_width() / 2, height),
-                        xytext=(0, 3),
+                        xytext=(0, 4),
                         textcoords="offset points",
                         ha='center', va='bottom',
+                        rotation=90,
                         fontsize=8 if not is_sota else 9,
                         fontweight='bold',
                         color='#b91c1c' if is_sota else '#334155')
 
     ax.set_ylabel('Performance Metric (%)', fontsize=14, fontweight='bold', labelpad=10)
     ax.set_title('Comparative Parameter Benchmark: Classical vs. Quantum vs. Proposed Q-ConX-Dense\n(Evaluating Accuracy, Macro Precision, Macro Recall, and Macro F1 on N=487 Test Images)',
-                 fontsize=15, fontweight='bold', pad=15, color='#0f172a')
+                 fontsize=15, fontweight='bold', pad=18, color='#0f172a')
     ax.set_xticks(x)
     ax.set_xticklabels(models, fontsize=11, fontweight='bold')
-    ax.set_ylim(0, 105)
+    ax.set_ylim(0, 118)
     ax.set_yticks(np.arange(0, 101, 10))
     ax.grid(axis='y', linestyle='--', alpha=0.5, zorder=0)
 
     # Shaded background highlight for Proposed SOTA
     ax.axvspan(5.5, 6.5, color='#ecfdf5', alpha=0.7, zorder=1)
-    ax.text(6.0, 98, '★ WORLD SOTA\nCHAMPION', ha='center', va='center', fontsize=9.5, fontweight='bold', color='#047857')
+    ax.text(6.0, 108, '★ WORLD SOTA\nCHAMPION', ha='center', va='center', fontsize=10, fontweight='bold', color='#047857')
 
+    # Legend at upper left with generous headroom (ResNet is max 51%)
     ax.legend(loc='upper left', frameon=True, facecolor='#ffffff', edgecolor='#cbd5e1', fontsize=11, shadow=True)
 
     plt.tight_layout()
@@ -176,10 +177,10 @@ def generate_graph2_models_comparison_multi_parameter():
 def generate_graph3_clinical_triage_parameters():
     metrics = [
         'Stage 1: Healthy Mucosa\nScreening Specificity',
-        'Stage 2: Malignant Carcinoma (OCA)\nSensitivity / Recall',
-        'Stage 2: Malignant Carcinoma (OCA)\nF1-Score',
-        'Stage 3: Benign vs OPMD\nDiscrimination Acc',
-        'Overall 4-Class Multi-Class\nDiagnostic Accuracy',
+        'Stage 2: Malignant Carcinoma\nSensitivity / Recall',
+        'Stage 2: Malignant Carcinoma\nF1-Score',
+        'Stage 3: Benign vs OPMD\nDiscrimination Accuracy',
+        'Overall 4-Class\nDiagnostic Accuracy',
         'Macro-Averaged\nF1-Score'
     ]
 
@@ -194,33 +195,37 @@ def generate_graph3_clinical_triage_parameters():
         '#0284c7'   # Sky Blue (Macro F1)
     ]
 
-    fig, ax = plt.subplots(figsize=(12, 7), dpi=300)
+    fig, ax = plt.subplots(figsize=(13.5, 8.0), dpi=300)
     fig.patch.set_facecolor('#ffffff')
     ax.set_facecolor('#fafbfc')
 
     x = np.arange(len(metrics))
-    bars = ax.bar(x, values, width=0.55, color=colors, edgecolor='#0f172a', linewidth=1.1, zorder=3)
+    bars = ax.bar(x, values, width=0.52, color=colors, edgecolor='#0f172a', linewidth=1.1, zorder=3)
 
     for bar, val in zip(bars, values):
         height = bar.get_height()
         ax.annotate(f'{val:.2f}%',
                     xy=(bar.get_x() + bar.get_width() / 2, height),
-                    xytext=(0, 4),
+                    xytext=(0, 5),
                     textcoords="offset points",
-                    ha='center', va='bottom', fontsize=12, fontweight='bold', color='#0f172a')
+                    ha='center', va='bottom', fontsize=11.5, fontweight='bold', color='#0f172a')
 
-    # Add clinical benchmark target line
-    ax.axhline(80.0, color='#64748b', linestyle='--', linewidth=1.2, zorder=2)
-    ax.text(5.3, 80.5, 'Standard Clinical Viability Threshold (80%)', fontsize=9.5, fontweight='bold', color='#475569', ha='right')
+    # Add clinical benchmark target line with clear legend entry to avoid cutting across bars
+    threshold_line = ax.axhline(80.0, color='#dc2626', linestyle='--', linewidth=1.5, zorder=2,
+                                label='Standard Clinical Viability Threshold (80.0%)')
 
-    ax.set_ylabel('Performance Percentage (%)', fontsize=14, fontweight='bold', labelpad=10)
+    ax.set_ylabel('Performance Percentage (%)', fontsize=14, fontweight='bold', labelpad=12)
     ax.set_title('Proposed Q-ConX-Dense: Clinical Workflow & Operational Triage Metrics\n(Tri-Stage Hierarchical Cascade Performance Profile)',
-                 fontsize=15, fontweight='bold', pad=15, color='#0f172a')
+                 fontsize=15, fontweight='bold', pad=18, color='#0f172a')
     ax.set_xticks(x)
-    ax.set_xticklabels(metrics, fontsize=11, fontweight='bold')
-    ax.set_ylim(0, 110)
+    # 15° rotation with right-alignment prevents long metric names from colliding
+    ax.set_xticklabels(metrics, fontsize=11, fontweight='bold', rotation=15, ha='right')
+    ax.set_ylim(0, 114)
     ax.set_yticks(np.arange(0, 101, 10))
     ax.grid(axis='y', linestyle='--', alpha=0.5, zorder=0)
+
+    # Place legend in upper right where ample space exists above the blue bars
+    ax.legend(loc='upper right', frameon=True, facecolor='#ffffff', edgecolor='#cbd5e1', fontsize=11, shadow=True)
 
     plt.tight_layout()
     out_path = os.path.join(FIGURES_DIR, 'figure_qai_oli_clinical_triage_parameters.png')
@@ -242,9 +247,9 @@ def generate_graph4_tp_progression_parameters():
     f1_vals   = [74.50, 76.60, 78.50, 80.20, 81.75, 82.90]
 
     x = np.arange(len(tp_labels))
-    width = 0.20
+    width = 0.18
 
-    fig, ax = plt.subplots(figsize=(13, 7.5), dpi=300)
+    fig, ax = plt.subplots(figsize=(14.5, 8.0), dpi=300)
     fig.patch.set_facecolor('#ffffff')
     ax.set_facecolor('#fafbfc')
 
@@ -258,22 +263,25 @@ def generate_graph4_tp_progression_parameters():
     r3 = ax.bar(x + 0.5*width, rec_vals,  width, label='Recall (%)',    color=c_rec,  edgecolor='#0f172a', linewidth=0.8, zorder=3)
     r4 = ax.bar(x + 1.5*width, f1_vals,   width, label='F1-Score (%)',  color=c_f1,   edgecolor='#0f172a', linewidth=0.8, zorder=3)
 
+    # Vertical annotations (90°) ensure clean column alignment across all 4 bars
     for r_group in [r1, r2, r3, r4]:
         for rect in r_group:
             h = rect.get_height()
             ax.annotate(f'{h:.1f}%',
                         xy=(rect.get_x() + rect.get_width() / 2, h),
-                        xytext=(0, 3),
+                        xytext=(0, 4),
                         textcoords="offset points",
-                        ha='center', va='bottom', fontsize=8, fontweight='bold', color='#1e293b')
+                        ha='center', va='bottom',
+                        rotation=90,
+                        fontsize=8, fontweight='bold', color='#1e293b')
 
     ax.set_ylabel('Score (%)', fontsize=14, fontweight='bold', labelpad=10)
     ax.set_xlabel('Training Dataset Percentage Partition (TP)', fontsize=14, fontweight='bold', labelpad=10)
     ax.set_title('Proposed Q-ConX-Dense: Progression of Key Parameters across Training Partitions\n(Consistently evaluated on the frozen N=487 Held-Out Test Cohort)',
-                 fontsize=15, fontweight='bold', pad=15, color='#0f172a')
+                 fontsize=15, fontweight='bold', pad=18, color='#0f172a')
     ax.set_xticks(x)
     ax.set_xticklabels(tp_labels, fontsize=11, fontweight='bold')
-    ax.set_ylim(60, 95)
+    ax.set_ylim(60, 96)
     ax.set_yticks(np.arange(60, 96, 5))
     ax.grid(axis='y', linestyle='--', alpha=0.5, zorder=0)
 
