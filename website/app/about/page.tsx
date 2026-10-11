@@ -190,12 +190,12 @@ export default function AboutPage() {
               <p className="text-[11px] font-bold uppercase tracking-wider text-[#64748b]">GitHub Repository &amp; Source Code</p>
               <div className="mt-2 flex items-center gap-2">
                 <a
-                  href="https://github.com/kshitij5228"
+                  href="https://github.com/kshitij5228/Oral-cancer-screening-quantum-ai"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="font-mono text-xs sm:text-sm font-semibold text-[#0284c7] hover:underline inline-flex items-center gap-1.5"
                 >
-                  github.com/kshitij5228
+                  kshitij5228/Oral-cancer-screening-quantum-ai
                   <ExternalLink size={12} />
                 </a>
               </div>
