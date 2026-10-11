@@ -4,7 +4,7 @@ import { Suspense, useCallback, useEffect, useRef, useState } from 'react'
 import { useSearchParams } from 'next/navigation'
 import {
   AlertTriangle, Check, ChevronRight, FileText, Gauge,
-  Layers3, Microscope, BrainCircuit, Upload, Zap
+  Layers3, Microscope, BrainCircuit, RefreshCw, Upload, Zap
 } from 'lucide-react'
 import GradCamSlider from '@/components/grad-cam-slider'
 import BackbonePanel from '@/components/backbone-panel'
@@ -169,6 +169,7 @@ function ScreeningWorkspace() {
   const [pipelineOpen, setPipelineOpen] = useState(false)
   const [uploadedImage, setUploadedImage] = useState<string | null>(null)
   const [backendStatus, setBackendStatus] = useState<'checking' | 'online' | 'offline'>('checking')
+  const [isRechecking, setIsRechecking] = useState(false)
   const [pipelineMode, setPipelineMode] = useState<'preset' | 'live'>('preset')
   const [liveStage, setLiveStage] = useState<'evaluating' | 'cnn_quantum' | 'complete' | 'failed'>('evaluating')
 
@@ -227,16 +228,48 @@ function ScreeningWorkspace() {
     if (fileRef.current) fileRef.current.value = ''
   }
 
-  // Check backend health
-  useEffect(() => {
-    fetch('/api/predict')
-      .then(r => r.json())
-      .then(data => {
-        if (data.status === 'online') setBackendStatus('online')
-        else setBackendStatus('offline')
-      })
-      .catch(() => setBackendStatus('offline'))
+  // Check backend health with auto-retry and resilient polling
+  const checkBackendHealth = useCallback(async () => {
+    try {
+      const res = await fetch('/api/predict', { cache: 'no-store' })
+      const data = await res.json()
+      if (data?.status === 'online') {
+        setBackendStatus('online')
+        return true
+      } else {
+        setBackendStatus('offline')
+        return false
+      }
+    } catch {
+      setBackendStatus('offline')
+      return false
+    }
   }, [])
+
+  useEffect(() => {
+    let isMounted = true
+
+    // Immediate probe
+    checkBackendHealth()
+
+    // Smart polling: retry every 3s if offline/checking, 25s heartbeat if online
+    const intervalMs = backendStatus === 'online' ? 25000 : 3000
+    const intervalId = setInterval(() => {
+      if (isMounted) checkBackendHealth()
+    }, intervalMs)
+
+    // Re-verify immediately whenever browser window regains focus
+    const onWindowFocus = () => {
+      if (isMounted) checkBackendHealth()
+    }
+    window.addEventListener('focus', onWindowFocus)
+
+    return () => {
+      isMounted = false
+      clearInterval(intervalId)
+      window.removeEventListener('focus', onWindowFocus)
+    }
+  }, [backendStatus, checkBackendHealth])
 
   function triggerAnalysis(presetIndex: number) {
     setSelected(presetIndex)
@@ -294,6 +327,7 @@ function ScreeningWorkspace() {
       }
 
       if (payload?.data) {
+        setBackendStatus('online')
         setLiveStage('cnn_quantum')
         setTimeout(() => {
           setLiveStage('complete')
@@ -333,16 +367,43 @@ function ScreeningWorkspace() {
             </div>
             <div className="flex items-center gap-3">
               {/* Backend status */}
-              <span className={`hidden items-center gap-2 rounded-full px-3 py-1.5 text-xs font-semibold sm:flex ${
-                backendStatus === 'online'
-                  ? 'border border-[#bae6fd] bg-[#e0f2fe] text-[#0369a1]'
-                  : backendStatus === 'offline'
-                  ? 'border border-[#fed7aa] bg-[#fff7ed] text-[#c2410c]'
-                  : 'border border-[#cbd5e1] bg-[#f1f5f9] text-[#64748b]'
-              }`}>
-                <span className={`size-1.5 rounded-full ${backendStatus === 'online' ? 'bg-[#0284c7] animate-pulse' : backendStatus === 'offline' ? 'bg-[#ea580c]' : 'bg-[#94a3b8]'}`} />
-                {backendStatus === 'online' ? 'Live inference ready' : backendStatus === 'offline' ? 'Demo mode — server offline' : 'Checking backend…'}
-              </span>
+              <div className="hidden items-center gap-1.5 sm:flex">
+                <span className={`inline-flex items-center gap-2 rounded-full px-3 py-1.5 text-xs font-semibold ${
+                  backendStatus === 'online'
+                    ? 'border border-[#bae6fd] bg-[#e0f2fe] text-[#0369a1]'
+                    : backendStatus === 'offline'
+                    ? 'border border-[#fed7aa] bg-[#fff7ed] text-[#c2410c]'
+                    : 'border border-[#cbd5e1] bg-[#f1f5f9] text-[#64748b]'
+                }`}>
+                  <span className={`size-1.5 rounded-full ${
+                    backendStatus === 'online'
+                      ? 'bg-[#0284c7] animate-pulse'
+                      : backendStatus === 'offline'
+                      ? 'bg-[#ea580c]'
+                      : 'bg-[#94a3b8] animate-ping'
+                  }`} />
+                  {backendStatus === 'online'
+                    ? 'Live inference ready'
+                    : backendStatus === 'offline'
+                    ? 'Demo mode — server offline'
+                    : 'Connecting to backend…'}
+                </span>
+                {backendStatus === 'offline' && (
+                  <button
+                    type="button"
+                    onClick={async () => {
+                      setIsRechecking(true)
+                      await checkBackendHealth()
+                      setIsRechecking(false)
+                    }}
+                    title="Click to re-check Python server status"
+                    className="inline-flex items-center gap-1 rounded-full border border-[#fed7aa] bg-white px-2 py-1 text-[11px] font-semibold text-[#c2410c] hover:bg-[#fff7ed] active:scale-95 transition"
+                  >
+                    <RefreshCw size={11} className={isRechecking ? 'animate-spin' : ''} />
+                    Retry
+                  </button>
+                )}
+              </div>
               <button
                 onClick={() => setPipelineOpen(true)}
                 className="flex items-center gap-1.5 text-sm font-semibold text-[#0284c7] hover:underline"
@@ -403,6 +464,9 @@ function ScreeningWorkspace() {
                 /* Empty Upload Dropzone */
                 <button
                   onClick={() => {
+                    if (backendStatus === 'offline') {
+                      checkBackendHealth()
+                    }
                     if (fileRef.current) fileRef.current.value = ''
                     fileRef.current?.click()
                   }}
@@ -436,9 +500,22 @@ function ScreeningWorkspace() {
               />
 
               {backendStatus === 'offline' && (
-                <p className="mt-3 rounded-xl bg-[#fffbf2] border border-[#edd8a8] px-3 py-2 text-[11px] text-[#8a7035]">
-                  ⚡ Live inference needs Python backend running. Select preset cases below for demo.
-                </p>
+                <div className="mt-3 flex items-center justify-between gap-2 rounded-xl bg-[#fffbf2] border border-[#edd8a8] px-3 py-2 text-[11px] text-[#8a7035]">
+                  <span>⚡ Live inference needs Python backend running. Select preset cases below for demo.</span>
+                  <button
+                    type="button"
+                    onClick={async () => {
+                      setIsRechecking(true)
+                      await checkBackendHealth()
+                      setIsRechecking(false)
+                    }}
+                    className="inline-flex shrink-0 items-center gap-1 rounded-lg border border-[#d8be82] bg-white px-2 py-1 text-[10px] font-semibold text-[#8a7035] hover:bg-[#fef9ee] active:scale-95 transition"
+                    title="Check connection again"
+                  >
+                    <RefreshCw size={11} className={isRechecking ? 'animate-spin' : ''} />
+                    Retry
+                  </button>
+                </div>
               )}
             </div>
 

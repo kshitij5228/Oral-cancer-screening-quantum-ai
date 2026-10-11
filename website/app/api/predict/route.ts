@@ -1,25 +1,35 @@
 import { NextRequest, NextResponse } from 'next/server'
 
+export const dynamic = 'force-dynamic'
+export const revalidate = 0
+
 // Backend URL where FastAPI server runs
 const BACKEND_URL = process.env.BACKEND_URL || 'http://127.0.0.1:8000'
 
 export async function GET() {
   try {
     const controller = new AbortController()
-    const timeoutId = setTimeout(() => controller.abort(), 1500)
+    const timeoutId = setTimeout(() => controller.abort(), 4000)
     
     const res = await fetch(`${BACKEND_URL}/health`, {
       signal: controller.signal,
+      cache: 'no-store',
     })
     clearTimeout(timeoutId)
     
     if (res.ok) {
       const data = await res.json()
-      return NextResponse.json({ status: 'online', details: data })
+      return NextResponse.json({ status: 'online', details: data }, {
+        headers: { 'Cache-Control': 'no-store, max-age=0' }
+      })
     }
-    return NextResponse.json({ status: 'offline' })
+    return NextResponse.json({ status: 'offline' }, {
+      headers: { 'Cache-Control': 'no-store, max-age=0' }
+    })
   } catch {
-    return NextResponse.json({ status: 'offline' })
+    return NextResponse.json({ status: 'offline' }, {
+      headers: { 'Cache-Control': 'no-store, max-age=0' }
+    })
   }
 }
 

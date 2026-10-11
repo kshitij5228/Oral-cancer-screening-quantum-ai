@@ -148,6 +148,13 @@ def get_models():
         return _ensemble, _device
 
 
+@app.on_event("startup")
+def startup_event():
+    import threading
+    print("[*] Starting Q-ConX-Dense model warmup in background thread...")
+    threading.Thread(target=get_models, daemon=True).start()
+
+
 @app.get("/")
 def root():
     return {
@@ -160,18 +167,22 @@ def root():
 
 @app.get("/health")
 def health_check():
-    models, device = get_models()
+    all_ready = (
+        _ensemble["convnext"] is not None
+        and _ensemble["densenet"] is not None
+        and _ensemble["quantum"] is not None
+    )
     return {
         "status": "online",
         "ensemble": "Q-ConX-Dense Tri-Stage Clinical Cascade",
         "models_loaded": {
-            "01_convnextv2_tiny": models["convnext"] is not None,
-            "02_densenet121": models["densenet"] is not None,
-            "03_quantum_8q_vqc": models["quantum"] is not None,
+            "01_convnextv2_tiny": _ensemble["convnext"] is not None,
+            "02_densenet121": _ensemble["densenet"] is not None,
+            "03_quantum_8q_vqc": _ensemble["quantum"] is not None,
         },
-        "all_3_models_ready": all(m is not None for m in models.values()),
+        "all_3_models_ready": all_ready,
         "qubits": 8,
-        "device": device,
+        "device": _device,
         "models_source_directory": MODELS_DIR,
     }
 
