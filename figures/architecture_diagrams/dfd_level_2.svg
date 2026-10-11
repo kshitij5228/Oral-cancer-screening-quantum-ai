@@ -28,7 +28,7 @@
     <rect x="16" y="14" width="136" height="20" rx="10" fill="#e2e8f0"/>
     <text x="84" y="28" text-anchor="middle" font-size="10.5" font-weight="800" fill="#334155">INPUT FROM DFD L1</text>
     <text x="164" y="29" font-size="14.5" font-weight="700" fill="#0f172a">256-D Fused Latent Feature Embedding [z_fused]</text>
-    <text x="16" y="53" font-size="11.5" font-weight="500" fill="#64748b">Extracted from ConvNeXt-V2-Tiny (128-D) + EfficientNet-B3 (128-D) via Process 2.0</text>
+    <text x="16" y="53" font-size="11.5" font-weight="500" fill="#64748b">Extracted from ConvNeXt-V2-Tiny (128-D) + DenseNet-121 (128-D) via Process 2.0</text>
   </g>
 
   <!-- ================= FORK DISPATCH: INPUT -> QUANTUM & CLASSICAL ================= -->

@@ -12,7 +12,7 @@
 
 ## 🌟 Executive Summary
 
-**QAI-OLI** (Quantum Artificial Intelligence for Oral Lesion Identification) is a full-stack, contactless oral oncology screening and diagnostic platform. It couples dual classical vision backbones (**ConvNeXt-V2-Tiny** for boundary/spatial features and **EfficientNet-B3** for cellular/texture patterns) with a parallel **8-Qubit Variational Quantum Circuit (VQC)** running on PennyLane and a **Classical Residual Bypass Highway**.
+**QAI-OLI** (Quantum Artificial Intelligence for Oral Lesion Identification) is a full-stack, contactless oral oncology screening and diagnostic platform. Powered by the **Q-ConX-Dense Tri-Stage Clinical Cascade**, it couples dual classical vision backbones (**ConvNeXt-V2-Tiny** for boundary/spatial features and **DenseNet-121** for cellular morphology/vascular patterns) with a parallel **8-Qubit Variational Quantum Circuit (VQC)** running on PennyLane and a **Classical Residual Bypass Highway**.
 
 The platform is designed for primary healthcare screeners (ASHA/PHC workers) and tertiary oral oncologists, delivering instant 4-class triage alongside real-time **Grad-CAM visual saliency heatmaps**, **Quantum Polarization Telemetry (QPS)**, and printable institutional pathology requisition slips.
 

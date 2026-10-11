@@ -19,7 +19,7 @@
   <g transform="translate(100, 30)">
     <rect width="760" height="74" rx="12" fill="#f8fafc" stroke="#cbd5e1" stroke-width="1.5"/>
     <text x="380" y="32" text-anchor="middle" font-size="20" font-weight="700" fill="#0f172a">QAI-OLI: Hybrid Quantum-Classical Diagnostic Architecture</text>
-    <text x="380" y="56" text-anchor="middle" font-size="13" font-weight="500" fill="#64748b">ConvNeXt-V2 + EfficientNet-B3 with Parallel 8-Qubit VQC &amp; Classical Residual Bypass</text>
+    <text x="380" y="56" text-anchor="middle" font-size="13" font-weight="500" fill="#64748b">ConvNeXt-V2 + DenseNet-121 with Parallel 8-Qubit VQC &amp; Classical Residual Bypass</text>
   </g>
 
   <!-- ================= 1. ORAL IMAGE INPUT ================= -->
@@ -29,7 +29,7 @@
     <circle cx="42" cy="33" r="4" fill="#64748b"/>
     <path d="M 28 50 L 36 39 L 43 46 L 50 36 L 56 50 Z" fill="#64748b"/>
     <text x="80" y="36" font-size="16" font-weight="700" fill="#0f172a">Oral Photographic Image Input</text>
-    <text x="80" y="56" font-size="12.5" font-weight="500" fill="#64748b">Non-Invasive 2D RGB Smartphone Capture (384×384 &amp; 300×300)</text>
+    <text x="80" y="56" font-size="12.5" font-weight="500" fill="#64748b">Non-Invasive 2D RGB Smartphone Capture (384×384 &amp; 224×224)</text>
   </g>
 
   <!-- Arrow 1 -> 2 -->
@@ -45,10 +45,10 @@
     <text x="40" y="64" font-size="13.5" font-weight="700" fill="#1e293b">ConvNeXt-V2-Tiny</text>
     <text x="40" y="82" font-size="11.5" font-weight="500" fill="#64748b">768-D → Proj: 128-D (Spatial &amp; Borders)</text>
     
-    <!-- EfficientNet Card -->
+    <!-- DenseNet Card -->
     <rect x="290" y="42" width="246" height="60" rx="10" fill="#ffffff" stroke="#cbd5e1" stroke-width="1.5"/>
-    <text x="306" y="64" font-size="13.5" font-weight="700" fill="#1e293b">EfficientNet-B3</text>
-    <text x="306" y="82" font-size="11.5" font-weight="500" fill="#64748b">1536-D → Proj: 128-D (Cellular &amp; Texture)</text>
+    <text x="306" y="64" font-size="13.5" font-weight="700" fill="#1e293b">DenseNet-121</text>
+    <text x="306" y="82" font-size="11.5" font-weight="500" fill="#64748b">1024-D → Proj: 128-D (Cellular &amp; Vascular)</text>
   </g>
 
   <!-- Arrow 2 -> 3 -->

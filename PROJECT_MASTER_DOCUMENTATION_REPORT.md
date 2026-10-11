@@ -116,9 +116,8 @@ During training, data is dynamically augmented through the `Albumentations` libr
 
 ### 3.3 Multi-Scale Resolutions for Backbone Specialists
 Because different architectures capture features at different receptive scales, the input pipeline resizes images dynamically:
-1. **$224 \times 224$ pixels:** Fed to ConvNeXt-V2-Tiny and DenseNet-121 during fast turbo evaluation and edge inference.
-2. **$300 \times 300$ pixels:** Optimal compound scaling input for EfficientNet-B3 pre-trained feature extraction.
-3. **$384 \times 384$ pixels:** High-resolution input for ConvNeXt-V2 7x7 depthwise patch extraction in the full hybrid pipeline.
+1. **$224 \times 224$ pixels:** Optimal input for DenseNet-121 pre-trained feature extraction (capturing cellular atypia & vascular density) and edge inference.
+2. **$384 \times 384$ pixels:** High-resolution input for ConvNeXt-V2 7x7 depthwise patch extraction in the full hybrid pipeline.
 
 ### 3.4 Multi-Pass Test-Time Augmentation (TTA)
 During final test set evaluation, images undergo continuous 4-pass or 8-pass TTA:
@@ -241,7 +240,7 @@ The research path progressed through 12 rigorous scientific phases, where each d
    - Dense connectivity where every layer receives concatenated feature maps from all prior layers.
    - *Achievement:* Outstanding cellular morphology retention and dense gradient flow, yielding 80.53% OCA F1.
 7. **Step 7 — Classical Orthogonal Dual-Backbone Baseline (74.74% Accuracy | 83.60% OCA F1):**
-   - Concatenating normalized 128-D spatial embeddings from ConvNeXt-V2 with 128-D texture embeddings from EfficientNet-B3 into a 256-D feature vector.
+   - Concatenating normalized 128-D spatial embeddings from ConvNeXt-V2 with 128-D cellular embeddings from DenseNet-121 into a 256-D feature vector.
    - *Result:* Established the peak classical baseline of 74.74%.
 8. **Step 8 — Classical 8-Dimensional Bottleneck Control (73.72% Accuracy | 80.20% OCA F1):**
    - Scientific ablation: Compressed the 256-D fused vector into 8 classical scalar dimensions via linear projection to test whether 8 dimensions alone could classify lesions.
@@ -267,14 +266,14 @@ The research path progressed through 12 rigorous scientific phases, where each d
                [ Input Image ]
              ┌────────┴────────┐
              ▼                 ▼
-     [ ConvNeXt-V2 ]    [ EfficientNet-B3 ]
-       (384x384)          (300x300)
+     [ ConvNeXt-V2 ]    [ DenseNet-121 ]
+       (384x384)          (224x224)
              │                 │
-      768-D Features    1536-D Features
+      768-D Features    1024-D Features
              │                 │
              ▼                 ▼
        [ Linear+BN ]     [ Linear+BN ]
-       (768 -> 128)      (1536 -> 128)
+       (768 -> 128)      (1024 -> 128)
              └────────┬────────┘
                       ▼
             [ Concatenation ] ──> 256-D Fused Embedding
@@ -310,13 +309,13 @@ The research path progressed through 12 rigorous scientific phases, where each d
 ### 6.1 Classical Backbone Extraction & Dimension Normalization
 Given an intraoral photograph, two complementary representations are extracted:
 1. **Spatial & Boundary Feature Vector:** $\mathbf{f}_{\text{conv}} \in \mathbb{R}^{768}$ from ConvNeXt-V2-Tiny.
-2. **Cellular & Chromatic Feature Vector:** $\mathbf{f}_{\text{eff}} \in \mathbb{R}^{1536}$ from EfficientNet-B3.
+2. **Cellular Morphology & Vascular Feature Vector:** $\mathbf{f}_{\text{dense}} \in \mathbb{R}^{1024}$ from DenseNet-121.
 
-To prevent the higher-dimensional EfficientNet feature vector from dominating optimization, both vectors are projected into an identical 128-dimensional latent subspace:
+To prevent the higher-dimensional DenseNet feature vector from dominating optimization, both vectors are projected into an identical 128-dimensional latent subspace:
 $$\mathbf{z}_{\text{conv}} = \text{ReLU}\left(\text{BatchNorm1d}\left(\mathbf{W}_{\text{conv}} \mathbf{f}_{\text{conv}}\right)\right), \quad \mathbf{W}_{\text{conv}} \in \mathbb{R}^{128 \times 768}$$
-$$\mathbf{z}_{\text{eff}} = \text{ReLU}\left(\text{BatchNorm1d}\left(\mathbf{W}_{\text{eff}} \mathbf{f}_{\text{eff}}\right)\right), \quad \mathbf{W}_{\text{eff}} \in \mathbb{R}^{128 \times 1536}$$
+$$\mathbf{z}_{\text{dense}} = \text{ReLU}\left(\text{BatchNorm1d}\left(\mathbf{W}_{\text{dense}} \mathbf{f}_{\text{dense}}\right)\right), \quad \mathbf{W}_{\text{dense}} \in \mathbb{R}^{128 \times 1024}$$
 The features are concatenated to create the fused latent representation:
-$$\mathbf{z}_{\text{fused}} = [\mathbf{z}_{\text{conv}} \,\|\, \mathbf{z}_{\text{eff}}] \in \mathbb{R}^{256}$$
+$$\mathbf{z}_{\text{fused}} = [\mathbf{z}_{\text{conv}} \,\|\, \mathbf{z}_{\text{dense}}] \in \mathbb{R}^{256}$$
 
 ### 6.2 Quantum State Encoding (Angle Embedding)
 The fused feature vector $\mathbf{z}_{\text{fused}}$ is mapped to 8 quantum rotation angles:
@@ -772,10 +771,10 @@ Scientific integrity requires documenting failure modes and the engineering solu
 > - **Authoritative Defense:** *"Sir, ViTs require massive datasets to generalize; ConvNeXt-V2 provides ViT-scale $7 \times 7$ receptive fields while retaining convolutional inductive biases optimal for medical cohorts."*
 
 #### Point 4: Orthogonal Dual-Backbone Feature Fusion
-> *"Recognizing that EfficientNet excels at chromatic feature capture while ConvNeXt-V2 specializes in geometric boundaries, we engineered an orthogonal fusion network concatenating normalized 128-D spatial embeddings, establishing a robust classical baseline of 74.74%."*  
+> *"Recognizing that DenseNet-121 excels at cellular and vascular morphology while ConvNeXt-V2 specializes in geometric boundaries, we engineered an orthogonal fusion network concatenating normalized 128-D spatial embeddings, establishing a robust classical baseline of 74.74%."*  
 > - **Empirical Proof:** Baseline accuracy reached 74.74% with 83.60% OCA F1.  
 > - **Expected Examiner Question:** *"Is dual-backbone concatenation redundant?"*  
-> - **Authoritative Defense:** *"No, Sir; cross-correlation analysis confirms their feature maps are orthogonal — one captures cellular chromaticity, the other captures boundary morphology."*
+> - **Authoritative Defense:** *"No, Sir; cross-correlation analysis confirms their feature maps are orthogonal — one captures cellular morphology, the other captures boundary morphology."*
 
 #### Point 5: Empirical Proof of Quantum Advantage (+4.92%)
 > *"To scientifically isolate quantum contribution, we executed an ablation study: compressing embeddings into 8 classical scalars yielded 73.72%, whereas feeding the identical vectors into an 8-qubit variational quantum circuit yielded 78.64%, confirming a statistically verified +4.92% pure Quantum Advantage."*  
@@ -824,7 +823,7 @@ Agar examiner simple bhasha me pooche ya viva me aasan shabdo me explain karna h
 3. **ConvNeXt-V2 Ka Jadoo:**  
    *"Humne ConvNeXt-V2 lagaya jiske paas 7x7 ke bade kernels hain. Isne ghaav ke borders ko pakad kar accuracy seedha 70% aur cancer sensitivity 83.2% tak pahuncha di."*
 4. **Dual Backbone Fusion:**  
-   *"EfficientNet ko rang (color/cellular patterns) achha dikhta tha aur ConvNeXt ko ghaav ke kinare (edges). Humne dono ko jod kar 74.74% ka solid classical model banaya."*
+   *"DenseNet ko cellular patterns aur dense tissue structures achha dikhta tha aur ConvNeXt ko ghaav ke kinare (edges). Humne dono ko jod kar 74.74% ka solid classical model banaya."*
 5. **The Quantum Advantage Proof (+4.92%):**  
    *"Sir, humne prove kiya ki jab 256 features ko 8 aam classical numbers me dabate hain toh accuracy 73.72% aati hai. Lekin wahi features ko jab 8-qubit quantum circuit me daalte hain, toh accuracy jump karke 78.64% ho jaati hai — proving a genuine +4.92% pure Quantum Gain!"*
 6. **End-to-End Training (Stage Q2):**  
