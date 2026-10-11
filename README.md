@@ -63,11 +63,10 @@ QAI_OLI/
 │   └── README.md
 │
 ├── reports/                        # Verified Multi-Sheet Excel Workbooks & Benchmarks
-│   ├── 01_QAI_OLI_MASTER_REPORT_ACADEMIC_ENGLISH.xlsx
-│   ├── 02_QAI_OLI_MASTER_REPORT_BABY_LANGUAGE_HINGLISH.xlsx
-│   ├── 03_TOP_REFERENCE_PAPERS_VS_QAI_OLI_BENCHMARK_REAL.xlsx
-│   ├── 04_QAI_OLI_ACCURACY_COMPARATIVE_ANALYSIS.xlsx
-│   ├── 05_QAI_OLI_TRAINING_PROGRESSION_DATA.xlsx
+│   ├── 01_QAI_OLI_MASTER_CLINICAL_BENCHMARK_REPORT.xlsx
+│   ├── 02_TOP_REFERENCE_PAPERS_VS_QAI_OLI_BENCHMARK.xlsx
+│   ├── 03_QAI_OLI_ACCURACY_COMPARATIVE_ANALYSIS.xlsx
+│   ├── 04_QAI_OLI_TRAINING_PROGRESSION_DATA.xlsx
 │   └── README_REPORTS.md
 │
 ├── scripts/                        # Automated Plotting & Benchmark Scripts
