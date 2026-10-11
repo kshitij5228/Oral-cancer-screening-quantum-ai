@@ -11,6 +11,14 @@ website/tsconfig.tsbuildinfo
 *.so
 .pytest_cache/
 
+# Model Checkpoints (Restricted Distribution - Contact Author)
+*.pth
+*.pt
+*.onnx
+*.bin
+*.h5
+models/*.pth
+
 # Environment and secrets
 .env
 .env*.local

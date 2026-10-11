@@ -56,11 +56,8 @@ QAI_OLI/
 │   ├── proposed_model_evaluation/  # Q-ConX-Dense clinical evaluation (Confusion Matrix, ROC, Radar)
 │   └── README.md                   # Visual catalog of all figures
 │
-├── models/                         # Verified model checkpoints (tracked via Git LFS)
-│   ├── 01_mahanet_convnextv2_tiny.pth   (112 MB | Stage 1 Spatial Specialist)
-│   ├── 02_mahanet_densenet121.pth       (29.5 MB | Stage 2 Cellular Morphology Specialist)
-│   ├── 03_mahanet_quantum_8q_vqc.pth    (159 MB | Stage 3 8-Qubit VQC Decider)
-│   └── README.md
+├── models/                         # Model Checkpoint Registry & Access Policy
+│   └── README.md                   # Access policy & weight placement guide
 │
 ├── reports/                        # Verified Multi-Sheet Excel Workbooks & Benchmarks
 │   ├── 01_QAI_OLI_MASTER_CLINICAL_BENCHMARK_REPORT.xlsx
@@ -98,9 +95,23 @@ QAI_OLI/
 │   └── start_all.bat               # Subfolder Windows launcher
 │
 ├── start_application.bat           # Root One-Click Windows Launcher
-├── .gitignore                      # Git ignore rules for node_modules, cache, etc.
-└── .gitattributes                  # Git LFS tracking for .pth weights
+└── .gitignore                      # Git ignore rules for node_modules, cache, weights, etc.
 ```
+
+---
+
+## 🔐 Model Weights Access Policy
+
+Due to clinical data governance and to prevent unauthorized distribution, the pre-trained model weights (`.pth` files) are **not hosted publicly on GitHub**.
+
+### 📧 How to Request Model Checkpoints:
+To obtain access to the trained model checkpoints (`01_mahanet_convnextv2_tiny.pth`, `02_mahanet_densenet121.pth`, `03_mahanet_quantum_8q_vqc.pth`) for academic evaluation, clinical research, or benchmark reproduction, please contact:
+
+- **Lead Developer:** Kshitij Nakod
+- **Email:** [`nakod.kshitij5228@gmail.com`](mailto:nakod.kshitij5228@gmail.com)
+- **Subject:** `[QAI-OLI] Model Weights Access Request`
+
+Once received, place the 3 `.pth` files inside the [`models/`](models/) directory as detailed in [`models/README.md`](models/README.md).
 
 ---
 
@@ -109,7 +120,7 @@ QAI_OLI/
 ### Prerequisites
 - Node.js 18+ & npm
 - Python 3.10+
-- Git & Git LFS
+- Git
 
 ### Option A: One-Click Launch (Windows)
 Double-click `start_application.bat` at the project root (or `website/start_all.bat`). It will launch:

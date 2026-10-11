@@ -862,11 +862,11 @@ QAI_OLI/
 ├── start_application.bat                         # Root-level one-click dual launcher (Windows)
 ├── VERSION                                       # Current version tag (v3.0.0)
 │
-├── models/                                       # THE 3 CORE CHECKPOINTS LOADED BY BACKEND (GIT LFS)
-│   ├── 01_mahanet_convnextv2_tiny.pth            # (112 MB | Stage 1 Spatial Specialist | 70.06% Acc)
-│   ├── 02_mahanet_densenet121.pth                # (29.5 MB | Stage 2 Cellular Specialist | 61.60% Acc)
-│   ├── 03_mahanet_quantum_8q_vqc.pth             # (159 MB | Stage 3 8-Qubit VQC Decider  | 78.64% Acc)
-│   └── README.md
+├── models/                                       # RESTRICTED CHECKPOINT REGISTRY (REQUEST VIA NAKOD.KSHITIJ5228@GMAIL.COM)
+│   ├── 01_mahanet_convnextv2_tiny.pth            # (Stage 1 Spatial Specialist | Available upon request)
+│   ├── 02_mahanet_densenet121.pth                # (Stage 2 Cellular Specialist | Available upon request)
+│   ├── 03_mahanet_quantum_8q_vqc.pth             # (Stage 3 8-Qubit VQC Decider  | Available upon request)
+│   └── README.md                                 # Access request policy & checkpoint setup guide
 │
 ├── figures/                                      # PUBLICATION-GRADE CHARTS & DIAGRAMS (300 DPI)
 │   ├── architecture_diagrams/                    # IEEE-Standard SVG & PNG diagrams (UML, DFD 0-2, Use Case)
