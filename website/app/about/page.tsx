@@ -119,15 +119,15 @@ export default function AboutPage() {
 
         {/* Clinical disclaimer — prominent */}
         <div
-          className="relative overflow-hidden rounded-2xl p-7"
-          style={{ background: 'linear-gradient(135deg, #0f2822, #1a3d32)' }}
+          className="relative overflow-hidden rounded-2xl border border-[#334155]/60 p-7 shadow-md"
+          style={{ background: 'linear-gradient(135deg, #0f172a 0%, #1e293b 100%)' }}
         >
-          <div className="pointer-events-none absolute -right-10 -top-10 size-48 rounded-full bg-[#c38148]/10 blur-[60px]" />
+          <div className="pointer-events-none absolute -right-10 -top-10 size-56 rounded-full bg-[#0284c7]/20 blur-[70px]" />
           <div className="relative flex gap-4">
-            <ShieldCheck size={24} className="mt-0.5 shrink-0 text-[#7ab8a6]" />
+            <ShieldCheck size={24} className="mt-0.5 shrink-0 text-[#38bdf8]" />
             <div>
               <h2 className="font-serif text-xl text-white">Clinical Decision Support — Not a Diagnosis</h2>
-              <p className="mt-3 text-sm leading-7 text-[#94bfb3]">
+              <p className="mt-3 text-sm leading-7 text-[#cbd5e1]">
                 QAI-OLI is an AI-powered risk stratification screening aid. It is designed to assist
                 clinical decision-making by providing probability-based risk signals and interpretability
                 evidence — it does <strong className="text-white">not</strong> replace:
@@ -139,13 +139,13 @@ export default function AboutPage() {
                   'Clinical judgement of a trained healthcare professional',
                   'Established triage and referral pathways',
                 ].map(item => (
-                  <li key={item} className="flex items-center gap-2 text-sm text-[#7ab8a6]">
-                    <span className="size-1 rounded-full bg-[#5eab80]" />
+                  <li key={item} className="flex items-center gap-2 text-sm text-[#94a3b8]">
+                    <span className="size-1 rounded-full bg-[#38bdf8]" />
                     {item}
                   </li>
                 ))}
               </ul>
-              <p className="mt-4 text-xs text-[#5a8878]">
+              <p className="mt-4 text-xs text-[#64748b]">
                 All AI outputs must be reviewed and confirmed by an appropriate clinician before any clinical action.
               </p>
             </div>
