@@ -1,0 +1,33 @@
+# Dependencies & Build artifacts
+website/node_modules/
+website/.next/
+website/.vercel/
+website/tsconfig.tsbuildinfo
+
+# Python artifacts
+**/__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.pytest_cache/
+
+# Environment and secrets
+.env
+.env*.local
+*.key
+*.pem
+
+# IDE & OS files
+.DS_Store
+Thumbs.db
+*.swp
+*.swo
+.vscode/
+.idea/
+
+# Agent & temporary scratch files
+.agent/
+.agents/
+.gemini/
+*.tmp
+*.log

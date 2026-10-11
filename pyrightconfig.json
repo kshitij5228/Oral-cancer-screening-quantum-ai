@@ -1,0 +1,9 @@
+{
+  "include": [
+    "website/backend"
+  ],
+  "extraPaths": [
+    "website/backend"
+  ],
+  "reportMissingImports": "warning"
+}

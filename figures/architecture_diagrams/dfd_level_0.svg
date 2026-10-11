@@ -1,0 +1,179 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1540 820" width="100%" height="100%" style="background:#ffffff; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;">
+  <defs>
+    <!-- Arrowhead Markers -->
+    <marker id="arr-blue" viewBox="0 0 10 10" refX="6" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <path d="M 0 1.5 L 8 5 L 0 8.5 z" fill="#0284c7"/>
+    </marker>
+    <marker id="arr-green" viewBox="0 0 10 10" refX="6" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <path d="M 0 1.5 L 8 5 L 0 8.5 z" fill="#059669"/>
+    </marker>
+    <marker id="arr-purple" viewBox="0 0 10 10" refX="6" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <path d="M 0 1.5 L 8 5 L 0 8.5 z" fill="#7c3aed"/>
+    </marker>
+    <marker id="arr-amber" viewBox="0 0 10 10" refX="6" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <path d="M 0 1.5 L 8 5 L 0 8.5 z" fill="#d97706"/>
+    </marker>
+    <marker id="arr-slate" viewBox="0 0 10 10" refX="6" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <path d="M 0 1.5 L 8 5 L 0 8.5 z" fill="#475569"/>
+    </marker>
+  </defs>
+
+  <!-- ================= 0. HEADER ================= -->
+  <g transform="translate(250, 24)">
+    <rect width="1040" height="66" rx="12" fill="#f8fafc" stroke="#cbd5e1" stroke-width="1.5"/>
+    <text x="520" y="28" text-anchor="middle" font-size="20" font-weight="700" fill="#0f172a">Data Flow Diagram (DFD) — Level 0 : Context Diagram</text>
+    <text x="520" y="51" text-anchor="middle" font-size="13" font-weight="500" fill="#64748b">QAI-OLI Oral Oncology Suite: System Boundary, External Terminators &amp; Data Exchanges</text>
+  </g>
+
+  <!-- ================= 1. EXTERNAL ENTITY: PRIMARY HEALTHCARE / PATIENT (LEFT) ================= -->
+  <g transform="translate(40, 240)">
+    <rect width="250" height="260" rx="16" fill="#f0f9ff" stroke="#0284c7" stroke-width="2"/>
+    <rect x="16" y="16" width="130" height="22" rx="11" fill="#e0f2fe"/>
+    <text x="81" y="31" text-anchor="middle" font-size="10.5" font-weight="700" fill="#0369a1">EXTERNAL ENTITY</text>
+    
+    <text x="16" y="64" font-size="16" font-weight="700" fill="#0369a1">Primary Healthcare</text>
+    <text x="16" y="86" font-size="16" font-weight="700" fill="#0369a1">Clinician &amp; Patient</text>
+    
+    <rect x="16" y="104" width="218" height="136" rx="10" fill="#ffffff" stroke="#bae6fd" stroke-width="1.3"/>
+    <text x="28" y="128" font-size="12" font-weight="600" fill="#1e293b">• Community Asha Workers</text>
+    <text x="28" y="150" font-size="12" font-weight="600" fill="#1e293b">• Primary Health Centers (PHC)</text>
+    <text x="28" y="172" font-size="12" font-weight="600" fill="#1e293b">• Dental OPD Screening</text>
+    <text x="28" y="196" font-size="11.5" font-weight="500" fill="#64748b">• Patient Mobile Uploads</text>
+    <text x="28" y="218" font-size="11.5" font-weight="500" fill="#64748b">• Risk Questionnaire Inputs</text>
+  </g>
+
+  <!-- ================= 2. CENTRAL PROCESS 0.0 (MIDDLE) ================= -->
+  <g transform="translate(570, 140)">
+    <rect width="380" height="460" rx="28" fill="#faf5ff" stroke="#7c3aed" stroke-width="2.5"/>
+    
+    <!-- Header Badge -->
+    <rect x="115" y="18" width="150" height="26" rx="13" fill="#ede9fe"/>
+    <text x="190" y="35" text-anchor="middle" font-size="12" font-weight="800" fill="#6d28d9">PROCESS 0.0</text>
+    
+    <text x="190" y="74" text-anchor="middle" font-size="17.5" font-weight="800" fill="#3b0764">QAI-OLI Oral Oncology</text>
+    <text x="190" y="98" text-anchor="middle" font-size="17.5" font-weight="800" fill="#3b0764">AI Diagnostic Suite</text>
+    
+    <!-- Sub-Process 1: IQA -->
+    <g transform="translate(20, 122)">
+      <rect width="340" height="66" rx="10" fill="#ffffff" stroke="#ddd6fe" stroke-width="1.4"/>
+      <text x="14" y="25" font-size="13" font-weight="700" fill="#5b21b6">1. Image Quality Assurance (IQA)</text>
+      <text x="14" y="44" font-size="11.5" font-weight="500" fill="#475569">Laplacian variance blur detector &amp;</text>
+      <text x="14" y="58" font-size="11.5" font-weight="500" fill="#475569">over/underexposure pre-flight gate</text>
+    </g>
+
+    <!-- Sub-Process 2: Tri-Stage Gating -->
+    <g transform="translate(20, 202)">
+      <rect width="340" height="66" rx="10" fill="#ffffff" stroke="#ddd6fe" stroke-width="1.4"/>
+      <text x="14" y="25" font-size="13" font-weight="700" fill="#5b21b6">2. Tri-Stage Clinical Cascade</text>
+      <text x="14" y="44" font-size="11.5" font-weight="500" fill="#475569">Stage 1: Healthy Triage (98.4% Spec)</text>
+      <text x="14" y="58" font-size="11.5" font-weight="500" fill="#475569">Stage 2: Carcinoma (89.4% OCA F1)</text>
+    </g>
+
+    <!-- Sub-Process 3: Quantum Decoupler -->
+    <g transform="translate(20, 282)">
+      <rect width="340" height="66" rx="10" fill="#ffffff" stroke="#ddd6fe" stroke-width="1.4"/>
+      <text x="14" y="25" font-size="13" font-weight="700" fill="#5b21b6">3. 8-Qubit VQC Decoupler</text>
+      <text x="14" y="44" font-size="11.5" font-weight="500" fill="#475569">256-D Hilbert Space Projection resolving</text>
+      <text x="14" y="58" font-size="11.5" font-weight="500" fill="#475569">Benign vs OPMD ambiguity (+4.92%)</text>
+    </g>
+
+    <!-- Sub-Process 4: XAI Engine -->
+    <g transform="translate(20, 362)">
+      <rect width="340" height="66" rx="10" fill="#ffffff" stroke="#ddd6fe" stroke-width="1.4"/>
+      <text x="14" y="25" font-size="13" font-weight="700" fill="#5b21b6">4. Explainability &amp; Risk Engine</text>
+      <text x="14" y="44" font-size="11.5" font-weight="500" fill="#475569">Grad-CAM Spatial Focus Heatmaps &amp;</text>
+      <text x="14" y="58" font-size="11.5" font-weight="500" fill="#475569">Quantum Polarization Score (QPS)</text>
+    </g>
+  </g>
+
+  <!-- ================= 3. EXTERNAL ENTITY: ONCOLOGIST / HISTOPATHOLOGIST (TOP RIGHT) ================= -->
+  <g transform="translate(1250, 130)">
+    <rect width="250" height="210" rx="16" fill="#ecfdf5" stroke="#059669" stroke-width="2"/>
+    <rect x="16" y="16" width="130" height="22" rx="11" fill="#d1fae5"/>
+    <text x="81" y="31" text-anchor="middle" font-size="10.5" font-weight="700" fill="#047857">EXTERNAL ENTITY</text>
+    
+    <text x="16" y="64" font-size="16" font-weight="700" fill="#065f46">Oral Oncologist &amp;</text>
+    <text x="16" y="86" font-size="16" font-weight="700" fill="#065f46">Histopathologist</text>
+    
+    <rect x="16" y="104" width="218" height="92" rx="10" fill="#ffffff" stroke="#a7f3d0" stroke-width="1.3"/>
+    <text x="28" y="128" font-size="12" font-weight="600" fill="#1e293b">• Tertiary Cancer Hospitals</text>
+    <text x="28" y="148" font-size="12" font-weight="600" fill="#1e293b">• Biopsy &amp; Surgical Triaging</text>
+    <text x="28" y="168" font-size="11.5" font-weight="500" fill="#64748b">• Tele-Oncology Review</text>
+    <text x="28" y="186" font-size="11.5" font-weight="500" fill="#64748b">• Diagnostic Validation</text>
+  </g>
+
+  <!-- ================= 4. EXTERNAL ENTITY: HOSPITAL EHR & PACS (BOTTOM RIGHT) ================= -->
+  <g transform="translate(1250, 400)">
+    <rect width="250" height="210" rx="16" fill="#fffbeb" stroke="#d97706" stroke-width="2"/>
+    <rect x="16" y="16" width="170" height="22" rx="11" fill="#fef3c7"/>
+    <text x="101" y="31" text-anchor="middle" font-size="10.5" font-weight="700" fill="#b45309">DATA STORE / ENTITY</text>
+    
+    <text x="16" y="64" font-size="16" font-weight="700" fill="#92400e">Hospital EHR &amp; PACS</text>
+    <text x="16" y="86" font-size="16" font-weight="700" fill="#92400e">Clinical Registry</text>
+    
+    <rect x="16" y="104" width="218" height="92" rx="10" fill="#ffffff" stroke="#fde68a" stroke-width="1.3"/>
+    <text x="28" y="128" font-size="12" font-weight="600" fill="#1e293b">• Electronic Health Records</text>
+    <text x="28" y="148" font-size="12" font-weight="600" fill="#1e293b">• FHIR / HL7 Clinical Storage</text>
+    <text x="28" y="168" font-size="11.5" font-weight="500" fill="#64748b">• National Cancer Registry</text>
+    <text x="28" y="186" font-size="11.5" font-weight="500" fill="#64748b">• Longitudinal Follow-up</text>
+  </g>
+
+  <!-- ================= DATA FLOWS: LEFT <-> PROCESS 0.0 ================= -->
+  <!-- DF1: Image & Metadata (Clinician -> Process) -->
+  <line x1="290" y1="310" x2="570" y2="310" stroke="#0284c7" stroke-width="2.4" marker-end="url(#arr-blue)"/>
+  <rect x="310" y="276" width="240" height="34" rx="8" fill="#ffffff" stroke="#0284c7" stroke-width="1.6"/>
+  <text x="430" y="298" text-anchor="middle" font-size="11" font-weight="700" fill="#0284c7">DF1: Oral Image + Metadata</text>
+
+  <!-- DF2: Triage Output (Process -> Clinician) -->
+  <line x1="570" y1="430" x2="290" y2="430" stroke="#059669" stroke-width="2.4" marker-end="url(#arr-green)"/>
+  <rect x="310" y="432" width="240" height="34" rx="8" fill="#ffffff" stroke="#059669" stroke-width="1.6"/>
+  <text x="430" y="454" text-anchor="middle" font-size="11" font-weight="700" fill="#059669">DF2: 4-Class Triage + Alerts</text>
+
+  <!-- ================= DATA FLOWS: PROCESS 0.0 <-> TOP RIGHT (ONCOLOGIST) ================= -->
+  <!-- DF3: Grad-CAM & QPS (Process -> Oncologist) -->
+  <line x1="950" y1="230" x2="1250" y2="230" stroke="#7c3aed" stroke-width="2.4" marker-end="url(#arr-purple)"/>
+  <rect x="980" y="196" width="240" height="34" rx="8" fill="#ffffff" stroke="#7c3aed" stroke-width="1.6"/>
+  <text x="1100" y="218" text-anchor="middle" font-size="11" font-weight="700" fill="#7c3aed">DF3: Grad-CAM &amp; QPS Telemetry</text>
+
+  <!-- DF4: Biopsy Confirmation (Oncologist -> Process) -->
+  <line x1="1250" y1="290" x2="950" y2="290" stroke="#475569" stroke-width="2.4" marker-end="url(#arr-slate)"/>
+  <rect x="980" y="292" width="240" height="34" rx="8" fill="#ffffff" stroke="#475569" stroke-width="1.6"/>
+  <text x="1100" y="314" text-anchor="middle" font-size="11" font-weight="700" fill="#334155">DF4: Biopsy Ground Truth</text>
+
+  <!-- ================= DATA FLOWS: PROCESS 0.0 <-> BOTTOM RIGHT (EHR) ================= -->
+  <!-- DF5: Report to EHR (Process -> EHR) -->
+  <line x1="950" y1="480" x2="1250" y2="480" stroke="#d97706" stroke-width="2.4" marker-end="url(#arr-amber)"/>
+  <rect x="980" y="446" width="240" height="34" rx="8" fill="#ffffff" stroke="#d97706" stroke-width="1.6"/>
+  <text x="1100" y="468" text-anchor="middle" font-size="11" font-weight="700" fill="#d97706">DF5: FHIR Diagnostic JSON</text>
+
+  <!-- DF6: EHR Query (EHR -> Process) -->
+  <line x1="1250" y1="540" x2="950" y2="540" stroke="#475569" stroke-width="2.4" marker-end="url(#arr-slate)"/>
+  <rect x="980" y="542" width="240" height="34" rx="8" fill="#ffffff" stroke="#475569" stroke-width="1.6"/>
+  <text x="1100" y="564" text-anchor="middle" font-size="11" font-weight="700" fill="#334155">DF6: Prior Medical History</text>
+
+  <!-- ================= 5. DATA FLOW DIRECTORY / EXPLANATION TABLE ================= -->
+  <g transform="translate(120, 640)">
+    <rect width="1300" height="126" rx="12" fill="#f8fafc" stroke="#cbd5e1" stroke-width="1.4"/>
+    <text x="650" y="26" text-anchor="middle" font-size="13" font-weight="700" fill="#0f172a">Formally Defined Data Flow Directory (Gane-Sarson / IEEE Standard)</text>
+    
+    <!-- Left Column -->
+    <text x="50" y="54" font-size="11.5" font-weight="700" fill="#0284c7">DF1:</text>
+    <text x="90" y="54" font-size="11.5" font-weight="500" fill="#334155">Patient intraoral RGB photo, age, lesion location &amp; habit profile (tobacco, betel nut, alcohol consumption).</text>
+    
+    <text x="50" y="78" font-size="11.5" font-weight="700" fill="#059669">DF2:</text>
+    <text x="90" y="78" font-size="11.5" font-weight="500" fill="#334155">Four-class triage classification (Healthy / Benign / OPMD / OCA) + clinical protocol &amp; IQA quality alerts.</text>
+
+    <text x="50" y="102" font-size="11.5" font-weight="700" fill="#7c3aed">DF3:</text>
+    <text x="90" y="102" font-size="11.5" font-weight="500" fill="#334155">Real-time Grad-CAM visual attention heatmaps + Quantum Polarization Score (QPS) interpretability metric.</text>
+
+    <!-- Right Column -->
+    <text x="700" y="54" font-size="11.5" font-weight="700" fill="#475569">DF4:</text>
+    <text x="740" y="54" font-size="11.5" font-weight="500" fill="#334155">Histopathological biopsy report, surgical outcome &amp; specialist diagnostic ground truth annotations.</text>
+    
+    <text x="700" y="78" font-size="11.5" font-weight="700" fill="#d97706">DF5:</text>
+    <text x="740" y="78" font-size="11.5" font-weight="500" fill="#334155">Standardized FHIR/HL7 diagnostic JSON package, inference latency &amp; model audit checksum logging.</text>
+
+    <text x="700" y="102" font-size="11.5" font-weight="700" fill="#475569">DF6:</text>
+    <text x="740" y="102" font-size="11.5" font-weight="500" fill="#334155">Past clinical consultation history, prior lesion biopsies &amp; longitudinal surveillance monitoring data.</text>
+  </g>
+</svg>

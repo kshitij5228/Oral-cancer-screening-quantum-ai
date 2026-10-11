@@ -1,0 +1,401 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1680 1440" width="100%" height="100%" style="background:#ffffff; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;">
+  <defs>
+    <!-- Arrowhead Markers -->
+    <marker id="arr-include" viewBox="0 0 10 10" refX="7" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <path d="M 0 1.5 L 8 5 L 0 8.5 z" fill="#7c3aed"/>
+    </marker>
+    <marker id="arr-extend" viewBox="0 0 10 10" refX="7" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <path d="M 0 1.5 L 8 5 L 0 8.5 z" fill="#0284c7"/>
+    </marker>
+    <marker id="arr-assoc-green" viewBox="0 0 10 10" refX="7" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <path d="M 0 1.5 L 8 5 L 0 8.5 z" fill="#16a34a"/>
+    </marker>
+    <marker id="arr-assoc-purple" viewBox="0 0 10 10" refX="7" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <path d="M 0 1.5 L 8 5 L 0 8.5 z" fill="#7c3aed"/>
+    </marker>
+    <marker id="arr-assoc-blue" viewBox="0 0 10 10" refX="7" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <path d="M 0 1.5 L 8 5 L 0 8.5 z" fill="#0284c7"/>
+    </marker>
+    <marker id="arr-assoc-amber" viewBox="0 0 10 10" refX="7" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <path d="M 0 1.5 L 8 5 L 0 8.5 z" fill="#d97706"/>
+    </marker>
+  </defs>
+
+  <!-- ================= 0. HEADER ================= -->
+  <g transform="translate(240, 24)">
+    <rect width="1200" height="66" rx="14" fill="#f8fafc" stroke="#cbd5e1" stroke-width="1.6"/>
+    <text x="600" y="29" text-anchor="middle" font-size="20" font-weight="700" fill="#0f172a">UML Use Case Diagram : QAI-OLI Clinical Oncology Platform</text>
+    <text x="600" y="51" text-anchor="middle" font-size="13" font-weight="500" fill="#64748b">Operational Actor Roles, 2-Column Symmetrical Grid &amp; Traceability Matrix</text>
+  </g>
+
+  <!-- ================= 1. SYSTEM BOUNDARY ================= -->
+  <g transform="translate(310, 110)">
+    <rect width="1060" height="920" rx="16" fill="#fbfcfe" stroke="#94a3b8" stroke-width="2"/>
+    <!-- System Boundary Header Badge -->
+    <rect x="20" y="14" width="560" height="26" rx="10" fill="#f1f5f9" stroke="#cbd5e1" stroke-width="1"/>
+    <text x="300" y="31" text-anchor="middle" font-size="11" font-weight="800" fill="#334155">SYSTEM BOUNDARY: QAI-OLI CLINICAL SUITE (WEB &amp; INFERENCE ENGINE)</text>
+    
+    <!-- Central Divider Guide Line (Subtle) -->
+    <line x1="530" y1="50" x2="530" y2="900" stroke="#f1f5f9" stroke-width="2" stroke-dasharray="6 6"/>
+  </g>
+
+
+  <!-- ================= 2. LEFT-SIDE ACTORS ================= -->
+
+  <!-- ACTOR 1: Community Screener / Patient (Top Left) -->
+  <g transform="translate(40, 150)">
+    <rect width="240" height="120" rx="14" fill="#f8fafc" stroke="#16a34a" stroke-width="1.8"/>
+    <circle cx="120" cy="36" r="16" fill="#dcfce7" stroke="#16a34a" stroke-width="1.5"/>
+    <circle cx="120" cy="32" r="6" fill="#16a34a"/>
+    <path d="M 108 46 C 108 41 132 41 132 46 Z" fill="#16a34a"/>
+    
+    <rect x="60" y="60" width="120" height="18" rx="9" fill="#dcfce7"/>
+    <text x="120" y="73" text-anchor="middle" font-size="9" font-weight="800" fill="#15803d">PRIMARY ACTOR</text>
+    
+    <text x="120" y="94" text-anchor="middle" font-size="13.5" font-weight="700" fill="#0f172a">Community Screener</text>
+    <text x="120" y="110" text-anchor="middle" font-size="10.5" font-weight="500" fill="#64748b">Field worker / Patient</text>
+  </g>
+
+  <!-- ACTOR 2: Chairside Clinician / Dentist (Middle Left) -->
+  <g transform="translate(40, 460)">
+    <rect width="240" height="230" rx="14" fill="#faf5ff" stroke="#7c3aed" stroke-width="2"/>
+    <circle cx="120" cy="42" r="20" fill="#ede9fe" stroke="#7c3aed" stroke-width="1.8"/>
+    <circle cx="120" cy="37" r="7" fill="#7c3aed"/>
+    <path d="M 106 54 C 106 47 134 47 134 54 Z" fill="#7c3aed"/>
+    <path d="M 117 32 H 123 M 120 29 V 35" stroke="#ffffff" stroke-width="1.5" stroke-linecap="round"/>
+
+    <rect x="40" y="74" width="160" height="20" rx="10" fill="#ede9fe"/>
+    <text x="120" y="88" text-anchor="middle" font-size="9.5" font-weight="800" fill="#6d28d9">PRIMARY CLINICAL ACTOR</text>
+    
+    <text x="120" y="114" text-anchor="middle" font-size="14.5" font-weight="700" fill="#4c1d95">Chairside Clinician</text>
+    <text x="120" y="133" text-anchor="middle" font-size="11" font-weight="600" fill="#7c3aed">General Dentist / Specialist</text>
+    <text x="120" y="156" text-anchor="middle" font-size="10" font-weight="500" fill="#64748b">Diagnostic screening, Grad-CAM</text>
+    <text x="120" y="172" text-anchor="middle" font-size="10" font-weight="500" fill="#64748b">inspection &amp; clinical triage</text>
+    <text x="120" y="196" text-anchor="middle" font-size="10" font-weight="600" fill="#7c3aed">Requisition Referral Sign-off</text>
+  </g>
+
+
+  <!-- ================= 3. RIGHT-SIDE ACTORS ================= -->
+
+  <!-- ACTOR 5: PennyLane Quantum Engine (Top Right) -->
+  <g transform="translate(1400, 310)">
+    <rect width="240" height="120" rx="14" fill="#faf5ff" stroke="#7c3aed" stroke-width="1.8"/>
+    <circle cx="120" cy="36" r="16" fill="#ede9fe" stroke="#7c3aed" stroke-width="1.5"/>
+    <circle cx="120" cy="36" r="10" fill="none" stroke="#7c3aed" stroke-width="1.2" stroke-dasharray="2 2"/>
+    <path d="M 110 36 H 130 M 120 26 V 46" stroke="#7c3aed" stroke-width="1.4"/>
+
+    <rect x="60" y="60" width="120" height="18" rx="9" fill="#ede9fe"/>
+    <text x="120" y="73" text-anchor="middle" font-size="9" font-weight="800" fill="#6d28d9">BACKEND ENGINE</text>
+    
+    <text x="120" y="94" text-anchor="middle" font-size="13.5" font-weight="700" fill="#4c1d95">PennyLane Engine</text>
+    <text x="120" y="110" text-anchor="middle" font-size="10.5" font-weight="500" fill="#64748b">8-Qubit VQC QPU Simulator</text>
+  </g>
+
+  <!-- ACTOR 3: Oncologist / Pathologist (Middle Right) -->
+  <g transform="translate(1400, 560)">
+    <rect width="240" height="160" rx="14" fill="#f0f9ff" stroke="#0284c7" stroke-width="2"/>
+    <circle cx="120" cy="40" r="20" fill="#e0f2fe" stroke="#0284c7" stroke-width="1.8"/>
+    <circle cx="120" cy="35" r="7" fill="#0284c7"/>
+    <path d="M 106 52 C 106 45 134 45 134 52 Z" fill="#0284c7"/>
+
+    <rect x="55" y="70" width="130" height="20" rx="10" fill="#e0f2fe"/>
+    <text x="120" y="84" text-anchor="middle" font-size="9.5" font-weight="800" fill="#0369a1">SPECIALIST ACTOR</text>
+    
+    <text x="120" y="108" text-anchor="middle" font-size="14" font-weight="700" fill="#0369a1">Oncologist / Pathologist</text>
+    <text x="120" y="126" text-anchor="middle" font-size="11" font-weight="600" fill="#0284c7">Tertiary Cancer Center</text>
+    <text x="120" y="144" text-anchor="middle" font-size="9.5" font-weight="500" fill="#64748b">Biopsy validation &amp; referral sign-off</text>
+  </g>
+
+  <!-- ACTOR 4: Hospital EHR / PACS System (Bottom Right) -->
+  <g transform="translate(1400, 870)">
+    <rect width="240" height="120" rx="14" fill="#fffbeb" stroke="#d97706" stroke-width="1.8"/>
+    <circle cx="120" cy="36" r="16" fill="#fef3c7" stroke="#d97706" stroke-width="1.5"/>
+    <rect x="112" y="28" width="16" height="5" rx="1" fill="#d97706"/>
+    <rect x="112" y="35" width="16" height="5" rx="1" fill="#d97706"/>
+    <rect x="112" y="42" width="16" height="5" rx="1" fill="#d97706"/>
+
+    <rect x="60" y="60" width="120" height="18" rx="9" fill="#fef3c7"/>
+    <text x="120" y="73" text-anchor="middle" font-size="9" font-weight="800" fill="#b45309">EXTERNAL SYSTEM</text>
+    
+    <text x="120" y="94" text-anchor="middle" font-size="13.5" font-weight="700" fill="#92400e">Hospital EHR / PACS</text>
+    <text x="120" y="110" text-anchor="middle" font-size="10.5" font-weight="500" fill="#64748b">DICOM &amp; FHIR Ingestion</text>
+  </g>
+
+
+  <!-- ================= 4. TWO-COLUMN USE CASE GRID ================= -->
+
+  <!-- ===== ROW 1: INTAKE & QUALITY GATE (y=170..244, Center y=207) ===== -->
+  <!-- UC1: Capture & Upload Oral Photo (Left) -->
+  <g transform="translate(360, 170)">
+    <rect width="380" height="74" rx="37" fill="#f0fdf4" stroke="#16a34a" stroke-width="2"/>
+    <text x="190" y="32" text-anchor="middle" font-size="13.5" font-weight="700" fill="#15803d">UC1: Capture &amp; Upload Oral Photo</text>
+    <text x="190" y="52" text-anchor="middle" font-size="11" font-weight="500" fill="#334155">Contactless macroscopic 2D RGB mobile intake</text>
+  </g>
+
+  <!-- UC2: Evaluate Pre-Flight Image Quality (IQA) (Right) -->
+  <g transform="translate(900, 170)">
+    <rect width="380" height="74" rx="37" fill="#f8fafc" stroke="#64748b" stroke-width="1.8"/>
+    <text x="190" y="32" text-anchor="middle" font-size="13.5" font-weight="700" fill="#334155">UC2: Evaluate Image Quality (IQA)</text>
+    <text x="190" y="52" text-anchor="middle" font-size="11" font-weight="500" fill="#64748b">Laplacian blur (&gt;100), glare (&lt;12%), hue coverage</text>
+  </g>
+
+  <!-- UC1 -> UC2 (Pure Horizontal <<include>>) -->
+  <line x1="740" y1="207" x2="900" y2="207" stroke="#7c3aed" stroke-width="1.8" stroke-dasharray="5 4" marker-end="url(#arr-include)"/>
+  <rect x="780" y="195" width="80" height="24" rx="6" fill="#ffffff" stroke="#7c3aed" stroke-width="1.2"/>
+  <text x="820" y="211" text-anchor="middle" font-size="9.5" font-weight="800" fill="#6d28d9">&lt;&lt;include&gt;&gt;</text>
+
+
+  <!-- ===== ROW 2: CORE INFERENCE & QUANTUM DECOUPLER (y=310..460) ===== -->
+  <!-- UC3: Execute Hybrid AI Screening (Left, Center y=375) -->
+  <g transform="translate(360, 325)">
+    <rect width="380" height="96" rx="48" fill="#faf5ff" stroke="#7c3aed" stroke-width="2.4"/>
+    <rect x="90" y="10" width="200" height="18" rx="9" fill="#ede9fe"/>
+    <text x="190" y="23" text-anchor="middle" font-size="9" font-weight="800" fill="#6d28d9">CORE DIAGNOSTIC ANCHOR</text>
+    <text x="190" y="52" text-anchor="middle" font-size="14.5" font-weight="700" fill="#4c1d95">UC3: Execute Hybrid AI Screening</text>
+    <text x="190" y="74" text-anchor="middle" font-size="11.5" font-weight="600" fill="#7c3aed">ConvNeXt-V2 ⊕ DenseNet-121 ⊕ 8Q VQC Cascade</text>
+  </g>
+
+  <!-- UC4: Execute 8-Qubit VQC Hilbert Decoupler (Right Top, Center y=344) -->
+  <g transform="translate(900, 312)">
+    <rect width="380" height="64" rx="32" fill="#faf5ff" stroke="#7c3aed" stroke-width="2"/>
+    <text x="190" y="28" text-anchor="middle" font-size="13" font-weight="700" fill="#6d28d9">UC4: Run 8-Qubit VQC Decoupler</text>
+    <text x="190" y="46" text-anchor="middle" font-size="10.5" font-weight="500" fill="#475569">3 StronglyEntanglingLayers in 256-D space</text>
+  </g>
+
+  <!-- UC5: Apply Dysplasia Soft-Voting Calibration (Right Bottom, Center y=424) -->
+  <g transform="translate(900, 392)">
+    <rect width="380" height="64" rx="32" fill="#ecfdf5" stroke="#059669" stroke-width="2"/>
+    <text x="190" y="28" text-anchor="middle" font-size="13" font-weight="700" fill="#065f46">UC5: Calibrate Dysplasia Ensemble</text>
+    <text x="190" y="46" text-anchor="middle" font-size="10.5" font-weight="500" fill="#047857">Convex soft-voting weights (0.25, 0.25, 0.50)</text>
+  </g>
+
+  <!-- UC3 -> UC4 (<<include>>) -->
+  <path d="M 740 360 L 900 344" fill="none" stroke="#7c3aed" stroke-width="1.8" stroke-dasharray="5 4" marker-end="url(#arr-include)"/>
+  <rect x="780" y="338" width="80" height="22" rx="6" fill="#ffffff" stroke="#7c3aed" stroke-width="1.2"/>
+  <text x="820" y="353" text-anchor="middle" font-size="9.5" font-weight="800" fill="#6d28d9">&lt;&lt;include&gt;&gt;</text>
+
+  <!-- UC3 -> UC5 (<<include>>) -->
+  <path d="M 740 395 L 900 424" fill="none" stroke="#7c3aed" stroke-width="1.8" stroke-dasharray="5 4" marker-end="url(#arr-include)"/>
+  <rect x="780" y="398" width="80" height="22" rx="6" fill="#ffffff" stroke="#7c3aed" stroke-width="1.2"/>
+  <text x="820" y="413" text-anchor="middle" font-size="9.5" font-weight="800" fill="#6d28d9">&lt;&lt;include&gt;&gt;</text>
+
+  <!-- Vertical Trigger UC1 -> UC3 -->
+  <line x1="550" y1="244" x2="550" y2="325" stroke="#7c3aed" stroke-width="1.8" stroke-dasharray="5 4" marker-end="url(#arr-include)"/>
+  <rect x="505" y="272" width="90" height="22" rx="6" fill="#ffffff" stroke="#7c3aed" stroke-width="1.2"/>
+  <text x="550" y="287" text-anchor="middle" font-size="8.5" font-weight="800" fill="#6d28d9">&lt;&lt;precondition&gt;&gt;</text>
+
+
+  <!-- ===== ROW 3: EXPLAINABLE AI & REASONING (y=530..604, Center y=567) ===== -->
+  <!-- UC6: Inspect Dual-Stream Grad-CAM Heatmap (Left) -->
+  <g transform="translate(360, 530)">
+    <rect width="380" height="74" rx="37" fill="#eff6ff" stroke="#2563eb" stroke-width="2.2"/>
+    <text x="190" y="32" text-anchor="middle" font-size="13.5" font-weight="700" fill="#1e40af">UC6: Inspect Grad-CAM Overlay</text>
+    <text x="190" y="52" text-anchor="middle" font-size="11" font-weight="500" fill="#334155">Interactive split-pane before/after slider</text>
+  </g>
+
+  <!-- UC8: Review Dynamic Clinical Reasoning & Rule-Out (Right) -->
+  <g transform="translate(900, 530)">
+    <rect width="380" height="74" rx="37" fill="#f0f9ff" stroke="#0284c7" stroke-width="1.8"/>
+    <text x="190" y="32" text-anchor="middle" font-size="13.5" font-weight="700" fill="#0369a1">UC8: Review Clinical Reasoning</text>
+    <text x="190" y="52" text-anchor="middle" font-size="11" font-weight="500" fill="#475569">Contextual differential justification</text>
+  </g>
+
+  <!-- Vertical Extension UC6 -> UC3 -->
+  <line x1="550" y1="530" x2="550" y2="421" stroke="#0284c7" stroke-width="1.8" stroke-dasharray="5 4" marker-end="url(#arr-extend)"/>
+  <rect x="510" y="465" width="80" height="22" rx="6" fill="#ffffff" stroke="#0284c7" stroke-width="1.2"/>
+  <text x="550" y="480" text-anchor="middle" font-size="9.5" font-weight="800" fill="#0369a1">&lt;&lt;extend&gt;&gt;</text>
+
+  <!-- Horizontal Extension UC8 -> UC6 -->
+  <line x1="900" y1="567" x2="740" y2="567" stroke="#0284c7" stroke-width="1.8" stroke-dasharray="5 4" marker-end="url(#arr-extend)"/>
+  <rect x="780" y="555" width="80" height="24" rx="6" fill="#ffffff" stroke="#0284c7" stroke-width="1.2"/>
+  <text x="820" y="571" text-anchor="middle" font-size="9.5" font-weight="800" fill="#0369a1">&lt;&lt;extend&gt;&gt;</text>
+
+
+  <!-- ===== ROW 4: QUANTUM TELEMETRY & PATHOLOGY SLIP (y=680..754, Center y=717) ===== -->
+  <!-- UC7: Monitor Quantum Polarization Telemetry (QPS) (Left) -->
+  <g transform="translate(360, 680)">
+    <rect width="380" height="74" rx="37" fill="#faf5ff" stroke="#7c3aed" stroke-width="1.8"/>
+    <text x="190" y="32" text-anchor="middle" font-size="13.5" font-weight="700" fill="#6d28d9">UC7: Monitor QPS Telemetry</text>
+    <text x="190" y="52" text-anchor="middle" font-size="11" font-weight="500" fill="#475569">8 Pauli-Z observables &amp; QPS polarization gauge</text>
+  </g>
+
+  <!-- UC9: Generate Printable Pathology Requisition Slip (Right) -->
+  <g transform="translate(900, 680)">
+    <rect width="380" height="74" rx="37" fill="#fef2f2" stroke="#dc2626" stroke-width="2.2"/>
+    <text x="190" y="32" text-anchor="middle" font-size="13.5" font-weight="700" fill="#991b1b">UC9: Generate Pathology Slip</text>
+    <text x="190" y="52" text-anchor="middle" font-size="11" font-weight="500" fill="#334155">Institutional referral ID TRI-XX-2026-XXXX</text>
+  </g>
+
+  <!-- Vertical Extension UC7 -> UC6 -->
+  <line x1="550" y1="680" x2="550" y2="604" stroke="#0284c7" stroke-width="1.8" stroke-dasharray="5 4" marker-end="url(#arr-extend)"/>
+  <rect x="510" y="632" width="80" height="22" rx="6" fill="#ffffff" stroke="#0284c7" stroke-width="1.2"/>
+  <text x="550" y="647" text-anchor="middle" font-size="9.5" font-weight="800" fill="#0369a1">&lt;&lt;extend&gt;&gt;</text>
+
+  <!-- Vertical Extension UC9 -> UC8 -->
+  <line x1="1090" y1="680" x2="1090" y2="604" stroke="#0284c7" stroke-width="1.8" stroke-dasharray="5 4" marker-end="url(#arr-extend)"/>
+  <rect x="1050" y="632" width="80" height="22" rx="6" fill="#ffffff" stroke="#0284c7" stroke-width="1.2"/>
+  <text x="1090" y="647" text-anchor="middle" font-size="9.5" font-weight="800" fill="#0369a1">&lt;&lt;extend&gt;&gt;</text>
+
+
+  <!-- ===== ROW 5: RESEARCH PORTAL & EHR EXPORT (y=830..904, Center y=867) ===== -->
+  <!-- UC11: Access Research Hub & Benchmarks (Left) -->
+  <g transform="translate(360, 830)">
+    <rect width="380" height="74" rx="37" fill="#f8fafc" stroke="#64748b" stroke-width="1.8"/>
+    <text x="190" y="32" text-anchor="middle" font-size="13.5" font-weight="700" fill="#334155">UC11: Access Research Hub</text>
+    <text x="190" y="52" text-anchor="middle" font-size="11" font-weight="500" fill="#64748b">Model report cards &amp; 25-paper benchmark matrix</text>
+  </g>
+
+  <!-- UC10: Export Diagnostic Telemetry to Hospital EHR / PACS (Right) -->
+  <g transform="translate(900, 830)">
+    <rect width="380" height="74" rx="37" fill="#fffbeb" stroke="#d97706" stroke-width="2"/>
+    <text x="190" y="32" text-anchor="middle" font-size="13.5" font-weight="700" fill="#92400e">UC10: Export to Hospital EHR</text>
+    <text x="190" y="52" text-anchor="middle" font-size="11" font-weight="500" fill="#78350f">FHIR / JSON records &amp; DICOM overlays</text>
+  </g>
+
+  <!-- Vertical Extension UC10 -> UC9 -->
+  <line x1="1090" y1="830" x2="1090" y2="754" stroke="#0284c7" stroke-width="1.8" stroke-dasharray="5 4" marker-end="url(#arr-extend)"/>
+  <rect x="1050" y="782" width="80" height="22" rx="6" fill="#ffffff" stroke="#0284c7" stroke-width="1.2"/>
+  <text x="1090" y="797" text-anchor="middle" font-size="9.5" font-weight="800" fill="#0369a1">&lt;&lt;extend&gt;&gt;</text>
+
+
+  <!-- ================= 5. ACTOR ASSOCIATIONS (100% COLLISION FREE) ================= -->
+
+  <!-- Screener -> UC1 (Pure Horizontal) -->
+  <line x1="280" y1="207" x2="360" y2="207" stroke="#16a34a" stroke-width="2" marker-end="url(#arr-assoc-green)"/>
+
+  <!-- Clinician -> UC3 (Clean Angled Line) -->
+  <line x1="280" y1="490" x2="360" y2="385" stroke="#7c3aed" stroke-width="2" marker-end="url(#arr-assoc-purple)"/>
+
+  <!-- Clinician -> UC6 (Clean Angled Line) -->
+  <line x1="280" y1="550" x2="360" y2="560" stroke="#7c3aed" stroke-width="2" marker-end="url(#arr-assoc-purple)"/>
+
+  <!-- Clinician -> UC7 (Clean Angled Line) -->
+  <line x1="280" y1="620" x2="360" y2="705" stroke="#7c3aed" stroke-width="2" marker-end="url(#arr-assoc-purple)"/>
+
+  <!-- Clinician -> UC11 (Clean Angled Line) -->
+  <line x1="280" y1="660" x2="360" y2="850" stroke="#7c3aed" stroke-width="2" marker-end="url(#arr-assoc-purple)"/>
+
+  <!-- PennyLane -> UC4 (Pure Horizontal) -->
+  <line x1="1400" y1="344" x2="1280" y2="344" stroke="#7c3aed" stroke-width="2" marker-end="url(#arr-assoc-purple)"/>
+
+  <!-- Oncologist -> UC8 (Clean Horizontal) -->
+  <line x1="1400" y1="580" x2="1280" y2="567" stroke="#0284c7" stroke-width="2" marker-end="url(#arr-assoc-blue)"/>
+
+  <!-- Oncologist -> UC9 (Clean Angled Line) -->
+  <line x1="1400" y1="680" x2="1280" y2="717" stroke="#0284c7" stroke-width="2" marker-end="url(#arr-assoc-blue)"/>
+
+  <!-- Hospital EHR -> UC10 (Pure Horizontal) -->
+  <line x1="1400" y1="867" x2="1280" y2="867" stroke="#d97706" stroke-width="2" marker-end="url(#arr-assoc-amber)"/>
+
+
+  <!-- ================= 6. DIRECTORY & TRACEABILITY TABLE ================= -->
+  <g transform="translate(50, 1060)">
+    <rect width="1580" height="330" rx="14" fill="#f8fafc" stroke="#cbd5e1" stroke-width="1.6"/>
+    <text x="790" y="27" text-anchor="middle" font-size="14.5" font-weight="700" fill="#0f172a">UML Use Case Specification Directory &amp; Actor Traceability Matrix</text>
+    
+    <!-- LEFT COLUMN: ROWS 1-3 -->
+    <g transform="translate(40, 50)">
+      <!-- UC1 -->
+      <g transform="translate(0, 0)">
+        <rect x="0" y="0" width="48" height="22" rx="6" fill="#f0fdf4" stroke="#16a34a" stroke-width="1.2"/>
+        <text x="24" y="15" text-anchor="middle" font-size="10.5" font-weight="800" fill="#15803d">UC1</text>
+        <text x="58" y="15" font-size="12" font-weight="700" fill="#0f172a">Capture &amp; Upload Oral Photo:</text>
+        <text x="254" y="15" font-size="11.5" font-weight="500" fill="#334155">Non-invasive smartphone/camera macroscopic RGB intake. [Actor: Community Screener]</text>
+      </g>
+
+      <!-- UC2 -->
+      <g transform="translate(0, 32)">
+        <rect x="0" y="0" width="48" height="22" rx="6" fill="#f8fafc" stroke="#64748b" stroke-width="1.2"/>
+        <text x="24" y="15" text-anchor="middle" font-size="10.5" font-weight="800" fill="#334155">UC2</text>
+        <text x="58" y="15" font-size="12" font-weight="700" fill="#0f172a">Evaluate Image Quality (IQA):</text>
+        <text x="260" y="15" font-size="11.5" font-weight="500" fill="#334155">Automated blur (Laplacian &gt; 100), glare (&lt;12%), hue coverage. [&lt;&lt;include&gt;&gt; from UC1]</text>
+      </g>
+
+      <!-- UC3 -->
+      <g transform="translate(0, 64)">
+        <rect x="0" y="0" width="48" height="22" rx="6" fill="#faf5ff" stroke="#7c3aed" stroke-width="1.2"/>
+        <text x="24" y="15" text-anchor="middle" font-size="10.5" font-weight="800" fill="#6d28d9">UC3</text>
+        <text x="58" y="15" font-size="12" font-weight="700" fill="#4c1d95">Execute Hybrid AI Screening:</text>
+        <text x="260" y="15" font-size="11.5" font-weight="500" fill="#334155">Core 4-class diagnostic inference via ConvNeXt + DenseNet + 8Q VQC. [Actor: Clinician]</text>
+      </g>
+
+      <!-- UC4 -->
+      <g transform="translate(0, 96)">
+        <rect x="0" y="0" width="48" height="22" rx="6" fill="#faf5ff" stroke="#7c3aed" stroke-width="1.2"/>
+        <text x="24" y="15" text-anchor="middle" font-size="10.5" font-weight="800" fill="#6d28d9">UC4</text>
+        <text x="58" y="15" font-size="12" font-weight="700" fill="#4c1d95">Run 8-Qubit VQC Decoupler:</text>
+        <text x="252" y="15" font-size="11.5" font-weight="500" fill="#334155">Evaluates 3 entangling layers in 256-D space. [&lt;&lt;include&gt;&gt; from UC3; Actor: PennyLane]</text>
+      </g>
+
+      <!-- UC5 -->
+      <g transform="translate(0, 128)">
+        <rect x="0" y="0" width="48" height="22" rx="6" fill="#ecfdf5" stroke="#059669" stroke-width="1.2"/>
+        <text x="24" y="15" text-anchor="middle" font-size="10.5" font-weight="800" fill="#065f46">UC5</text>
+        <text x="58" y="15" font-size="12" font-weight="700" fill="#065f46">Calibrate Dysplasia Ensemble:</text>
+        <text x="262" y="15" font-size="11.5" font-weight="500" fill="#334155">Convex soft-voting fusion (0.25, 0.25, 0.50) resolving Benign vs OPMD. [&lt;&lt;include&gt;&gt; from UC3]</text>
+      </g>
+
+      <!-- UC11 -->
+      <g transform="translate(0, 160)">
+        <rect x="0" y="0" width="48" height="22" rx="6" fill="#f8fafc" stroke="#64748b" stroke-width="1.2"/>
+        <text x="24" y="15" text-anchor="middle" font-size="10.5" font-weight="800" fill="#334155">UC11</text>
+        <text x="58" y="15" font-size="12" font-weight="700" fill="#0f172a">Access Research Hub:</text>
+        <text x="204" y="15" font-size="11.5" font-weight="500" fill="#334155">Interactive exhibition of all 8 publication graphs &amp; 25-paper benchmark. [Clinician]</text>
+      </g>
+    </g>
+
+    <!-- RIGHT COLUMN: ROWS 3-5 -->
+    <g transform="translate(820, 50)">
+      <!-- UC6 -->
+      <g transform="translate(0, 0)">
+        <rect x="0" y="0" width="48" height="22" rx="6" fill="#eff6ff" stroke="#2563eb" stroke-width="1.2"/>
+        <text x="24" y="15" text-anchor="middle" font-size="10.5" font-weight="800" fill="#1e40af">UC6</text>
+        <text x="58" y="15" font-size="12" font-weight="700" fill="#1e40af">Inspect Grad-CAM Overlay:</text>
+        <text x="245" y="15" font-size="11.5" font-weight="500" fill="#334155">Dual-stream spatial saliency heatmap with split-pane slider. [&lt;&lt;extend&gt;&gt; UC3; Clinician]</text>
+      </g>
+
+      <!-- UC7 -->
+      <g transform="translate(0, 32)">
+        <rect x="0" y="0" width="48" height="22" rx="6" fill="#faf5ff" stroke="#7c3aed" stroke-width="1.2"/>
+        <text x="24" y="15" text-anchor="middle" font-size="10.5" font-weight="800" fill="#6d28d9">UC7</text>
+        <text x="58" y="15" font-size="12" font-weight="700" fill="#4c1d95">Monitor QPS Telemetry:</text>
+        <text x="225" y="15" font-size="11.5" font-weight="500" fill="#334155">Real-time 8 Pauli-Z observables and polarization gauge. [&lt;&lt;extend&gt;&gt; UC6; Clinician]</text>
+      </g>
+
+      <!-- UC8 -->
+      <g transform="translate(0, 64)">
+        <rect x="0" y="0" width="48" height="22" rx="6" fill="#f0f9ff" stroke="#0284c7" stroke-width="1.2"/>
+        <text x="24" y="15" text-anchor="middle" font-size="10.5" font-weight="800" fill="#0369a1">UC8</text>
+        <text x="58" y="15" font-size="12" font-weight="700" fill="#0369a1">Review Clinical Reasoning:</text>
+        <text x="242" y="15" font-size="11.5" font-weight="500" fill="#334155">Dynamic contextual justification text and rule-out criteria. [&lt;&lt;extend&gt;&gt; UC6; Oncologist]</text>
+      </g>
+
+      <!-- UC9 -->
+      <g transform="translate(0, 96)">
+        <rect x="0" y="0" width="48" height="22" rx="6" fill="#fef2f2" stroke="#dc2626" stroke-width="1.2"/>
+        <text x="24" y="15" text-anchor="middle" font-size="10.5" font-weight="800" fill="#991b1b">UC9</text>
+        <text x="58" y="15" font-size="12" font-weight="700" fill="#991b1b">Generate Pathology Slip:</text>
+        <text x="232" y="15" font-size="11.5" font-weight="500" fill="#334155">Requisition document with unique ID TRI-XX-2026. [&lt;&lt;extend&gt;&gt; UC8; Oncologist]</text>
+      </g>
+
+      <!-- UC10 -->
+      <g transform="translate(0, 128)">
+        <rect x="0" y="0" width="48" height="22" rx="6" fill="#fffbeb" stroke="#d97706" stroke-width="1.2"/>
+        <text x="24" y="15" text-anchor="middle" font-size="10.5" font-weight="800" fill="#b45309">UC10</text>
+        <text x="58" y="15" font-size="12" font-weight="700" fill="#92400e">Export to Hospital EHR:</text>
+        <text x="225" y="15" font-size="11.5" font-weight="500" fill="#334155">Transmits structured JSON / FHIR records &amp; DICOM overlays. [&lt;&lt;extend&gt;&gt; UC9; Hospital EHR]</text>
+      </g>
+
+      <!-- Legend -->
+      <g transform="translate(0, 164)">
+        <rect x="0" y="0" width="700" height="26" rx="6" fill="#f1f5f9"/>
+        <text x="10" y="17" font-size="10.5" font-weight="700" fill="#334155">UML Legend:</text>
+        <text x="85" y="17" font-size="10.5" font-weight="500" fill="#334155">— Solid Line: Association |</text>
+        <text x="235" y="17" font-size="10.5" font-weight="700" fill="#6d28d9">- - ▷ &lt;&lt;include&gt;&gt;:</text>
+        <text x="320" y="17" font-size="10.5" font-weight="500" fill="#334155">Mandatory Dependency |</text>
+        <text x="475" y="17" font-size="10.5" font-weight="700" fill="#0284c7">- - ▷ &lt;&lt;extend&gt;&gt;:</text>
+        <text x="555" y="17" font-size="10.5" font-weight="500" fill="#334155">Conditional Extension</text>
+      </g>
+    </g>
+  </g>
+</svg>
