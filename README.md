@@ -47,18 +47,35 @@ Full high-resolution SVG and PNG diagrams are available in [`figures/architectur
 
 ```
 QAI_OLI/
-├── figures/
-│   └── architecture_diagrams/      # Clean IEEE-standard SVG & PNG architecture diagrams
-│       ├── uml.png / uml.svg
-│       ├── dfd_level_0.png / .svg
-│       ├── dfd_level_1.png / .svg
-│       ├── dfd_level_2.png / .svg
-│       └── use_case.png / .svg
+├── docs/                           # Comprehensive Academic & Clinical Documentation
+│   ├── PROJECT_MASTER_DOCUMENTATION_REPORT.md  # 80+ page master academic & technical specification
+│   └── README.md
+│
+├── figures/                        # Publication-Quality Figures & Charts (300 DPI)
+│   ├── architecture_diagrams/      # IEEE-standard SVG & PNG architecture diagrams (UML, DFD 0-2, Use Case)
+│   ├── proposed_model_evaluation/  # Q-ConX-Dense clinical evaluation (Confusion Matrix, ROC, Radar)
+│   └── README.md                   # Visual catalog of all figures
 │
 ├── models/                         # Verified model checkpoints (tracked via Git LFS)
-│   ├── 01_mahanet_convnextv2_tiny.pth   (112 MB | Spatial Specialist)
-│   ├── 02_mahanet_densenet121.pth       (29.5 MB | Cellular Morphology Specialist)
-│   ├── 03_mahanet_quantum_8q_vqc.pth    (159 MB | 8-Qubit VQC Decider)
+│   ├── 01_mahanet_convnextv2_tiny.pth   (112 MB | Stage 1 Spatial Specialist)
+│   ├── 02_mahanet_densenet121.pth       (29.5 MB | Stage 2 Cellular Morphology Specialist)
+│   ├── 03_mahanet_quantum_8q_vqc.pth    (159 MB | Stage 3 8-Qubit VQC Decider)
+│   └── README.md
+│
+├── reports/                        # Verified Multi-Sheet Excel Workbooks & Benchmarks
+│   ├── 01_QAI_OLI_MASTER_REPORT_ACADEMIC_ENGLISH.xlsx
+│   ├── 02_QAI_OLI_MASTER_REPORT_BABY_LANGUAGE_HINGLISH.xlsx
+│   ├── 03_TOP_REFERENCE_PAPERS_VS_QAI_OLI_BENCHMARK_REAL.xlsx
+│   ├── 04_QAI_OLI_ACCURACY_COMPARATIVE_ANALYSIS.xlsx
+│   ├── 05_QAI_OLI_TRAINING_PROGRESSION_DATA.xlsx
+│   └── README_REPORTS.md
+│
+├── scripts/                        # Automated Plotting & Benchmark Scripts
+│   ├── generate_qai_oli_performance_graphs.py
+│   ├── generate_proposed_model_matrices.py
+│   ├── generate_comparative_accuracy_analysis.py
+│   ├── generate_q_conx_dense_tp_performance_analysis.py
+│   ├── validation/                 # Codebase validation & search utilities
 │   └── README.md
 │
 ├── website/                        # Full-Stack Web Platform
@@ -71,16 +88,17 @@ QAI_OLI/
 │   ├── backend/                    # FastAPI Inference Engine
 │   │   ├── server.py               # Main API server with Tri-Stage Ensemble
 │   │   ├── model_qai.py            # Hybrid PennyLane VQC + Classical Residual Net
+│   │   ├── model_v2.py             # ConvNeXt-V2 backbone architecture
+│   │   ├── model_advanced.py       # DenseNet-121 backbone architecture
 │   │   ├── quality_gate.py         # Laplacian blur & exposure pre-flight IQA
-│   │   ├── explainable_ai.py       # Grad-CAM spatial focus overlays
+│   │   ├── qai_explainable_ai.py   # Dual-Stream Grad-CAM spatial focus overlays
 │   │   ├── Dockerfile              # Containerized deployment for Cloud/Hugging Face
 │   │   └── requirements.txt        # Python dependencies
 │   │
 │   ├── package.json                # Frontend package configuration
-│   └── start_all.bat               # One-click Windows launcher
+│   └── start_all.bat               # Subfolder Windows launcher
 │
-├── reports/                        # Clinical & Statistical Validation Reports
-│   └── PROJECT_MASTER_DOCUMENTATION_REPORT.md  # Comprehensive academic master report
+├── start_application.bat           # Root One-Click Windows Launcher
 ├── .gitignore                      # Git ignore rules for node_modules, cache, etc.
 └── .gitattributes                  # Git LFS tracking for .pth weights
 ```
@@ -95,7 +113,7 @@ QAI_OLI/
 - Git & Git LFS
 
 ### Option A: One-Click Launch (Windows)
-Double-click `website/start_all.bat`. It will start:
+Double-click `start_application.bat` at the project root (or `website/start_all.bat`). It will launch:
 - FastAPI Backend on `http://127.0.0.1:8000`
 - Next.js Frontend on `http://localhost:3000`
 
@@ -134,4 +152,4 @@ Double-click `website/start_all.bat`. It will start:
 
 ## 📄 License & Attribution
 Developed for oral oncology clinical triaging and research validation.  
-All experimental data, architecture models, and validation benchmarks are documented in [`PROJECT_MASTER_DOCUMENTATION_REPORT.md`](PROJECT_MASTER_DOCUMENTATION_REPORT.md).
+All experimental data, architecture models, and validation benchmarks are documented in [`docs/PROJECT_MASTER_DOCUMENTATION_REPORT.md`](docs/PROJECT_MASTER_DOCUMENTATION_REPORT.md).

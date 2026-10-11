@@ -498,7 +498,7 @@ $$\text{Confidence} = \max_{c} P_{\text{final}}(c) \times 100\%$$
 > - **TP_90 (Full Protocol):** Model trained on 90% of the training pool (~4,824 images)  
 > All checkpoints across all training percentages are evaluated on the **identical, unchanging $N = 487$ test images**, empirically proving true sample-efficiency and eliminating data leakage.
 
-The table below documents the verified trajectory across training percentages (40% to 90% training data) and training epochs (5 to 35) from `figures/qai_oli_option1_gap5_all_models.xlsx`:
+The table below documents the verified trajectory across training percentages (40% to 90% training data) and training epochs (5 to 35) from `reports/05_QAI_OLI_TRAINING_PROGRESSION_DATA.xlsx`:
 
 | Architecture | Epoch | TP_40 | TP_50 | TP_60 | TP_70 | TP_80 | TP_90 (Full) |
 |---|:---:|:---:|:---:|:---:|:---:|:---:|:---:|
@@ -844,41 +844,55 @@ Agar examiner simple bhasha me pooche ya viva me aasan shabdo me explain karna h
 ### 15.1 Physical File System Layout
 ```
 QAI_OLI/
-├── PROJECT_RULES.md                              # Canonical development & verification rules
-├── PROJECT_MASTER_DOCUMENTATION_REPORT.md         # THIS COMPLETE MASTER SPECIFICATION DOCUMENT
-├── README_QAI_OLI_MASTER.md                      # Package overview and quick metrics
+├── docs/                                         # COMPREHENSIVE ACADEMIC & CLINICAL DOCUMENTATION
+│   ├── PROJECT_MASTER_DOCUMENTATION_REPORT.md    # THIS COMPLETE MASTER SPECIFICATION DOCUMENT
+│   └── README.md                                 # Documentation directory index
+│
+├── README.md                                     # Official project overview & quickstart guide
+├── start_application.bat                         # Root-level one-click dual launcher (Windows)
 ├── VERSION                                       # Current version tag (v3.0.0)
 │
-├── models/                                       # THE 3 CORE CHECKPOINTS LOADED BY BACKEND
-│   ├── 01_mahanet_convnextv2_tiny.pth            # (107.1 MB | Stage 1 Spatial Specialist | 70.06% Acc)
-│   ├── 02_mahanet_densenet121.pth                # (28.1 MB  | Stage 2 Cellular Specialist | 61.60% Acc)
-│   ├── 03_mahanet_quantum_8q_vqc.pth             # (152.1 MB | Stage 3 8-Qubit VQC Decider  | 78.64% Acc)
+├── models/                                       # THE 3 CORE CHECKPOINTS LOADED BY BACKEND (GIT LFS)
+│   ├── 01_mahanet_convnextv2_tiny.pth            # (112 MB | Stage 1 Spatial Specialist | 70.06% Acc)
+│   ├── 02_mahanet_densenet121.pth                # (29.5 MB | Stage 2 Cellular Specialist | 61.60% Acc)
+│   ├── 03_mahanet_quantum_8q_vqc.pth             # (159 MB | Stage 3 8-Qubit VQC Decider  | 78.64% Acc)
 │   └── README.md
 │
-├── figures/                                      # PUBLICATION-GRADE CHARTS & DATA WORKBOOKS
-│   ├── proposed_model_evaluation/                # DEDICATED PROPOSED MODEL EVALUATION (NO COMPARISONS)
-│   │   ├── figure_1_qai_oli_confusion_matrix.png # 4-Class Clinical Confusion Matrix (Counts & %)
-│   │   ├── figure_2_qai_oli_metrics_matrix.png   # Diagnostic Parameters Matrix Table (Prec/Rec/F1/Spec)
-│   │   ├── figure_3_qai_oli_parameter_radar.png  # 8-Axis Multi-Parameter Spider/Radar Profile
-│   │   ├── figure_4_qai_oli_roc_curves_matrix.png# Multi-Class ROC-AUC Curves (Healthy 0.99, OCA 0.96)
-│   │   └── figure_5_qai_oli_master_dashboard.png # Master All-in-One Clinical Presentation Dashboard
-│   ├── figure1_individual_models_benchmark.png   # Grouped bar chart comparing individual models
-│   ├── figure2_hybrid_models_trinetra_qai_oli.png# Literature benchmark and hybrid evolution
-│   ├── figure4_per_class_individual_vs_hybrid.png# Per-class F1 radar/bar breakdown
-│   ├── figure_q_conx_dense_performance_analysis.png  # Multi-Epoch Progression chart for Q-ConX-Dense (83.77%)
-│   ├── figure_q_conx_dense_performance_analysis_table.png # Formatted metric table for Q-ConX-Dense across TP_40 to TP_90
-│   └── qai_oli_option1_gap5_all_models.xlsx      # Master progression table (TP 40%-90%, Epochs 5-35)
+├── figures/                                      # PUBLICATION-GRADE CHARTS & DIAGRAMS (300 DPI)
+│   ├── architecture_diagrams/                    # IEEE-Standard SVG & PNG diagrams (UML, DFD 0-2, Use Case)
+│   │   ├── uml.png / uml.svg
+│   │   ├── dfd_level_0.png / dfd_level_0.svg
+│   │   ├── dfd_level_1.png / dfd_level_1.svg
+│   │   ├── dfd_level_2.png / dfd_level_2.svg
+│   │   └── use_case.png / use_case.svg
+│   ├── proposed_model_evaluation/                # Dedicated proposed model evaluation (N=487)
+│   │   ├── figure_1_qai_oli_confusion_matrix.png # 4-Class Clinical Confusion Matrix
+│   │   ├── figure_2_qai_oli_metrics_matrix.png   # Diagnostic Parameters Matrix Table
+│   │   ├── figure_3_qai_oli_parameter_radar.png  # Multi-Parameter Spider/Radar Profile
+│   │   ├── figure_4_qai_oli_roc_curves_matrix.png# Multi-Class ROC-AUC Curves
+│   │   └── figure_5_qai_oli_master_dashboard.png # Master All-in-One Clinical Dashboard
+│   ├── figure_qai_oli_clinical_triage_parameters.png     # Triage milestones vs 80% threshold
+│   ├── figure_qai_oli_per_class_metrics.png              # Per-class Prec/Rec/F1/Spec
+│   ├── figure_qai_oli_models_comparison_multi_parameter.png # Classical vs Quantum vs SOTA
+│   ├── figure_qai_oli_tp_progression_parameters.png      # TP_40 to TP_90 metric progression
+│   ├── figure_comparative_analysis_accuracy_barchart.png # Multi-model comparative bar chart
+│   ├── figure_comparative_analysis_accuracy_table.png    # High-resolution benchmark table
+│   └── README.md                                 # Figure catalog and usage guide
 │
 ├── scripts/                                      # AUTOMATION & REPRODUCIBILITY SCRIPTS
-│   ├── generate_proposed_model_matrices.py       # Generates dedicated proposed model matrices & radar
+│   ├── generate_proposed_model_matrices.py       # Generates dedicated proposed model matrices
 │   ├── generate_qai_oli_performance_graphs.py    # Generates multi-parameter bar charts
 │   ├── generate_comparative_accuracy_analysis.py # Generates comparative tables & charts
-│   └── generate_q_conx_dense_tp_performance_analysis.py # Generates dedicated Q-ConX-Dense TP progression artifacts
+│   ├── generate_q_conx_dense_tp_performance_analysis.py # Generates Q-ConX-Dense TP progression
+│   ├── validation/                               # Internal validation & search tools
+│   └── README.md
 │
 ├── reports/                                      # STANDARDIZED EXCEL WORKBOOKS & DEFENSE GUIDES
-│   ├── 01_QAI_OLI_MASTER_REPORT_ACADEMIC_ENGLISH.xlsx # 5-Sheet academic thesis report & model catalog
-│   ├── 02_QAI_OLI_MASTER_REPORT_BABY_LANGUAGE.xlsx    # 5-Sheet intuitive Hinglish viva guide
-│   ├── 03_TOP_REFERENCE_PAPERS_VS_QAI_OLI_BENCHMARK_REAL.xlsx # Direct benchmark against 25 published papers
+│   ├── 01_QAI_OLI_MASTER_REPORT_ACADEMIC_ENGLISH.xlsx # 5-Sheet academic thesis report
+│   ├── 02_QAI_OLI_MASTER_REPORT_BABY_LANGUAGE.xlsx    # Intuitive Hinglish viva guide
+│   ├── 03_TOP_REFERENCE_PAPERS_VS_QAI_OLI_BENCHMARK_REAL.xlsx # Literature benchmark vs 25 papers
+│   ├── 04_QAI_OLI_ACCURACY_COMPARATIVE_ANALYSIS.xlsx  # 8-Model & 10-Model progression matrix
+│   ├── 05_QAI_OLI_TRAINING_PROGRESSION_DATA.xlsx      # Master progression table (TP 40%-90%, Epochs 5-35)
 │   └── README_REPORTS.md
 │
 └── website/                                      # FULL-STACK CLINICAL WEB APPLICATION
@@ -889,22 +903,17 @@ QAI_OLI/
     │
     ├── backend/                                  # FASTAPI ASYNCHRONOUS INFERENCE SERVICE
     │   ├── server.py                             # API server, model loading, ensemble soft-voting
-    │   ├── model_qai.py                          # TRINETRAQAINet, VQC ansatz, PennyLane bridge
-    │   ├── quality_gate.py                       # Pre-flight Laplacian, glare & mucosa checking
+    │   ├── model_qai.py                          # Hybrid PennyLane VQC + Classical Residual Net
+    │   ├── model_v2.py                           # ConvNeXt-V2 feature extractor
+    │   ├── model_advanced.py                     # DenseNet-121 feature extractor
+    │   ├── quality_gate.py                       # Pre-flight Laplacian blur & exposure check
     │   ├── qai_explainable_ai.py                 # Dual-Stream Grad-CAM & clinical reasoning
     │   └── requirements.txt                      # Python dependencies (torch, pennylane, etc.)
     │
     └── app/                                      # NEXT.JS APP ROUTER
         ├── page.tsx                              # Main landing page & quick triage
         ├── screening/page.tsx                    # Interactive patient screening portal
-        ├── research/page.tsx                     # Research benchmarks & figure gallery
-        ├── about/page.tsx                        # Clinical context, ethics & methodology
-        └── components/
-            ├── grad-cam-slider.tsx               # Before-after interactive Grad-CAM split slider
-            ├── quantum-panel.tsx                 # Real-time 8-Qubit Pauli-Z bar chart & QPS
-            ├── requisition-slip.tsx              # Printable pathology referral slip generator
-            ├── processing-steps.tsx              # 5-stage inference telemetry animation
-            └── backbone-panel.tsx                # Multi-backbone probability distribution cards
+        └── research/page.tsx                     # Research benchmarks & figure gallery
 ```
 
 ### 15.2 Hardware & Environment Specifications

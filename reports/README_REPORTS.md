@@ -12,6 +12,8 @@ This directory contains the verified and standardized master Excel workbooks and
 | **01** | `01_QAI_OLI_MASTER_REPORT_ACADEMIC_ENGLISH.xlsx` | Formal Academic / Thesis English | 5-Sheet Thesis Report, 18-Model Matrix, Formal Viva Defense |
 | **02** | `02_QAI_OLI_MASTER_REPORT_BABY_LANGUAGE_HINGLISH.xlsx` | Easy Intuitive Hinglish (Baby Language) | Simple breakdown of research story, model cards, teacher viva Q&A |
 | **03** | `03_TOP_REFERENCE_PAPERS_VS_QAI_OLI_BENCHMARK_REAL.xlsx` | Literature Comparison (Real Published Papers) | QAI-OLI (83.77%) vs 25 Published Papers (Welikala 74%, Jubair 73%) |
+| **04** | `04_QAI_OLI_ACCURACY_COMPARATIVE_ANALYSIS.xlsx` | Accuracy Benchmark Matrix | 8-Model & 10-Model Progression across TP_40 to TP_90 |
+| **05** | `05_QAI_OLI_TRAINING_PROGRESSION_DATA.xlsx` | Full Multi-Epoch Trajectory Table | Multi-model training progress across TP (40%-90%) & Epochs (5-35) |
 
 ---
 
