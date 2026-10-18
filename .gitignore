@@ -45,3 +45,11 @@ Thumbs.db
 *_temp.jpg
 *_temp.*
 *.temp.*
+
+# Research papers & literature PDFs
+research_papers/
+"res paper"/
+res paper/
+selected_res_papers/
+*.pdf
+
