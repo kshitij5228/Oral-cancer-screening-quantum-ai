@@ -70,7 +70,7 @@ QAI_OLI/
 │   ├── 05_QAI_OLI_MULTI_PARAMETER_COMPARATIVE_ANALYSIS.xlsx
 │   └── README_REPORTS.md
 │
-├── research_papers/                # Literature Survey Corpus & Reference Library
+├── research_papers/                # Literature Survey Corpus & Reference Library (Local Workspace)
 │   ├── literature_survey_selected/ # 7 Selected survey papers (1.pdf to 7.pdf + citation index)
 │   ├── all_reference_papers/       # Complete set of 25 reference papers & literature matrices
 │   └── README.md                   # Full bibliography & comparative metrics summary
@@ -83,7 +83,6 @@ QAI_OLI/
 │   ├── generate_qai_oli_performance_graphs.py  # Clinical triage & TP progression graphs
 │   ├── generate_comparative_accuracy_analysis.py# 8-model comparative accuracy bar charts
 │   ├── generate_q_conx_dense_tp_performance_analysis.py # Q-ConX-Dense progression curves
-│   ├── validation/                 # Codebase validation & search utilities
 │   └── README.md
 │
 ├── website/                        # Full-Stack Web Platform

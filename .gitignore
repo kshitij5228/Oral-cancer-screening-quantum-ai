@@ -53,3 +53,10 @@ res paper/
 selected_res_papers/
 *.pdf
 
+# Local developer & agent adapters (Keep public repo clean)
+adapters/
+scripts/validation/
+website/CLAUDE.md
+website/AGENTS.md
+
+

@@ -12,5 +12,6 @@ This directory contains the in-depth technical documentation, clinical specifica
     - Mathematical formulation of Hilbert space projection & PennyLane ansatz
     - Multi-Center validation across N=487 held-out cohort
     - Explainable AI (Grad-CAM & Quantum Polarization Score)
-    - Architecture diagrams, DFDs, and UML Use Case traceability matrix
+    - System architecture, multi-stream flowchart, and UML Use Case traceability matrix
     - Software implementation & deployment guides
+

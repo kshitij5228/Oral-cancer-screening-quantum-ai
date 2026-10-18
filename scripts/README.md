@@ -25,9 +25,3 @@ python scripts/generate_proposed_model_matrices.py
 python scripts/generate_comparative_5_parameters_analysis.py
 python scripts/generate_architecture_flowchart.py
 ```
-
----
-
-## 📁 Subdirectories
-
-- **`validation/`**: Internal repository verification, GSD CI checks, encoding tests, and codebase search utilities.

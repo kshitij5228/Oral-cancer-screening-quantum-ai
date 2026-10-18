@@ -926,7 +926,6 @@ QAI_OLI/
 │   ├── generate_qai_oli_performance_graphs.py    # Generates multi-parameter bar charts
 │   ├── generate_comparative_accuracy_analysis.py # Generates comparative tables & charts
 │   ├── generate_q_conx_dense_tp_performance_analysis.py # Generates Q-ConX-Dense TP progression
-│   ├── validation/                               # Internal validation & search tools
 │   └── README.md
 │
 ├── reports/                                      # STANDARDIZED EMPIRICAL BENCHMARKS & WORKBOOKS
@@ -937,7 +936,7 @@ QAI_OLI/
 │   ├── 05_QAI_OLI_MULTI_PARAMETER_COMPARATIVE_ANALYSIS.xlsx # Multi-parameter comparative analysis master
 │   └── README_REPORTS.md
 │
-├── research_papers/                              # REFERENCE LITERATURE & BENCHMARK CORPUS
+├── research_papers/                              # REFERENCE LITERATURE & BENCHMARK CORPUS (LOCAL REPOSITORY)
 │   ├── literature_survey_selected/               # 7 Curated literature survey publications (1.pdf to 7.pdf)
 │   ├── all_reference_papers/                     # 25 Complete reference studies & review sheets
 │   └── README.md                                 # Full literature catalog & comparative overview
