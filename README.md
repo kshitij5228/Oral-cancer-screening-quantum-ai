@@ -33,13 +33,12 @@ The platform is designed for primary healthcare screeners (ASHA/PHC workers) and
 
 ## 🏛️ System Architecture & Diagrams
 
-Full high-resolution SVG and PNG diagrams are available in [`figures/architecture_diagrams/`](figures/architecture_diagrams/):
+Full high-resolution SVG, HTML vector, and 300 DPI PNG diagrams are available in [`figures/architecture_diagrams/`](figures/architecture_diagrams/):
 
-1. **[Model Pipeline Architecture](figures/architecture_diagrams/uml.png)** — Dual-backbone feature fusion, 8-qubit VQC ansatz, and classical residual highway.
-2. **[DFD Level 0: Context Diagram](figures/architecture_diagrams/dfd_level_0.png)** — System boundary, external terminators (clinicians, oncologists, EHR/PACS), and primary data flows (DF1–DF6).
-3. **[DFD Level 1: Subsystem Architecture](figures/architecture_diagrams/dfd_level_1.png)** — Hierarchical pipeline from Pre-Flight IQA to Tri-Stage Cascade, XAI, and Data Stores D1–D3.
-4. **[DFD Level 2: Core AI & Quantum Decoupler](figures/architecture_diagrams/dfd_level_2.png)** — Mathematical signal trace of the 256-D Hilbert projection, Pauli-Z measurement, and soft-voting calibration.
-5. **[UML Use Case Diagram](figures/architecture_diagrams/use_case.png)** — 5 operational actors, 11 use cases (UC1–UC11), and full traceability matrix.
+1. **[End-to-End System Architecture](figures/architecture_diagrams/system_architecture.png)** — Complete 5-tier architecture: Chairside IQA, dual vision extractors, quantum state preparation, consensus triage, and clinical requisition slip.
+2. **[Parallel Multi-Stream Flowchart](figures/architecture_diagrams/flowchart_pipeline.png)** — High-level runtime flow from raw photo input to tri-stream soft-voting inference and Grad-CAM generation.
+3. **[Model Pipeline Architecture](figures/architecture_diagrams/uml.png)** — Dual-backbone feature fusion, 8-qubit VQC ansatz, and classical residual highway.
+4. **[UML Operational Use Case Diagram](figures/architecture_diagrams/use_case.png)** — 5 operational actors, 11 clinical use cases (UC1–UC11), and end-to-end clinical workflow.
 
 ---
 
@@ -52,11 +51,15 @@ QAI_OLI/
 │   └── README.md
 │
 ├── figures/                        # Publication-Quality Figures & Charts (300 DPI)
-│   ├── architecture_diagrams/      # IEEE-standard SVG & PNG architecture diagrams (UML, DFD 0-2, Use Case)
+│   ├── architecture_diagrams/      # System architecture, parallel flowchart, UML pipeline, Use Case
 │   ├── proposed_model_evaluation/  # Q-ConX-Dense clinical evaluation (Confusion Matrix, ROC, Radar)
+│   ├── comparative_parameter_analysis/ # 8-model comparative charts & tables across 9 parameters
 │   └── README.md                   # Visual catalog of all figures
 │
 ├── models/                         # Model Checkpoint Registry & Access Policy
+│   ├── 01_mahanet_convnextv2_tiny.pth  # Spatial Feature Specialist
+│   ├── 02_mahanet_densenet121.pth      # Cellular Morphology Specialist
+│   ├── 03_mahanet_quantum_8q_vqc.pth   # 8-Qubit VQC Decider
 │   └── README.md                   # Access policy & weight placement guide
 │
 ├── reports/                        # Verified Multi-Sheet Excel Workbooks & Benchmarks
@@ -64,13 +67,22 @@ QAI_OLI/
 │   ├── 02_TOP_REFERENCE_PAPERS_VS_QAI_OLI_BENCHMARK.xlsx
 │   ├── 03_QAI_OLI_ACCURACY_COMPARATIVE_ANALYSIS.xlsx
 │   ├── 04_QAI_OLI_TRAINING_PROGRESSION_DATA.xlsx
+│   ├── 05_QAI_OLI_MULTI_PARAMETER_COMPARATIVE_ANALYSIS.xlsx
 │   └── README_REPORTS.md
 │
+├── research_papers/                # Literature Survey Corpus & Reference Library
+│   ├── literature_survey_selected/ # 7 Selected survey papers (1.pdf to 7.pdf + citation index)
+│   ├── all_reference_papers/       # Complete set of 25 reference papers & literature matrices
+│   └── README.md                   # Full bibliography & comparative metrics summary
+│
 ├── scripts/                        # Automated Plotting & Benchmark Scripts
-│   ├── generate_qai_oli_performance_graphs.py
-│   ├── generate_proposed_model_matrices.py
-│   ├── generate_comparative_accuracy_analysis.py
-│   ├── generate_q_conx_dense_tp_performance_analysis.py
+│   ├── generate_architecture_flowchart.py      # Flowchart generation & 300 DPI rendering
+│   ├── render_system_architecture.py           # Headless System Architecture renderer
+│   ├── generate_comparative_5_parameters_analysis.py # 9-parameter benchmark suites
+│   ├── generate_proposed_model_matrices.py     # Confusion matrix, ROC, radar charts
+│   ├── generate_qai_oli_performance_graphs.py  # Clinical triage & TP progression graphs
+│   ├── generate_comparative_accuracy_analysis.py# 8-model comparative accuracy bar charts
+│   ├── generate_q_conx_dense_tp_performance_analysis.py # Q-ConX-Dense progression curves
 │   ├── validation/                 # Codebase validation & search utilities
 │   └── README.md
 │
@@ -82,7 +94,7 @@ QAI_OLI/
 │   │   └── api/predict/route.ts    # Secure Next.js proxy route to FastAPI backend
 │   │
 │   ├── backend/                    # FastAPI Inference Engine
-│   │   ├── server.py               # Main API server with Tri-Stage Ensemble
+│   │   ├── server.py               # Main API server with Tri-Stream Consensus Ensemble
 │   │   ├── model_qai.py            # Hybrid PennyLane VQC + Classical Residual Net
 │   │   ├── model_v2.py             # ConvNeXt-V2 backbone architecture
 │   │   ├── model_advanced.py       # DenseNet-121 backbone architecture

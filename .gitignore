@@ -39,3 +39,9 @@ Thumbs.db
 .gemini/
 *.tmp
 *.log
+
+# Temporary render & screenshot caches
+*_temp.png
+*_temp.jpg
+*_temp.*
+*.temp.*

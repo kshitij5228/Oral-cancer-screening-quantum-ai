@@ -1,0 +1,329 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>QAI-OLI Clean System Architecture</title>
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    background-color: #FFFFFF;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    padding: 24px 10px;
+  }
+  svg {
+    background: #FFFFFF;
+    display: block;
+  }
+  .title-main {
+    font-size: 21px;
+    font-weight: 800;
+    fill: #0F172A;
+    text-anchor: middle;
+    letter-spacing: 0.4px;
+  }
+  .title-sub {
+    font-size: 13px;
+    font-weight: 500;
+    fill: #64748B;
+    text-anchor: middle;
+  }
+  .tier-label {
+    font-size: 11px;
+    font-weight: 800;
+    letter-spacing: 0.8px;
+    text-anchor: start;
+  }
+  .node-title {
+    font-size: 13.5px;
+    font-weight: 700;
+    fill: #0F172A;
+    text-anchor: middle;
+  }
+  .node-sub {
+    font-size: 11.5px;
+    font-weight: 500;
+    fill: #475569;
+    text-anchor: middle;
+  }
+  .bullet-text {
+    font-size: 11.2px;
+    font-weight: 500;
+    fill: #334155;
+    text-anchor: start;
+  }
+  .flow-line {
+    stroke: #334155;
+    stroke-width: 2.2;
+    fill: none;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+  }
+</style>
+</head>
+<body>
+
+<svg width="1220" height="1370" viewBox="0 0 1220 1370" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <!-- Arrowhead markers -->
+    <marker id="arrow" viewBox="0 0 10 10" refX="7.5" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <path d="M 0 1.5 L 10 5 L 0 8.5 z" fill="#334155" />
+    </marker>
+
+    <!-- Card Elevation Filter -->
+    <filter id="card-shadow" x="-3%" y="-5%" width="106%" height="114%" filterUnits="userSpaceOnUse">
+      <feDropShadow dx="0" dy="2" stdDeviation="2.5" flood-color="#0F172A" flood-opacity="0.06"/>
+    </filter>
+  </defs>
+
+  <!-- ================= HEADER TITLE ================= -->
+  <text x="610" y="36" class="title-main">QAI-OLI: FULL-STACK MULTI-TIER SYSTEM ARCHITECTURE</text>
+  <text x="610" y="58" class="title-sub">End-to-End Clinical Diagnostics, Quantum Simulation &amp; Decision Intelligence System</text>
+
+  <!-- ========================================================================= -->
+  <!-- TIER 1: CLIENT PRESENTATION LAYER (NEXT.JS 16) -->
+  <!-- Container: X=[40, 1180], Y=[80, 230], W=1140, H=150 -->
+  <!-- ========================================================================= -->
+  <rect x="40" y="80" width="1140" height="150" rx="12" ry="12" fill="#F8FAFC" stroke="#CBD5E1" stroke-width="1.6"/>
+  <rect x="54" y="92" width="280" height="20" rx="4" fill="#E2E8F0"/>
+  <text x="62" y="106" class="tier-label" fill="#334155">TIER 1: CLIENT PRESENTATION LAYER (NEXT.JS 16)</text>
+
+  <!-- Box 1.1: Chairside Portal (Center 195, W=250. X=[70, 320], Y=[120, 212]) -->
+  <rect x="70" y="120" width="250" height="92" rx="8" ry="8" fill="#FFFFFF" stroke="#64748B" stroke-width="1.6" filter="url(#card-shadow)"/>
+  <text x="195" y="145" class="node-title">Chairside Portal</text>
+  <text x="195" y="165" class="node-sub">Patient Photo Upload</text>
+  <text x="195" y="183" class="node-sub">Mobile &amp; Web Interface</text>
+  <text x="195" y="201" style="font-size:10.5px; font-weight:700; fill:#2563EB; text-anchor:middle;">Next.js 16 + React 19</text>
+
+  <!-- Box 1.2: Telemetry Visualizer (Center 471, W=250. X=[346, 596], Y=[120, 212]) -->
+  <rect x="346" y="120" width="250" height="92" rx="8" ry="8" fill="#FFFFFF" stroke="#64748B" stroke-width="1.6" filter="url(#card-shadow)"/>
+  <text x="471" y="145" class="node-title">Telemetry Visualizer</text>
+  <text x="471" y="165" class="node-sub">Stage-by-Stage Tracking</text>
+  <text x="471" y="183" class="node-sub">IQA Quality Feedback</text>
+  <text x="471" y="201" style="font-size:10.5px; font-weight:700; fill:#2563EB; text-anchor:middle;">Framer Motion + Tailwind</text>
+
+  <!-- Box 1.3: Grad-CAM Slider (Center 749, W=250. X=[624, 874], Y=[120, 212]) -->
+  <rect x="624" y="120" width="250" height="92" rx="8" ry="8" fill="#FFFFFF" stroke="#64748B" stroke-width="1.6" filter="url(#card-shadow)"/>
+  <text x="749" y="145" class="node-title">Grad-CAM Slider</text>
+  <text x="749" y="165" class="node-sub">Split-Pane Comparison</text>
+  <text x="749" y="183" class="node-sub">Lesion Saliency Heatmap</text>
+  <text x="749" y="201" style="font-size:10.5px; font-weight:700; fill:#2563EB; text-anchor:middle;">Interactive XAI Canvas</text>
+
+  <!-- Box 1.4: Pathology Slip UI (Center 1025, W=250. X=[900, 1150], Y=[120, 212]) -->
+  <rect x="900" y="120" width="250" height="92" rx="8" ry="8" fill="#FFFFFF" stroke="#64748B" stroke-width="1.6" filter="url(#card-shadow)"/>
+  <text x="1025" y="145" class="node-title">Pathology Slip UI</text>
+  <text x="1025" y="165" class="node-sub">8 Pauli-Z Gauge Bars</text>
+  <text x="1025" y="183" class="node-sub">Chairside Printable PDF</text>
+  <text x="1025" y="201" style="font-size:10.5px; font-weight:700; fill:#2563EB; text-anchor:middle;">Ctrl+P Requisition Slip</text>
+
+  <!-- Connect Tier 1 -> Tier 2 -->
+  <path d="M 610 230 L 610 270" class="flow-line" marker-end="url(#arrow)"/>
+  <rect x="490" y="238" width="240" height="20" rx="4" fill="#EFF6FF" stroke="#BFDBFE" stroke-width="1"/>
+  <text x="610" y="252" style="font-size:11px; font-weight:700; fill:#1D4ED8; text-anchor:middle;">
+    HTTP POST multipart/form-data
+  </text>
+
+  <!-- ========================================================================= -->
+  <!-- TIER 2: API GATEWAY & DATA INGESTION (FASTAPI) -->
+  <!-- Container: X=[40, 1180], Y=[270, 405], W=1140, H=135 -->
+  <!-- ========================================================================= -->
+  <rect x="40" y="270" width="1140" height="135" rx="12" ry="12" fill="#F8FAFC" stroke="#CBD5E1" stroke-width="1.6"/>
+  <rect x="54" y="282" width="310" height="20" rx="4" fill="#E2E8F0"/>
+  <text x="62" y="296" class="tier-label" fill="#334155">TIER 2: API GATEWAY &amp; DATA INGESTION (FASTAPI)</text>
+
+  <!-- Box 2.1: FastAPI Controller (Center 240, W=340. X=[70, 410], Y=[314, 388]) -->
+  <rect x="70" y="314" width="340" height="74" rx="8" ry="8" fill="#FFFFFF" stroke="#0284C7" stroke-width="1.6" filter="url(#card-shadow)"/>
+  <text x="240" y="338" class="node-title" fill="#0369A1">FastAPI REST Server</text>
+  <text x="240" y="356" class="node-sub">Async Endpoint /api/predict</text>
+  <text x="240" y="374" style="font-size:11px; font-weight:700; fill:#0284C7; text-anchor:middle;">Uvicorn Engine · Python 3.10+</text>
+
+  <!-- Box 2.2: Pre-Flight IQA Gate (Center 610, W=340. X=[440, 780], Y=[314, 388]) -->
+  <rect x="440" y="314" width="340" height="74" rx="8" ry="8" fill="#FFFFFF" stroke="#0284C7" stroke-width="1.6" filter="url(#card-shadow)"/>
+  <text x="610" y="338" class="node-title" fill="#0369A1">Pre-Flight Quality Gate (IQA)</text>
+  <text x="610" y="356" class="node-sub">Laplacian Blur &amp; Glare Check</text>
+  <text x="610" y="374" style="font-size:11px; font-weight:700; fill:#0284C7; text-anchor:middle;">Deterministic OpenCV (&lt; 5 ms)</text>
+
+  <!-- Box 2.3: Tensor Preprocessor (Center 980, W=340. X=[810, 1150], Y=[314, 388]) -->
+  <rect x="810" y="314" width="340" height="74" rx="8" ry="8" fill="#FFFFFF" stroke="#0284C7" stroke-width="1.6" filter="url(#card-shadow)"/>
+  <text x="980" y="338" class="node-title" fill="#0369A1">Tensor Preprocessor</text>
+  <text x="980" y="356" class="node-sub">CLAHE Contrast Enhancement</text>
+  <text x="980" y="374" style="font-size:11px; font-weight:700; fill:#0284C7; text-anchor:middle;">Multi-Scale: 224, 384, 300</text>
+
+  <!-- Connect Tier 2 -> Tier 3 -->
+  <path d="M 610 405 L 610 448" class="flow-line" marker-end="url(#arrow)"/>
+  <rect x="470" y="414" width="280" height="22" rx="4" fill="#F0FDF4" stroke="#BBF7D0" stroke-width="1"/>
+  <text x="610" y="429" style="font-size:11px; font-weight:700; fill:#15803D; text-anchor:middle;">
+    Multi-Scale Normalized PyTorch Tensors
+  </text>
+
+  <!-- ========================================================================= -->
+  <!-- TIER 3: HYBRID QUANTUM-AI INFERENCE ENGINE -->
+  <!-- Container: X=[40, 1180], Y=[448, 878], W=1140, H=430 -->
+  <!-- ========================================================================= -->
+  <rect x="40" y="448" width="1140" height="430" rx="12" ry="12" fill="#F8FAFC" stroke="#CBD5E1" stroke-width="1.6"/>
+  <rect x="54" y="460" width="430" height="22" rx="4" fill="#E2E8F0"/>
+  <text x="64" y="475" class="tier-label" fill="#334155">TIER 3: HYBRID QUANTUM-AI INFERENCE ENGINE (PYTORCH + PENNYLANE)</text>
+
+  <!-- Input Split to 3 Parallel Streams (Cleanly below the header badge at Y=508) -->
+  <path d="M 610 448 L 610 508" class="flow-line"/>
+  <path d="M 240 508 L 980 508" class="flow-line"/>
+  <path d="M 240 508 L 240 526" class="flow-line" marker-end="url(#arrow)"/>
+  <path d="M 610 508 L 610 526" class="flow-line" marker-end="url(#arrow)"/>
+  <path d="M 980 508 L 980 526" class="flow-line" marker-end="url(#arrow)"/>
+
+  <!-- Stream 1 (Center 240, W=340. X=[70, 410], Y=[526, 618]) -->
+  <rect x="70" y="526" width="340" height="92" rx="8" ry="8" fill="#FFFFFF" stroke="#16A34A" stroke-width="1.8" filter="url(#card-shadow)"/>
+  <text x="240" y="550" class="node-title" fill="#15803D">Stream 1: ConvNeXt-V2-Tiny</text>
+  <text x="240" y="570" class="node-sub">Spatial &amp; Macro Borders (768-D)</text>
+  <text x="240" y="588" class="node-sub">7×7 Depthwise Conv + GRN</text>
+  <text x="240" y="606" style="font-size:11px; font-weight:700; fill:#166534; text-anchor:middle;">Weight Contribution: 25% (P_M1)</text>
+
+  <!-- Stream 2 (Center 610, W=340. X=[440, 780], Y=[526, 618]) -->
+  <rect x="440" y="526" width="340" height="92" rx="8" ry="8" fill="#FFFFFF" stroke="#2563EB" stroke-width="1.8" filter="url(#card-shadow)"/>
+  <text x="610" y="550" class="node-title" fill="#1D4ED8">Stream 2: DenseNet-121</text>
+  <text x="610" y="570" class="node-sub">Micro-Vascular Morphology (1024-D)</text>
+  <text x="610" y="588" class="node-sub">Dense Feature Reuse Blocks</text>
+  <text x="610" y="606" style="font-size:11px; font-weight:700; fill:#1E40AF; text-anchor:middle;">Weight Contribution: 25% (P_M2)</text>
+
+  <!-- Stream 3 (Center 980, W=340. X=[810, 1150], Y=[526, 618]) -->
+  <rect x="810" y="526" width="340" height="92" rx="8" ry="8" fill="#FFFFFF" stroke="#7C3AED" stroke-width="1.8" filter="url(#card-shadow)"/>
+  <text x="980" y="550" class="node-title" fill="#6D28D9">Stream 3: 8-Qubit VQC Hybrid</text>
+  <text x="980" y="570" class="node-sub">Hilbert Space Quantum Decider</text>
+  <text x="980" y="588" class="node-sub">AngleEmbedding + CNOT + 64-D Skip</text>
+  <text x="980" y="606" style="font-size:11px; font-weight:700; fill:#5B21B6; text-anchor:middle;">Weight Contribution: 50% (P_M3)</text>
+
+  <!-- Merge 3 Streams to Fusion (Complete Horizontal Bus Connection) -->
+  <path d="M 240 618 L 240 646 L 610 646" class="flow-line"/>
+  <path d="M 610 618 L 610 646" class="flow-line"/>
+  <path d="M 980 618 L 980 646 L 610 646" class="flow-line"/>
+  <path d="M 610 646 L 610 668" class="flow-line" marker-end="url(#arrow)"/>
+
+  <!-- Consensus Soft-Voting Engine (Center 610, W=560. X=[330, 890], Y=[668, 726]) -->
+  <rect x="330" y="668" width="560" height="58" rx="8" ry="8" fill="#FFFFFF" stroke="#0F172A" stroke-width="2" filter="url(#card-shadow)"/>
+  <text x="610" y="692" class="node-title" style="font-size:14.5px;">Calibrated Soft-Voting Consensus Engine</text>
+  <text x="610" y="712" style="font-size:12px; font-weight:700; fill:#1E293B; text-anchor:middle;">
+    P_fused = 0.25(P_M1) + 0.25(P_M2) + 0.50(P_M3)
+  </text>
+
+  <!-- Connect Fusion to 4 Classes -->
+  <path d="M 610 726 L 610 748" class="flow-line"/>
+  <path d="M 205 748 L 1015 748" class="flow-line"/>
+  <path d="M 205 748 L 205 768" class="flow-line" marker-end="url(#arrow)"/>
+  <path d="M 475 748 L 475 768" class="flow-line" marker-end="url(#arrow)"/>
+  <path d="M 745 748 L 745 768" class="flow-line" marker-end="url(#arrow)"/>
+  <path d="M 1015 748 L 1015 768" class="flow-line" marker-end="url(#arrow)"/>
+
+  <!-- 4 Diagnostic Classes: X=[85, 325], [355, 595], [625, 865], [895, 1135] (All perfectly inside [40, 1180]!) -->
+  <!-- Class 1: Healthy (Center 205, W=240, Y=[768, 828]) -->
+  <rect x="85" y="768" width="240" height="60" rx="6" ry="6" fill="#F0FDF4" stroke="#16A34A" stroke-width="1.6"/>
+  <text x="205" y="790" class="node-title" fill="#15803D" style="font-size:13px;">Healthy Mucosa</text>
+  <text x="205" y="810" class="node-sub" style="font-size:11px; fill:#166534;">Specificity: 98.40% · Routine Care</text>
+
+  <!-- Class 2: Benign (Center 475, W=240, Y=[768, 828]) -->
+  <rect x="355" y="768" width="240" height="60" rx="6" ry="6" fill="#FFFBEB" stroke="#D97706" stroke-width="1.6"/>
+  <text x="475" y="790" class="node-title" fill="#B45309" style="font-size:13px;">Benign Ulceration</text>
+  <text x="475" y="810" class="node-sub" style="font-size:11px; fill:#92400E;">F1-Score: 84.20% · 14-Day Review</text>
+
+  <!-- Class 3: OPMD (Center 745, W=240, Y=[768, 828]) -->
+  <rect x="625" y="768" width="240" height="60" rx="6" ry="6" fill="#FFF7ED" stroke="#EA580C" stroke-width="1.6"/>
+  <text x="745" y="790" class="node-title" fill="#C2410C" style="font-size:13px;">Pre-Malignant (OPMD)</text>
+  <text x="745" y="810" class="node-sub" style="font-size:11px; fill:#9A3412;">Discrimination: 83.77% · Biopsy</text>
+
+  <!-- Class 4: OCA (Center 1015, W=240, Y=[768, 828]) -->
+  <rect x="895" y="768" width="240" height="60" rx="6" ry="6" fill="#FFF1F2" stroke="#E11D48" stroke-width="1.6"/>
+  <text x="1015" y="790" class="node-title" fill="#BE123C" style="font-size:13px;">Oral Carcinoma (OCA)</text>
+  <text x="1015" y="810" class="node-sub" style="font-size:11px; fill:#9F1239;">Recall: 90.43% · Urgent Care</text>
+
+  <!-- Connect Tier 3 -> Tier 4 -->
+  <path d="M 205 828 L 205 850 L 610 850" class="flow-line"/>
+  <path d="M 475 828 L 475 850" class="flow-line"/>
+  <path d="M 745 828 L 745 850" class="flow-line"/>
+  <path d="M 1015 828 L 1015 850 L 610 850" class="flow-line"/>
+  <path d="M 610 850 L 610 888" class="flow-line" marker-end="url(#arrow)"/>
+
+  <!-- ========================================================================= -->
+  <!-- TIER 4: EXPLAINABLE AI & CLINICAL REASONING LAYER -->
+  <!-- Container: X=[40, 1180], Y=[888, 1024], W=1140, H=136 -->
+  <!-- ========================================================================= -->
+  <rect x="40" y="888" width="1140" height="136" rx="12" ry="12" fill="#F8FAFC" stroke="#CBD5E1" stroke-width="1.6"/>
+  <rect x="54" y="900" width="340" height="20" rx="4" fill="#E2E8F0"/>
+  <text x="62" y="914" class="tier-label" fill="#334155">TIER 4: EXPLAINABLE AI &amp; CLINICAL REASONING LAYER</text>
+
+  <!-- Box 4.1: Grad-CAM Engine (Center 240, W=340. X=[70, 410], Y=[928, 1008]) -->
+  <rect x="70" y="928" width="340" height="80" rx="8" ry="8" fill="#FFFFFF" stroke="#9333EA" stroke-width="1.6" filter="url(#card-shadow)"/>
+  <text x="240" y="952" class="node-title" fill="#6B21A8">Dual-Stream Grad-CAM Engine</text>
+  <text x="240" y="972" class="node-sub">Layer Activations &amp; Saliency Maps</text>
+  <text x="240" y="990" style="font-size:11px; font-weight:700; fill:#9333EA; text-anchor:middle;">JET Heatmap · Occlusion Drop: 8.5%</text>
+
+  <!-- Box 4.2: Evidence Reasoning (Center 610, W=340. X=[440, 780], Y=[928, 1008]) -->
+  <rect x="440" y="928" width="340" height="80" rx="8" ry="8" fill="#FFFFFF" stroke="#9333EA" stroke-width="1.6" filter="url(#card-shadow)"/>
+  <text x="610" y="952" class="node-title" fill="#6B21A8">Clinical Reasoning Generator</text>
+  <text x="610" y="972" class="node-sub">Differential Rule-Out Logic</text>
+  <text x="610" y="990" style="font-size:11px; font-weight:700; fill:#9333EA; text-anchor:middle;">Evidence-Based Consultation Text</text>
+
+  <!-- Box 4.3: Quantum Telemetry (Center 980, W=340. X=[810, 1150], Y=[928, 1008]) -->
+  <rect x="810" y="928" width="340" height="80" rx="8" ry="8" fill="#FFFFFF" stroke="#9333EA" stroke-width="1.6" filter="url(#card-shadow)"/>
+  <text x="980" y="952" class="node-title" fill="#6B21A8">Quantum Polarization (QPS)</text>
+  <text x="980" y="972" class="node-sub">8 Pauli-Z Expectation Logging</text>
+  <text x="980" y="990" style="font-size:11px; font-weight:700; fill:#9333EA; text-anchor:middle;">Hilbert Space Divergence Score</text>
+
+  <!-- Connect Tier 4 -> Tier 5 -->
+  <path d="M 610 1024 L 610 1062" class="flow-line" marker-end="url(#arrow)"/>
+  <rect x="475" y="1032" width="270" height="20" rx="4" fill="#FAF5FF" stroke="#E9D5FF" stroke-width="1"/>
+  <text x="610" y="1046" style="font-size:11px; font-weight:700; fill:#7E22CE; text-anchor:middle;">
+    Diagnosis, Saliency &amp; Requisition Payload
+  </text>
+
+  <!-- ========================================================================= -->
+  <!-- TIER 5: PERSISTENCE, MODELS REGISTRY & CLINICAL OUTPUTS -->
+  <!-- Container: X=[40, 1180], Y=[1062, 1256], W=1140, H=194 -->
+  <!-- ========================================================================= -->
+  <rect x="40" y="1062" width="1140" height="194" rx="12" ry="12" fill="#F8FAFC" stroke="#CBD5E1" stroke-width="1.6"/>
+  <rect x="54" y="1074" width="370" height="20" rx="4" fill="#E2E8F0"/>
+  <text x="62" y="1088" class="tier-label" fill="#334155">TIER 5: STORAGE, MODEL REGISTRY &amp; CLINICAL DELIVERABLES</text>
+
+  <!-- Box 5.1: Model Weights Repository (X=[70, 410], W=340, Y=[1102, 1240], H=138) -->
+  <rect x="70" y="1102" width="340" height="138" rx="8" ry="8" fill="#FFFFFF" stroke="#475569" stroke-width="1.6" filter="url(#card-shadow)"/>
+  <text x="240" y="1126" class="node-title">Model Weights Registry</text>
+  <text x="90" y="1150" class="bullet-text">• ConvNeXt-V2-Tiny (107.1 MB)</text>
+  <text x="90" y="1170" class="bullet-text">• DenseNet-121 (28.1 MB)</text>
+  <text x="90" y="1190" class="bullet-text">• 8-Qubit VQC Hybrid (152.1 MB)</text>
+  <text x="240" y="1214" style="font-size:11px; font-weight:700; fill:#2563EB; text-anchor:middle;">PyTorch 2.6 CUDA Weights Store</text>
+  <text x="240" y="1230" style="font-size:10px; font-weight:600; fill:#64748B; text-anchor:middle;">Academic Governance / Secure Path</text>
+
+  <!-- Box 5.2: Pathology Requisition (X=[440, 780], W=340, Y=[1102, 1240], H=138) -->
+  <rect x="440" y="1102" width="340" height="138" rx="8" ry="8" fill="#FFFFFF" stroke="#475569" stroke-width="1.6" filter="url(#card-shadow)"/>
+  <text x="610" y="1126" class="node-title">Doctor Pathology Slip &amp; PDF</text>
+  <text x="460" y="1150" class="bullet-text">• Reference Token: TRI-XX-2026-XXXX</text>
+  <text x="460" y="1170" class="bullet-text">• Embeds Grad-CAM Lesion Heatmap</text>
+  <text x="460" y="1190" class="bullet-text">• Color-Coded Triage Action (Biopsy)</text>
+  <text x="610" y="1214" style="font-size:11px; font-weight:700; fill:#16A34A; text-anchor:middle;">Chairside Printable (Ctrl+P Ready)</text>
+  <text x="610" y="1230" style="font-size:10px; font-weight:600; fill:#64748B; text-anchor:middle;">Doctor Digital Sign-Off Box</text>
+
+  <!-- Box 5.3: Session & Research Store (X=[810, 1150], W=340, Y=[1102, 1240], H=138) -->
+  <rect x="810" y="1102" width="340" height="138" rx="8" ry="8" fill="#FFFFFF" stroke="#475569" stroke-width="1.6" filter="url(#card-shadow)"/>
+  <text x="980" y="1126" class="node-title">Audit &amp; Research Store</text>
+  <text x="830" y="1150" class="bullet-text">• Anonymized Patient Telemetry Logs</text>
+  <text x="830" y="1170" class="bullet-text">• Confusion Matrix &amp; Metrics Data</text>
+  <text x="830" y="1190" class="bullet-text">• Multi-Parameter Benchmark Logs</text>
+  <text x="980" y="1214" style="font-size:11px; font-weight:700; fill:#7C3AED; text-anchor:middle;">N=487 Multi-Center Validation</text>
+  <text x="980" y="1230" style="font-size:10px; font-weight:600; fill:#64748B; text-anchor:middle;">Reproducibility &amp; Audit Trail</text>
+
+  <!-- Connect Tier 5 -> Footer -->
+  <path d="M 610 1256 L 610 1286" class="flow-line" marker-end="url(#arrow)"/>
+
+  <!-- ================= FOOTER BADGE ================= -->
+  <rect x="320" y="1286" width="580" height="48" rx="24" ry="24" fill="#EFF6FF" stroke="#2563EB" stroke-width="2" filter="url(#card-shadow)"/>
+  <text x="610" y="1307" class="node-title" fill="#1D4ED8" style="font-size:14.5px;">
+    END-TO-END SYSTEM CYCLE COMPLETE
+  </text>
+  <text x="610" y="1324" class="node-sub" fill="#1E40AF">
+    Contactless Chairside Screening · 14.8 ms Latency · 83.77% World SOTA Accuracy
+  </text>
+
+</svg>
+
+</body>
+</html>

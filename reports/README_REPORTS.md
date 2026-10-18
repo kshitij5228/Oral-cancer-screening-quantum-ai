@@ -13,6 +13,7 @@ This directory houses the standardized, multi-sheet empirical benchmark workbook
 | **02** | `02_TOP_REFERENCE_PAPERS_VS_QAI_OLI_BENCHMARK.xlsx` | Literature Comparison & Benchmark Study | QAI-OLI (83.77%) vs. 25 Published Papers (Welikala 74%, Jubair 73%, Naoum 55%) across 4 classes |
 | **03** | `03_QAI_OLI_ACCURACY_COMPARATIVE_ANALYSIS.xlsx` | Multi-Model Benchmark Progression | 8-Model & 10-Model Comparative Progression across Training Partitions (TP_40 to TP_90) |
 | **04** | `04_QAI_OLI_TRAINING_PROGRESSION_DATA.xlsx` | Multi-Epoch Trajectory Table | Multi-model convergence trajectories across training pool percentages (40%–90%) & Epochs (5–35) |
+| **05** | `05_QAI_OLI_MULTI_PARAMETER_COMPARATIVE_ANALYSIS.xlsx` | Multi-Parameter Benchmark Suite | 7-Sheet Master Progression for F1, Cohen's Kappa, Recall, Precision, Specificity & Accuracy |
 
 ---
 

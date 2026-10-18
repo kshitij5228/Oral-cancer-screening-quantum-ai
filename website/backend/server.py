@@ -12,6 +12,7 @@ import sys
 import io
 import base64
 from typing import Optional
+from contextlib import asynccontextmanager
 from fastapi import FastAPI, UploadFile, File, Form, HTTPException
 from fastapi.middleware.cors import CORSMiddleware
 from PIL import Image
@@ -37,10 +38,20 @@ CANCER_DS_DIR = os.path.join(WORKSPACE_ROOT, "cancer DS")
 if os.path.exists(CANCER_DS_DIR) and CANCER_DS_DIR not in sys.path:
     sys.path.append(CANCER_DS_DIR)
 
+
+@asynccontextmanager
+async def lifespan(app: FastAPI):
+    import threading
+    print("[*] Starting Q-ConX-Dense model warmup in background thread...")
+    threading.Thread(target=get_models, daemon=True).start()
+    yield
+
+
 app = FastAPI(
     title="QAI-OLI Tri-Stage Clinical Screening API",
     description="Q-ConX-Dense Tri-Stage Classical-Quantum Oral Cancer Classification Ensemble",
     version="3.0.0",
+    lifespan=lifespan,
 )
 
 app.add_middleware(
@@ -62,7 +73,7 @@ class ConvNeXtV2Classifier(nn.Module):
     def __init__(self, num_classes=4, drop_rate=0.4):
         super().__init__()
         self.backbone = timm.create_model("convnextv2_tiny", pretrained=False, num_classes=0, drop_rate=0.0)
-        feat_dim = self.backbone.num_features
+        feat_dim = int(self.backbone.num_features)
         self.head = nn.Sequential(
             nn.LayerNorm(feat_dim),
             nn.Dropout(drop_rate),
@@ -80,7 +91,7 @@ class DenseNet121Classifier(nn.Module):
     def __init__(self, num_classes=4, drop_rate=0.4):
         super().__init__()
         self.backbone = timm.create_model("densenet121", pretrained=False, num_classes=0, drop_rate=0.0)
-        feat_dim = self.backbone.num_features
+        feat_dim = int(self.backbone.num_features)
         self.head = nn.Sequential(
             nn.LayerNorm(feat_dim),
             nn.Dropout(drop_rate),
@@ -147,12 +158,6 @@ def get_models():
         print(f"[!] Warning during ensemble initialization: {e}")
         return _ensemble, _device
 
-
-@app.on_event("startup")
-def startup_event():
-    import threading
-    print("[*] Starting Q-ConX-Dense model warmup in background thread...")
-    threading.Thread(target=get_models, daemon=True).start()
 
 
 @app.get("/")
@@ -268,17 +273,17 @@ async def predict_image(file: UploadFile = File(...), bypass_quality_gate: bool 
         # Image transforms for backbones
         t_224 = A.Compose([
             A.Resize(224, 224),
-            A.Normalize(mean=[0.485, 0.456, 0.406], std=[0.229, 0.224, 0.225]),
+            A.Normalize(mean=(0.485, 0.456, 0.406), std=(0.229, 0.224, 0.225)),
             ToTensorV2(),
         ])
         t_384 = A.Compose([
             A.Resize(384, 384),
-            A.Normalize(mean=[0.485, 0.456, 0.406], std=[0.229, 0.224, 0.225]),
+            A.Normalize(mean=(0.485, 0.456, 0.406), std=(0.229, 0.224, 0.225)),
             ToTensorV2(),
         ])
         t_300 = A.Compose([
             A.Resize(300, 300),
-            A.Normalize(mean=[0.485, 0.456, 0.406], std=[0.229, 0.224, 0.225]),
+            A.Normalize(mean=(0.485, 0.456, 0.406), std=(0.229, 0.224, 0.225)),
             ToTensorV2(),
         ])
 
@@ -321,7 +326,7 @@ async def predict_image(file: UploadFile = File(...), bypass_quality_gate: bool 
             "OCA": round(float(fused_probs[2].item()) * 100, 2),
             "OPMD": round(float(fused_probs[3].item()) * 100, 2),
         }
-        pred_class = max(probs_dict, key=probs_dict.get)
+        pred_class = max(probs_dict, key=lambda k: probs_dict[k])
         confidence = probs_dict[pred_class]
         target_idx = CLASSES.index(pred_class)
 

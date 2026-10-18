@@ -7,11 +7,10 @@ This directory contains publication-ready (300 DPI) figures, clinical triage cha
 ## 📁 Directory Structure
 
 ### 1. 🏛️ `architecture_diagrams/`
-IEEE-standard architecture diagrams available in both high-res PNG and scalable SVG:
+IEEE-standard architecture diagrams available in vector (SVG, HTML) and 300 DPI high-res raster (PNG):
+- **`system_architecture.png` / `.html`**: Complete End-to-End System Architecture (5 Tiers: Patient IQA, Feature Decoupling, Tri-Stream Consensus, Clinical Outputs, Decision Archival).
+- **`flowchart_pipeline.png` / `.html`**: Clean Parallel Multi-Stream Inference Flowchart (M1 ConvNeXt + M2 DenseNet + M3 PennyLane VQC + Soft-Vote Calibration).
 - **`uml.png` / `uml.svg`**: Model Pipeline Architecture & Quantum-Classical Hybrid Dataflow.
-- **`dfd_level_0.png` / `dfd_level_0.svg`**: Data Flow Diagram Level 0 (System Context & Terminators).
-- **`dfd_level_1.png` / `dfd_level_1.svg`**: Data Flow Diagram Level 1 (Hierarchical Subsystems & Storage).
-- **`dfd_level_2.png` / `dfd_level_2.svg`**: Data Flow Diagram Level 2 (Hilbert Space & Quantum Decoupler Signal Trace).
 - **`use_case.png` / `use_case.svg`**: UML Operational Use Case Diagram (5 Actors, 11 Clinical Use Cases).
 
 ### 2. 📊 `proposed_model_evaluation/`
@@ -32,6 +31,21 @@ Dedicated multi-metric clinical evaluation suite for the champion model (Q-ConX-
 - **`figure_comparative_analysis_accuracy_table.png`**: Formatted high-res accuracy table.
 - **`figure_q_conx_dense_performance_analysis.png`**: Multi-epoch progression analysis for Q-ConX-Dense.
 - **`figure_q_conx_dense_performance_analysis_table.png`**: Multi-epoch progression table.
+
+### 4. 🔬 `comparative_parameter_analysis/`
+Dedicated multi-parameter comparative analysis suite containing matched bar charts and publication tables across training partitions (TP_40% to TP_90%) for 8 core models:
+- **Overall Accuracy**: `accuracy_barchart.png` & `accuracy_table.png`
+- **Macro F1-Score**: `f1_score_barchart.png` & `f1_score_table.png`
+- **Cohen's Kappa (κ Score)**: `kappa_barchart.png` & `kappa_table.png`
+- **Macro Recall / Sensitivity**: `recall_barchart.png` & `recall_table.png`
+- **Macro Precision**: `precision_barchart.png` & `precision_table.png`
+- **Macro Specificity**: `specificity_barchart.png` & `specificity_table.png`
+- **Balanced Accuracy**: `balanced_accuracy_barchart.png` & `balanced_accuracy_table.png`
+- **Matthews Correlation Coefficient (MCC)**: `mcc_barchart.png` & `mcc_table.png`
+- **Cross-Entropy Test Loss**: `loss_barchart.png` & `loss_table.png`
+- **Master Multi-Sheet Excel**: `comparative_analysis_all_parameters_master.xlsx`
+- **Documentation**: `README.md` with full Markdown tables and embedded previews.
+- **Regeneration Script**: `scripts/generate_comparative_5_parameters_analysis.py`
 
 ---
 *Note: All charts are regenerated via automated scripts in [`../scripts/`](../scripts/). Spreadsheets have been relocated to [`../reports/`](../reports/).*
