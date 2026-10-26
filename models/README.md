@@ -10,10 +10,17 @@ To prevent unauthorized distribution and uphold clinical data governance, the tr
 ### 📧 How to Request Model Checkpoints:
 If you are an academic researcher, clinical practitioner, or institutional collaborator seeking model weights for validation or benchmark reproduction, please contact the primary developer:
 
-- **Contact Person:** Kshitij Nakod
+- **Primary Contact / Lead Developer:** Kshitij Nakod
 - **Email:** [`nakod.kshitij5228@gmail.com`](mailto:nakod.kshitij5228@gmail.com)
+- **GitHub:** [`https://github.com/kshitij5228`](https://github.com/kshitij5228)
 - **Email Subject:** `[QAI-OLI] Model Weights Access Request`
 - **Please include:** Your full name, affiliated institution/university, and intended research/clinical use case.
+
+### 👥 Project Authors & Research Engineering Team (ARMIET, University of Mumbai):
+1. **Kshitij Nakod** (Quantum AI & Model Lead) — [GitHub: @kshitij5228](https://github.com/kshitij5228) | Email: [`nakod.kshitij5228@gmail.com`](mailto:nakod.kshitij5228@gmail.com)
+2. **Amit Chauhan** (Model Fine-Tuning & Data) — [GitHub: @amitchn28](https://github.com/amitchn28)
+3. **Manoj Yadav** (Full-Stack & Web Systems) — [GitHub: @Spmanoj593](https://github.com/Spmanoj593)
+4. **Sahil Khadkar** (Explainable AI & Testing) — [GitHub: @sahilkhadkar2005-bit](https://github.com/sahilkhadkar2005-bit)
 
 ---
 

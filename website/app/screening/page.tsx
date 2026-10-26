@@ -4,7 +4,7 @@ import { Suspense, useCallback, useEffect, useRef, useState } from 'react'
 import { useSearchParams } from 'next/navigation'
 import {
   AlertTriangle, Check, ChevronRight, FileText, Gauge,
-  Layers3, Microscope, BrainCircuit, RefreshCw, Upload, Zap
+  Layers3, Microscope, BrainCircuit, RefreshCw, Upload
 } from 'lucide-react'
 import GradCamSlider from '@/components/grad-cam-slider'
 import BackbonePanel from '@/components/backbone-panel'
@@ -42,6 +42,8 @@ interface LiveInferenceData {
     mucosa_percentage?: number
     dentition_percentage?: number
     oral_coverage?: number
+    foreign_percentage?: number
+    face_skin_percentage?: number
   }
   quantum_telemetry: {
     num_qubits: number
@@ -58,11 +60,14 @@ interface RejectionError {
   quality_gate?: {
     passed: boolean
     laplacian_variance: number
-    glare_percentage: number
-    mean_luminance: number
-    contrast_std: number
+    glare_percentage?: number
+    mean_luminance?: number
+    contrast_std?: number
     mucosa_percentage?: number
+    dentition_percentage?: number
     oral_coverage?: number
+    foreign_percentage?: number
+    face_skin_percentage?: number
     unnatural_hue_percentage?: number
   }
 }
@@ -145,14 +150,13 @@ const PRESETS: Preset[] = [
 const CLASS_LABELS = ['Benign / Inflammatory', 'Healthy Mucosa', 'Oral Carcinoma', 'Pre-Malignant OPMD']
 const CLASS_COLORS = ['#7aa48c', '#8da9a3', '#d87967', '#d5a24e']
 
-type ActiveTab = 'results' | 'gradcam' | 'reasoning' | 'ruleout' | 'requisition'
+type ActiveTab = 'results' | 'reasoning' | 'ruleout' | 'requisition'
 
 const TABS: { id: ActiveTab; label: string; icon: React.ReactNode }[] = [
   { id: 'results',     label: 'Results',          icon: <Check size={14} /> },
-  { id: 'gradcam',    label: 'Grad-CAM',         icon: <Zap size={14} /> },
   { id: 'reasoning',  label: 'AI Reasoning',     icon: <BrainCircuit size={14} /> },
   { id: 'ruleout',    label: 'Rule-Out',         icon: <Microscope size={14} /> },
-  { id: 'requisition',label: 'Requisition Slip', icon: <FileText size={14} /> },
+  { id: 'requisition',label: 'Screening Report', icon: <FileText size={14} /> },
 ]
 
 // ─── Main component (wrapped) ─────────────────────────────────────────────────
@@ -519,41 +523,6 @@ function ScreeningWorkspace() {
               )}
             </div>
 
-            {/* Preset buttons */}
-            <div className="rounded-2xl border border-[#cbd5e1] bg-white p-5 shadow-xs">
-              <div className="mb-3 flex items-center gap-2 text-[10px] font-bold uppercase tracking-widest text-[#a1b3ad]">
-                <span className="h-px flex-1 bg-[#e1ebe5]" />
-                or use a preset case
-                <span className="h-px flex-1 bg-[#e1ebe5]" />
-              </div>
-              <div className="grid grid-cols-2 gap-2.5">
-                {PRESETS.map((p, i) => (
-                  <button
-                    key={p.name}
-                    onClick={() => triggerAnalysis(i)}
-                    className={`group overflow-hidden rounded-xl border text-left transition ${
-                      selected === i && showResults
-                        ? 'border-[#76a68e] bg-[#edf6ef] shadow-sm'
-                        : 'border-[#e0eae4] bg-white hover:border-[#b9d1c5] hover:shadow-sm'
-                    }`}
-                  >
-                    {/* Thumbnail */}
-                    <div className="aspect-[3/2] overflow-hidden bg-[#e9efeb]">
-                      <img
-                        src={p.image}
-                        alt={p.name}
-                        className="h-full w-full object-cover transition duration-300 group-hover:scale-105"
-                      />
-                    </div>
-                    <div className="p-2.5">
-                      <strong className="block text-xs text-[#365e54]">{p.name}</strong>
-                      <span className="text-[10px] text-[#91a59f]">{p.urgency}</span>
-                    </div>
-                  </button>
-                ))}
-              </div>
-            </div>
-
             {/* Quality gate card (live / preset info) */}
             <div className={`rounded-2xl border bg-white p-5 shadow-xs ${rejectedError ? 'border-[#f5c6c0]' : 'border-[#cbd5e1]'}`}>
               <div className="flex items-center gap-2 text-xs font-bold text-[#0f172a]">
@@ -580,7 +549,19 @@ function ScreeningWorkspace() {
                     {rejectedError.quality_gate?.mucosa_percentage !== undefined && (
                       <div className="flex justify-between">
                         <span className="text-[#64748b]">Mucosal Tissue</span>
-                        <span className="font-mono text-[#b53a25]">{rejectedError.quality_gate.mucosa_percentage}% (Min 20%)</span>
+                        <span className="font-mono text-[#b53a25]">{rejectedError.quality_gate.mucosa_percentage}% (Min 25%)</span>
+                      </div>
+                    )}
+                    {rejectedError.quality_gate?.foreign_percentage !== undefined && rejectedError.quality_gate.foreign_percentage > 0 && (
+                      <div className="flex justify-between">
+                        <span className="text-[#64748b]">Foreign / Non-Oral</span>
+                        <span className="font-mono text-[#b53a25]">{rejectedError.quality_gate.foreign_percentage}% (Max 8%)</span>
+                      </div>
+                    )}
+                    {rejectedError.quality_gate?.face_skin_percentage !== undefined && rejectedError.quality_gate.face_skin_percentage > 20 && (
+                      <div className="flex justify-between">
+                        <span className="text-[#64748b]">Facial Skin Surface</span>
+                        <span className="font-mono text-[#b53a25]">{rejectedError.quality_gate.face_skin_percentage}% (Max 25%)</span>
                       </div>
                     )}
                     <div className="flex justify-between">
@@ -616,6 +597,41 @@ function ScreeningWorkspace() {
                   Select a preset or upload an image to run the quality assessment.
                 </p>
               )}
+            </div>
+
+            {/* Preset buttons */}
+            <div className="rounded-2xl border border-[#cbd5e1] bg-white p-5 shadow-xs">
+              <div className="mb-3 flex items-center gap-2 text-[10px] font-bold uppercase tracking-widest text-[#a1b3ad]">
+                <span className="h-px flex-1 bg-[#e1ebe5]" />
+                or use a preset case
+                <span className="h-px flex-1 bg-[#e1ebe5]" />
+              </div>
+              <div className="grid grid-cols-2 gap-2.5">
+                {PRESETS.map((p, i) => (
+                  <button
+                    key={p.name}
+                    onClick={() => triggerAnalysis(i)}
+                    className={`group overflow-hidden rounded-xl border text-left transition ${
+                      selected === i && showResults
+                        ? 'border-[#76a68e] bg-[#edf6ef] shadow-sm'
+                        : 'border-[#e0eae4] bg-white hover:border-[#b9d1c5] hover:shadow-sm'
+                    }`}
+                  >
+                    {/* Thumbnail */}
+                    <div className="aspect-[3/2] overflow-hidden bg-[#e9efeb]">
+                      <img
+                        src={p.image}
+                        alt={p.name}
+                        className="h-full w-full object-cover transition duration-300 group-hover:scale-105"
+                      />
+                    </div>
+                    <div className="p-2.5">
+                      <strong className="block text-xs text-[#365e54]">{p.name}</strong>
+                      <span className="text-[10px] text-[#91a59f]">{p.urgency}</span>
+                    </div>
+                  </button>
+                ))}
+              </div>
             </div>
           </div>
 
@@ -715,12 +731,6 @@ function ScreeningWorkspace() {
 
                       <div className="mt-5 flex flex-wrap gap-2.5 w-full">
                         <button
-                          onClick={() => handleFile(undefined, true)}
-                          className="inline-flex w-full sm:w-auto justify-center items-center gap-2 rounded-xl bg-[#0284c7] px-5 py-3 text-sm font-semibold text-white shadow-xs transition hover:bg-[#0369a1]"
-                        >
-                          ⚡ Proceed Anyway (Force AI & Quantum Screening)
-                        </button>
-                        <button
                           onClick={() => {
                             if (fileRef.current) fileRef.current.value = ''
                             fileRef.current?.click()
@@ -772,17 +782,17 @@ function ScreeningWorkspace() {
                   {activeTab === 'results' && (
                     <div className="space-y-6 min-w-0">
                       <div className="grid gap-5 md:grid-cols-[1fr_1.2fr] min-w-0">
-                        {/* Photo */}
-                        <div className="relative aspect-[4/3] max-h-[340px] w-full overflow-hidden rounded-2xl bg-[#0f172a] shadow-inner">
-                          <img
-                            src={currentImage}
-                            alt="Clinical oral lesion"
-                            className="h-full w-full object-contain"
+                        {/* Interactive Photo with Grad-CAM Slider */}
+                        <div className="flex flex-col space-y-1.5 min-w-0">
+                          <GradCamSlider
+                            originalSrc={currentImage}
+                            heatmapSrc={currentHeatmap}
+                            originalAlt="Clinical oral lesion"
+                            showQualityBadge={true}
                           />
-                          <div className="absolute left-3 top-3 flex items-center gap-2 rounded-full bg-white/90 px-3 py-1.5 text-[10px] font-bold text-[#2c6650] backdrop-blur-sm shadow-xs">
-                            <span className="size-1.5 rounded-full bg-[#5eab80]" />
-                            QUALITY PASSED
-                          </div>
+                          <p className="text-[11px] text-[#64748b] text-center">
+                            Drag divider to reveal dual-stream Grad-CAM heatmap
+                          </p>
                         </div>
 
                         {/* Probabilities */}
@@ -834,22 +844,6 @@ function ScreeningWorkspace() {
                           </div>
                         ))}
                       </div>
-                    </div>
-                  )}
-
-                  {/* ─── Tab: Grad-CAM ─────────────────────────────────── */}
-                  {activeTab === 'gradcam' && (
-                    <div className="space-y-4">
-                      <div>
-                        <h3 className="font-serif text-xl text-[#264e45]">Dual-stream attention map</h3>
-                        <p className="mt-1 text-xs text-[#88a099]">
-                          Real Grad-CAM overlay from both CNN backbones. Drag the slider to compare.
-                        </p>
-                      </div>
-                      <GradCamSlider
-                        originalSrc={currentImage}
-                        heatmapSrc={currentHeatmap}
-                      />
                     </div>
                   )}
 
@@ -971,13 +965,13 @@ function ScreeningWorkspace() {
 
                   {/* ─── Tab: Requisition Slip ──────────────────────────── */}
                   {activeTab === 'requisition' && (
-                    <div className="space-y-3">
+                    <div className="space-y-3 print:space-y-0 print:m-0 print:p-0">
                       <div className="no-print flex items-center justify-between rounded-xl bg-[#f0f9ff] border border-[#bae6fd] p-3 text-xs text-[#0369a1] sm:hidden">
-                        <span>📄 Formal Clinical Pathology Requisition</span>
+                        <span>📄 Open-Source AI Screening Report</span>
                         <span className="font-bold">Scroll right to view &rarr;</span>
                       </div>
-                      <div className="w-full overflow-x-auto no-scrollbar pb-3">
-                        <div className="min-w-[700px] sm:min-w-0">
+                      <div className="w-full overflow-x-auto no-scrollbar pb-3 print:overflow-visible print:pb-0 print:m-0">
+                        <div className="min-w-[700px] sm:min-w-0 print:min-w-0 print:w-full print:m-0 print:p-0">
                           <RequisitionSlip
                             presetIndex={selected}
                             presetName={liveResult ? liveResult.prediction : preset.name}

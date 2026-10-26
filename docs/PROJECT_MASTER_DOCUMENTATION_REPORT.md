@@ -18,6 +18,12 @@
 > - **False Negative Rate (Malignancy Miss Rate):** **< 5.13%**  
 > - **End-to-End Inference Latency:** **14.8 milliseconds** per image on CUDA GPU  
 > - **Deployment Modality:** Non-invasive, contactless standard 2D smartphone/camera photographic RGB imaging  
+> - **Research & Engineering Authors (ARMIET, University of Mumbai):**
+>   1. **Kshitij Nakod** (Quantum AI & Model Lead) — GitHub: [`@kshitij5228`](https://github.com/kshitij5228) | Email: [`nakod.kshitij5228@gmail.com`](mailto:nakod.kshitij5228@gmail.com)
+>   2. **Amit Chauhan** (Model Fine-Tuning & Data) — GitHub: [`@amitchn28`](https://github.com/amitchn28)
+>   3. **Manoj Yadav** (Full-Stack & Web Systems) — GitHub: [`@Spmanoj593`](https://github.com/Spmanoj593)
+>   4. **Sahil Khadkar** (Explainable AI & Testing) — GitHub: [`@sahilkhadkar2005-bit`](https://github.com/sahilkhadkar2005-bit)
+> - **Faculty Project Supervisor:** Dr. Vivek Pandey (ARMIET, University of Mumbai)
 > - **Software Stack:** PyTorch 2.6.0+cu124, PennyLane 0.45.1, Albumentations, FastAPI (Python), Next.js 16 (App Router), React 19, Tailwind CSS  
 
 ---
@@ -38,7 +44,6 @@
 13. [Engineering Failures & Technical Post-Mortem](#13-engineering-failures--technical-post-mortem)
 14. [Academic & Clinical Presentation Defense Framework](#14-academic--clinical-presentation-defense-framework)
 15. [Project Directory Layout, Reproducibility & Deployment Guide](#15-project-directory-layout-reproducibility--deployment-guide)
-16. [Comprehensive Directives for ChatGPT Report & Thesis Generation](#16-comprehensive-directives-for-chatgpt-report--thesis-generation)
 
 ---
 
@@ -553,35 +558,34 @@ This section provides the master **Accuracy Comparative Analysis** comparing all
 | 🏆 **Proposed Q-ConX-Dense (Tri-Stage SOTA)** | **75.27413** | **77.39913** | **79.34705** | **81.05885** | **82.59357** | **83.77413** | **83.77%** | **World SOTA Champion (Q-ConX-Dense):** Decoupled multi-stage triage resolving Benign vs OPMD (98.4% screening). |
 
 *Generated Artifacts:*
-- High-Resolution Table Image: [`figures/figure_comparative_analysis_accuracy_table.png`](file:///c:/Users/KSHITIJ/Downloads/reff%20for%20cancer/QAI_OLI/figures/figure_comparative_analysis_accuracy_table.png)
-- Clustered Bar Chart (Reference Format): [`figures/figure_comparative_analysis_accuracy_barchart.png`](file:///c:/Users/KSHITIJ/Downloads/reff%20for%20cancer/QAI_OLI/figures/figure_comparative_analysis_accuracy_barchart.png)
-- Clean Publication Bar Chart: [`figures/figure_comparative_analysis_accuracy_barchart_clean.png`](file:///c:/Users/KSHITIJ/Downloads/reff%20for%20cancer/QAI_OLI/figures/figure_comparative_analysis_accuracy_barchart_clean.png)
-- Master Comparative Excel: [`reports/04_QAI_OLI_ACCURACY_COMPARATIVE_ANALYSIS.xlsx`](file:///c:/Users/KSHITIJ/Downloads/reff%20for%20cancer/QAI_OLI/reports/04_QAI_OLI_ACCURACY_COMPARATIVE_ANALYSIS.xlsx)
+- High-Resolution Table Image: [`figures/comparative_parameter_analysis/accuracy_table.png`](file:///c:/Users/KSHITIJ/Downloads/reff%20for%20cancer/QAI_OLI/figures/comparative_parameter_analysis/accuracy_table.png)
+- Clustered Bar Chart: [`figures/comparative_parameter_analysis/accuracy_barchart.png`](file:///c:/Users/KSHITIJ/Downloads/reff%20for%20cancer/QAI_OLI/figures/comparative_parameter_analysis/accuracy_barchart.png)
+- Master Comparative Excel: [`reports/03_QAI_OLI_ACCURACY_COMPARATIVE_ANALYSIS.xlsx`](file:///c:/Users/KSHITIJ/Downloads/reff%20for%20cancer/QAI_OLI/reports/03_QAI_OLI_ACCURACY_COMPARATIVE_ANALYSIS.xlsx)
 
-#### 9.3.2 Extended 5-Parameter Comparative Analysis Suite (`figures/comparative_parameter_analysis/`)
+#### 9.3.2 Extended Multi-Parameter Comparative Analysis Suite (`figures/comparative_parameter_analysis/`)
 
-To provide an exhaustive diagnostic parameter comparison beyond Accuracy alone, matching high-resolution clustered bar charts and publication table images were generated for the **5 core clinical parameters** across all 8 architectures from $\text{TP\_40}$ to $\text{TP\_90}$ ($N=487$ held-out test cohort):
+To provide an exhaustive diagnostic parameter comparison beyond Accuracy alone, matching high-resolution clustered bar charts and publication table images were generated for the **clinical parameters** across all 8 architectures from $\text{TP\_40}$ to $\text{TP\_90}$ ($N=487$ held-out test cohort):
 
 1. **Macro F1-Score (%):**
-   - Bar Chart: [`figures/comparative_parameter_analysis/figure_comparative_analysis_f1_score_barchart.png`](file:///c:/Users/KSHITIJ/Downloads/reff%20for%20cancer/QAI_OLI/figures/comparative_parameter_analysis/figure_comparative_analysis_f1_score_barchart.png)
-   - Table Image: [`figures/comparative_parameter_analysis/figure_comparative_analysis_f1_score_table.png`](file:///c:/Users/KSHITIJ/Downloads/reff%20for%20cancer/QAI_OLI/figures/comparative_parameter_analysis/figure_comparative_analysis_f1_score_table.png)
+   - Bar Chart: [`figures/comparative_parameter_analysis/f1_score_barchart.png`](file:///c:/Users/KSHITIJ/Downloads/reff%20for%20cancer/QAI_OLI/figures/comparative_parameter_analysis/f1_score_barchart.png)
+   - Table Image: [`figures/comparative_parameter_analysis/f1_score_table.png`](file:///c:/Users/KSHITIJ/Downloads/reff%20for%20cancer/QAI_OLI/figures/comparative_parameter_analysis/f1_score_table.png)
 2. **Cohen's Kappa Coefficient ($\kappa$ %):**
-   - Bar Chart: [`figures/comparative_parameter_analysis/figure_comparative_analysis_kappa_barchart.png`](file:///c:/Users/KSHITIJ/Downloads/reff%20for%20cancer/QAI_OLI/figures/comparative_parameter_analysis/figure_comparative_analysis_kappa_barchart.png)
-   - Table Image: [`figures/comparative_parameter_analysis/figure_comparative_analysis_kappa_table.png`](file:///c:/Users/KSHITIJ/Downloads/reff%20for%20cancer/QAI_OLI/figures/comparative_parameter_analysis/figure_comparative_analysis_kappa_table.png)
+   - Bar Chart: [`figures/comparative_parameter_analysis/kappa_barchart.png`](file:///c:/Users/KSHITIJ/Downloads/reff%20for%20cancer/QAI_OLI/figures/comparative_parameter_analysis/kappa_barchart.png)
+   - Table Image: [`figures/comparative_parameter_analysis/kappa_table.png`](file:///c:/Users/KSHITIJ/Downloads/reff%20for%20cancer/QAI_OLI/figures/comparative_parameter_analysis/kappa_table.png)
 3. **Macro Recall / Sensitivity (%):**
-   - Bar Chart: [`figures/comparative_parameter_analysis/figure_comparative_analysis_recall_barchart.png`](file:///c:/Users/KSHITIJ/Downloads/reff%20for%20cancer/QAI_OLI/figures/comparative_parameter_analysis/figure_comparative_analysis_recall_barchart.png)
-   - Table Image: [`figures/comparative_parameter_analysis/figure_comparative_analysis_recall_table.png`](file:///c:/Users/KSHITIJ/Downloads/reff%20for%20cancer/QAI_OLI/figures/comparative_parameter_analysis/figure_comparative_analysis_recall_table.png)
+   - Bar Chart: [`figures/comparative_parameter_analysis/recall_barchart.png`](file:///c:/Users/KSHITIJ/Downloads/reff%20for%20cancer/QAI_OLI/figures/comparative_parameter_analysis/recall_barchart.png)
+   - Table Image: [`figures/comparative_parameter_analysis/recall_table.png`](file:///c:/Users/KSHITIJ/Downloads/reff%20for%20cancer/QAI_OLI/figures/comparative_parameter_analysis/recall_table.png)
 4. **Macro Precision (%):**
-   - Bar Chart: [`figures/comparative_parameter_analysis/figure_comparative_analysis_precision_barchart.png`](file:///c:/Users/KSHITIJ/Downloads/reff%20for%20cancer/QAI_OLI/figures/comparative_parameter_analysis/figure_comparative_analysis_precision_barchart.png)
-   - Table Image: [`figures/comparative_parameter_analysis/figure_comparative_analysis_precision_table.png`](file:///c:/Users/KSHITIJ/Downloads/reff%20for%20cancer/QAI_OLI/figures/comparative_parameter_analysis/figure_comparative_analysis_precision_table.png)
+   - Bar Chart: [`figures/comparative_parameter_analysis/precision_barchart.png`](file:///c:/Users/KSHITIJ/Downloads/reff%20for%20cancer/QAI_OLI/figures/comparative_parameter_analysis/precision_barchart.png)
+   - Table Image: [`figures/comparative_parameter_analysis/precision_table.png`](file:///c:/Users/KSHITIJ/Downloads/reff%20for%20cancer/QAI_OLI/figures/comparative_parameter_analysis/precision_table.png)
 5. **Macro Specificity (%):**
-   - Bar Chart: [`figures/comparative_parameter_analysis/figure_comparative_analysis_specificity_barchart.png`](file:///c:/Users/KSHITIJ/Downloads/reff%20for%20cancer/QAI_OLI/figures/comparative_parameter_analysis/figure_comparative_analysis_specificity_barchart.png)
-   - Table Image: [`figures/comparative_parameter_analysis/figure_comparative_analysis_specificity_table.png`](file:///c:/Users/KSHITIJ/Downloads/reff%20for%20cancer/QAI_OLI/figures/comparative_parameter_analysis/figure_comparative_analysis_specificity_table.png)
+   - Bar Chart: [`figures/comparative_parameter_analysis/specificity_barchart.png`](file:///c:/Users/KSHITIJ/Downloads/reff%20for%20cancer/QAI_OLI/figures/comparative_parameter_analysis/specificity_barchart.png)
+   - Table Image: [`figures/comparative_parameter_analysis/specificity_table.png`](file:///c:/Users/KSHITIJ/Downloads/reff%20for%20cancer/QAI_OLI/figures/comparative_parameter_analysis/specificity_table.png)
 
 *Dedicated Master Spreadsheet & Directory:*
 - Master Excel Workbook: [`reports/05_QAI_OLI_MULTI_PARAMETER_COMPARATIVE_ANALYSIS.xlsx`](file:///c:/Users/KSHITIJ/Downloads/reff%20for%20cancer/QAI_OLI/reports/05_QAI_OLI_MULTI_PARAMETER_COMPARATIVE_ANALYSIS.xlsx)
 - Dedicated Directory: [`figures/comparative_parameter_analysis/`](file:///c:/Users/KSHITIJ/Downloads/reff%20for%20cancer/QAI_OLI/figures/comparative_parameter_analysis/)
-- Automation Script: [`scripts/generate_comparative_5_parameters_analysis.py`](file:///c:/Users/KSHITIJ/Downloads/reff%20for%20cancer/QAI_OLI/scripts/generate_comparative_5_parameters_analysis.py)
+- Automation Script: [`scripts/generate_comparative_parameter_analysis.py`](file:///c:/Users/KSHITIJ/Downloads/reff%20for%20cancer/QAI_OLI/scripts/generate_comparative_parameter_analysis.py)
 
 ---
 
@@ -589,16 +593,16 @@ To provide an exhaustive diagnostic parameter comparison beyond Accuracy alone, 
 
 For focused evaluations that strictly highlight the **Proposed Q-ConX-Dense (Tri-Stage SOTA)** model without comparative clutter, a dedicated suite of high-resolution matrix and parameter visualizations resides in [`figures/proposed_model_evaluation/`](file:///c:/Users/KSHITIJ/Downloads/reff%20for%20cancer/QAI_OLI/figures/proposed_model_evaluation/):
 
-1. **4-Class Clinical Confusion Matrix (Heatmap):** [`figures/proposed_model_evaluation/figure_1_qai_oli_confusion_matrix.png`](file:///c:/Users/KSHITIJ/Downloads/reff%20for%20cancer/QAI_OLI/figures/proposed_model_evaluation/figure_1_qai_oli_confusion_matrix.png)  
+1. **4-Class Clinical Confusion Matrix (Heatmap):** [`figures/proposed_model_evaluation/confusion_matrix.png`](file:///c:/Users/KSHITIJ/Downloads/reff%20for%20cancer/QAI_OLI/figures/proposed_model_evaluation/confusion_matrix.png)  
    - Detailed sample counts ($N=487$) and per-class percentages.
    - Highlights $98.5\%$ Healthy classification, $90.4\%$ Cancer sensitivity, and reduction of Benign vs OPMD confusion.
-2. **Comprehensive Diagnostic Metrics Matrix Table:** [`figures/proposed_model_evaluation/figure_2_qai_oli_metrics_matrix.png`](file:///c:/Users/KSHITIJ/Downloads/reff%20for%20cancer/QAI_OLI/figures/proposed_model_evaluation/figure_2_qai_oli_metrics_matrix.png)  
+2. **Comprehensive Diagnostic Metrics Matrix Table:** [`figures/proposed_model_evaluation/diagnostic_metrics_matrix.png`](file:///c:/Users/KSHITIJ/Downloads/reff%20for%20cancer/QAI_OLI/figures/proposed_model_evaluation/diagnostic_metrics_matrix.png)  
    - Heatmap matrix displaying Precision, Recall/Sensitivity, F1-Score, Specificity, Balanced Accuracy, and Support across all 4 classes plus Macro and Weighted Averages.
-3. **Multi-Parameter Spider / Radar Profile:** [`figures/proposed_model_evaluation/figure_3_qai_oli_parameter_radar_chart.png`](file:///c:/Users/KSHITIJ/Downloads/reff%20for%20cancer/QAI_OLI/figures/proposed_model_evaluation/figure_3_qai_oli_parameter_radar_chart.png)  
+3. **Multi-Parameter Spider / Radar Profile:** [`figures/proposed_model_evaluation/parameter_radar_chart.png`](file:///c:/Users/KSHITIJ/Downloads/reff%20for%20cancer/QAI_OLI/figures/proposed_model_evaluation/parameter_radar_chart.png)  
    - 8-axis polar chart demonstrating balanced multi-metric competence (all clinical axes $\ge 82.9\%$, exceeding the $80\%$ clinical threshold).
-4. **Multi-Class ROC-AUC Curves Matrix:** [`figures/proposed_model_evaluation/figure_4_qai_oli_roc_curves_matrix.png`](file:///c:/Users/KSHITIJ/Downloads/reff%20for%20cancer/QAI_OLI/figures/proposed_model_evaluation/figure_4_qai_oli_roc_curves_matrix.png)  
+4. **Multi-Class ROC-AUC Curves Matrix:** [`figures/proposed_model_evaluation/roc_auc_curve.png`](file:///c:/Users/KSHITIJ/Downloads/reff%20for%20cancer/QAI_OLI/figures/proposed_model_evaluation/roc_auc_curve.png)  
    - True Positive Rate vs False Positive Rate curves showing Healthy ($\text{AUC} = 0.99$), Oral Cancer ($\text{AUC} = 0.96$), Benign ($\text{AUC} = 0.92$), OPMD ($\text{AUC} = 0.89$), and Macro Average ($\text{AUC} = 0.94$).
-5. **Master Clinical Performance Dashboard:** [`figures/proposed_model_evaluation/figure_5_qai_oli_master_clinical_dashboard.png`](file:///c:/Users/KSHITIJ/Downloads/reff%20for%20cancer/QAI_OLI/figures/proposed_model_evaluation/figure_5_qai_oli_master_clinical_dashboard.png)  
+5. **Master Clinical Performance Dashboard:** [`figures/proposed_model_evaluation/master_clinical_dashboard.png`](file:///c:/Users/KSHITIJ/Downloads/reff%20for%20cancer/QAI_OLI/figures/proposed_model_evaluation/master_clinical_dashboard.png)  
    - Unified multi-panel dashboard combining the Confusion Matrix, Core Parameter Summary Cards, Radar Profile, Per-Class Bar Matrix, and ROC-AUC Curves for thesis slides and reports.
 
 ---
@@ -899,32 +903,37 @@ QAI_OLI/
 │   └── README.md                                 # Access request policy & checkpoint setup guide
 │
 ├── figures/                                      # PUBLICATION-GRADE CHARTS & DIAGRAMS (300 DPI)
-│   ├── architecture_diagrams/                    # IEEE-Standard SVG, HTML & 300 DPI PNG diagrams
-│   │   ├── system_architecture.png / .html       # End-to-End System Architecture (5 Tiers)
-│   │   ├── flowchart_pipeline.png / .html        # Parallel Multi-Stream Flowchart
-│   │   ├── uml.png / uml.svg                     # Model Pipeline Architecture
-│   │   └── use_case.png / use_case.svg           # UML Operational Use Case Diagram
+│   ├── architecture_diagrams/                    # IEEE-Standard 300 DPI High-Resolution PNG Diagrams
+│   │   ├── system_architecture.png               # End-to-End System Architecture (5 Tiers)
+│   │   ├── flowchart_pipeline.png                # Parallel Multi-Stream Flowchart
+│   │   └── use_case_diagram.png                  # Clinical Operational Use Case Diagram
 │   ├── proposed_model_evaluation/                # Dedicated proposed model evaluation (N=487)
-│   │   ├── figure_1_qai_oli_confusion_matrix.png # 4-Class Clinical Confusion Matrix
-│   │   ├── figure_2_qai_oli_metrics_matrix.png   # Diagnostic Parameters Matrix Table
-│   │   ├── figure_3_qai_oli_parameter_radar.png  # Multi-Parameter Spider/Radar Profile
-│   │   ├── figure_4_qai_oli_roc_curves_matrix.png# Multi-Class ROC-AUC Curves
-│   │   └── figure_5_qai_oli_master_dashboard.png # Master All-in-One Clinical Dashboard
-│   ├── figure_qai_oli_clinical_triage_parameters.png     # Triage milestones vs 80% threshold
-│   ├── figure_qai_oli_per_class_metrics.png              # Per-class Prec/Rec/F1/Spec
-│   ├── figure_qai_oli_models_comparison_multi_parameter.png # Classical vs Quantum vs SOTA
-│   ├── figure_qai_oli_tp_progression_parameters.png      # TP_40 to TP_90 metric progression
-│   ├── figure_comparative_analysis_accuracy_barchart.png # Multi-model comparative bar chart
-│   ├── figure_comparative_analysis_accuracy_table.png    # High-resolution benchmark table
-│   └── README.md                                 # Figure catalog and usage guide
+│   │   ├── confusion_matrix.png                  # 4-Class Clinical Confusion Matrix
+│   │   ├── diagnostic_metrics_matrix.png         # Diagnostic Parameters Matrix Table
+│   │   ├── parameter_radar_chart.png             # Multi-Parameter Spider/Radar Profile
+│   │   ├── roc_auc_curve.png                     # Multi-Class ROC-AUC Curves
+│   │   ├── master_clinical_dashboard.png         # Master All-in-One Clinical Dashboard
+│   │   └── overall_performance_barchart.png      # Consolidated Overall Performance Bar Chart
+│   ├── comparative_parameter_analysis/           # 8-Model comparative analysis across 9 parameters
+│   │   ├── <param>_barchart.png                  # Clustered comparison bar chart per parameter
+│   │   ├── <param>_table.png                     # Publication header table per parameter
+│   │   ├── comparative_analysis_all_parameters_table.png # Summary matrix table
+│   │   └── README.md                             # Comparative catalog & markdown tables
+│   ├── clinical_triage_parameters.png            # Triage milestones vs 80% threshold
+│   ├── per_class_diagnostic_metrics.png          # Per-class Prec/Rec/F1/Spec
+│   ├── models_multi_parameter_comparison.png     # Classical vs Quantum vs SOTA
+│   ├── tp_progression_parameters.png             # TP_40 to TP_90 metric progression
+│   ├── q_conx_dense_epoch_performance_barchart.png # Q-ConX-Dense epoch progression bar chart
+│   ├── q_conx_dense_epoch_performance_table.png  # Q-ConX-Dense epoch progression table
+│   └── README.md                                 # Visual catalog and usage guide
 │
 ├── scripts/                                      # AUTOMATION & REPRODUCIBILITY SCRIPTS
 │   ├── generate_architecture_flowchart.py        # Generates parallel flowchart diagrams
-│   ├── render_system_architecture.py             # Headless system architecture renderer
-│   ├── generate_comparative_5_parameters_analysis.py # 9-parameter comprehensive benchmark suites
+│   ├── generate_use_case_diagram.py              # Generates clinical use case diagrams
+│   ├── generate_comparative_parameter_analysis.py# 9-parameter comprehensive benchmark suites
 │   ├── generate_proposed_model_matrices.py       # Generates dedicated proposed model matrices
 │   ├── generate_qai_oli_performance_graphs.py    # Generates multi-parameter bar charts
-│   ├── generate_comparative_accuracy_analysis.py # Generates comparative tables & charts
+│   ├── generate_comparative_accuracy_analysis.py # Lightweight single-parameter accuracy generator
 │   ├── generate_q_conx_dense_tp_performance_analysis.py # Generates Q-ConX-Dense TP progression
 │   └── README.md
 │
@@ -935,11 +944,6 @@ QAI_OLI/
 │   ├── 04_QAI_OLI_TRAINING_PROGRESSION_DATA.xlsx      # Master progression table (TP 40%-90%, Epochs 5-35)
 │   ├── 05_QAI_OLI_MULTI_PARAMETER_COMPARATIVE_ANALYSIS.xlsx # Multi-parameter comparative analysis master
 │   └── README_REPORTS.md
-│
-├── research_papers/                              # REFERENCE LITERATURE & BENCHMARK CORPUS (LOCAL REPOSITORY)
-│   ├── literature_survey_selected/               # 7 Curated literature survey publications (1.pdf to 7.pdf)
-│   ├── all_reference_papers/                     # 25 Complete reference studies & review sheets
-│   └── README.md                                 # Full literature catalog & comparative overview
 │
 └── website/                                      # FULL-STACK CLINICAL WEB APPLICATION
     ├── package.json                              # Next.js 16, React 19, Lucide, Tailwind dependencies
@@ -1012,36 +1016,4 @@ curl -X GET http://127.0.0.1:8000/health
 ```
 
 ---
-
-## 16. Comprehensive Directives for ChatGPT Report & Thesis Generation
-
-> **SPECIAL INSTRUCTION TO CHATGPT OR ANY DOWNSTREAM LLM:**  
-> When the user asks you to generate an academic report, research paper, thesis chapter, PowerPoint presentation script, or project synopsis from this document, strictly abide by the following guidelines:
-
-1. **Strict Metric Fidelity:**  
-   Never hallucinate or alter any metric numbers. The official benchmark metrics are:
-   - Overall 4-Class Test Accuracy: **83.77413%** (or rounded to **83.77%**)
-   - Oral Squamous Cell Carcinoma (OCA) F1-Score: **89.40%**
-   - Macro F1-Score: **82.90%**
-   - Stage 1 Screening Gating Specificity: **98.40%**
-   - Pure Quantum Advantage Delta: **+4.92%** (78.64% VQC vs 73.72% classical 8-D control)
-   - Inference Latency: **14.8 ms**
-   - Held-Out Test Set Count: **487 images**
-   - Training Set Count: **5,360 images** (1,340 balanced per class)
-
-2. **Architectural Roles of the 3 Checkpoints:**  
-   Always explicitly describe the complementary clinical roles:
-   - `01_mahanet_convnextv2_tiny.pth`: Spatial vision and ulcer border specialist ($7 \times 7$ depthwise kernels with GRN).
-   - `02_mahanet_densenet121.pth`: Cellular morphology and dense gradient flow specialist (dense feature reuse).
-   - `03_mahanet_quantum_8q_vqc.pth`: 8-Qubit variational quantum circuit operating in a 256-D Hilbert space to resolve Benign vs OPMD ambiguity.
-
-3. **Suggested Report Structures You Can Request From ChatGPT:**
-   - **For an IEEE Conference Paper / Journal Paper:** Ask ChatGPT to generate:
-     *Abstract, Section I: Introduction, Section II: Related Work & Benchmarking (citing Naoum 2025, Mukherjee 2025, Lloyd 2025), Section III: Dataset & Image Quality Gate, Section IV: Mathematical Methodology (VQC Ansatz, DysplasiaAwareLoss, Tri-Stage Cascade), Section V: Empirical Results & Ablation Analysis, Section VI: Explainability & Discussion, Section VII: Conclusion.*
-   - **For a Master's / Bachelor's Thesis Dissertation (60+ Pages):** Ask ChatGPT to generate:
-     *Chapter 1: Introduction and Clinical Motivation; Chapter 2: Literature Review and Gaps in Existing CNNs; Chapter 3: Clinical Image Quality Gate & Dataset Pipeline; Chapter 4: Proposed Hybrid Quantum-Classical Architecture; Chapter 5: Tri-Stage Decoupling & DysplasiaAwareLoss; Chapter 6: Experimental Setup, Training Protocol & Ablation Studies; Chapter 7: Full-Stack Clinical Web Platform; Chapter 8: Results & Benchmark Comparison; Chapter 9: Failure Analysis & Lessons Learned; Chapter 10: Conclusion and Future Directions.*
-   - **For an Academic Oral Defense / Conference Presentation (15–20 Slides):** Ask ChatGPT to generate:
-     *Slide-by-slide slide headers, bullet points, talking points, and anticipated peer-review inquiries using Section 14 of this document.*
-
----
-*Document certified and mathematically verified against verified weights in `QAI_OLI/models/` and benchmark registries in `reports/` and `results/`.*
+*Document certified and mathematically verified against verified weights in `QAI_OLI/models/` and benchmark registries in `reports/`.*

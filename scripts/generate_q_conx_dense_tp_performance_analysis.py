@@ -9,10 +9,8 @@ Epoch Progressions: Epoch 5, 10, 15, 20, 25, 30, 35 (Gap = 5)
 Evaluation: N = 487 frozen multi-center test cohort with 4-pass TTA.
 
 Destination:
-  - figures/figure_q_conx_dense_performance_analysis.png
-  - figures/figure_q_conx_dense_performance_analysis_table.png
-  - figures/figure_m4_qai_oli_combined_analysis.png (compatibility alias)
-  - figures/figure_m4_qai_oli_combined_analysis_table.png (compatibility alias)
+  - figures/q_conx_dense_epoch_performance_barchart.png
+  - figures/q_conx_dense_epoch_performance_table.png
 =============================================================================
 """
 
@@ -108,7 +106,7 @@ def generate_bar_chart():
     legend.get_frame().set_linewidth(0.9)
 
     plt.tight_layout()
-    chart_path = os.path.join(FIGURES_DIR, "figure_q_conx_dense_performance_analysis.png")
+    chart_path = os.path.join(FIGURES_DIR, "q_conx_dense_epoch_performance_barchart.png")
     plt.savefig(chart_path, dpi=300, facecolor='white', edgecolor='none')
     plt.close()
     print(f"  [SAVED] Q-ConX-Dense Bar Chart -> {chart_path}")
@@ -154,7 +152,7 @@ def generate_table_image():
 
     table.auto_set_column_width(col=list(range(len(col_labels))))
 
-    table_path = os.path.join(FIGURES_DIR, "figure_q_conx_dense_performance_analysis_table.png")
+    table_path = os.path.join(FIGURES_DIR, "q_conx_dense_epoch_performance_table.png")
     plt.savefig(table_path, dpi=300, bbox_inches='tight', facecolor='white')
     plt.close()
     print(f"  [SAVED] Q-ConX-Dense Table Image -> {table_path}")

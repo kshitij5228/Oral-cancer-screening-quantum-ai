@@ -238,6 +238,8 @@ async def predict_image(file: UploadFile = File(...), bypass_quality_gate: bool 
                 "mucosa_percentage": round(float(scores.get("mucosa_percentage", 85.0)), 1),
                 "dentition_percentage": round(float(scores.get("dentition_percentage", 5.0)), 1),
                 "oral_coverage": round(float(scores.get("oral_coverage", 90.0)), 1),
+                "foreign_percentage": round(float(scores.get("foreign_percentage", 0.0)), 1),
+                "face_skin_percentage": round(float(scores.get("face_skin_percentage", 0.0)), 1),
                 "issues": issues,
                 "actionable_advice": advice,
             }
@@ -338,15 +340,16 @@ async def predict_image(file: UploadFile = File(...), bypass_quality_gate: bool 
         qubit_vals = [round(float(v), 3) for v in extras["vqc_response"][0].cpu().numpy()]
         qps = round(float(extras["qps"][0].item()), 4)
 
-        # 4. Real Grad-CAM Overlay
+        # 4. Real Multi-Backbone Ensemble Grad-CAM Overlay
         heatmap_data_url = None
         occlusion_drop = 8.5
         try:
             _, heatmap_data_url, occlusion_drop = compute_real_gradcam_overlay(
-                model=models["quantum"],
+                model=models,
                 img_np=img_np,
                 img_conv_tensor=img_conv,
                 img_eff_tensor=img_eff,
+                img_224_tensor=img_224,
                 pred_class_idx=target_idx,
             )
         except Exception as cam_err:

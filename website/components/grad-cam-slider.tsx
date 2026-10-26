@@ -6,12 +6,24 @@ interface GradCamSliderProps {
   originalSrc: string
   heatmapSrc: string
   originalAlt?: string
+  className?: string
+  showQualityBadge?: boolean
 }
 
-export default function GradCamSlider({ originalSrc, heatmapSrc, originalAlt = 'Clinical oral lesion' }: GradCamSliderProps) {
+export default function GradCamSlider({
+  originalSrc,
+  heatmapSrc,
+  originalAlt = 'Clinical oral lesion',
+  className = '',
+  showQualityBadge = false,
+}: GradCamSliderProps) {
+  // slider represents the divider position from left (0 to 100)
+  // Left side shows Original, Right side shows Grad-CAM heatmap
+  // heatmapPercent is (100 - slider)%
   const [slider, setSlider] = useState(50)
   const containerRef = useRef<HTMLDivElement>(null)
   const isDragging = useRef(false)
+
 
   function getPercent(clientX: number) {
     const rect = containerRef.current?.getBoundingClientRect()
@@ -40,63 +52,61 @@ export default function GradCamSlider({ originalSrc, heatmapSrc, originalAlt = '
   })
 
   return (
-    <div className="space-y-3">
-      <div
-        ref={containerRef}
-        className="relative aspect-[4/3] w-full cursor-ew-resize select-none overflow-hidden rounded-2xl bg-[#dfeae3] touch-none"
-        onMouseDown={(e) => { isDragging.current = true; setSlider(getPercent(e.clientX)) }}
-        onTouchStart={(e) => { isDragging.current = true; setSlider(getPercent(e.touches[0].clientX)) }}
-      >
-        {/* Left base: Original photograph */}
-        <img src={originalSrc} alt={originalAlt} className="absolute inset-0 h-full w-full object-cover" draggable={false} />
+    <div
+      ref={containerRef}
+      className={`relative w-full aspect-[4/3] max-h-[340px] cursor-ew-resize select-none overflow-hidden rounded-2xl bg-[#090d16] border border-[#1e293b] shadow-inner touch-none flex items-center justify-center ${className}`}
+      onMouseDown={(e) => { isDragging.current = true; setSlider(getPercent(e.clientX)) }}
+      onTouchStart={(e) => { isDragging.current = true; setSlider(getPercent(e.touches[0].clientX)) }}
+    >
+      {/* Left base: Original photograph */}
+      <img src={originalSrc} alt={originalAlt} className="absolute inset-0 h-full w-full object-contain pointer-events-none" draggable={false} />
 
-        {/* Right overlay: Grad-CAM attention heatmap (clipped from slider% to 100%) */}
-        <div
-          className="absolute inset-0 overflow-hidden pointer-events-none"
-          style={{ clipPath: `inset(0 0 0 ${slider}%)` }}
-        >
-          {heatmapSrc && (heatmapSrc.startsWith('data:') || heatmapSrc.startsWith('blob:') || !originalSrc.startsWith('blob:')) ? (
-            <img
-              src={heatmapSrc}
-              alt="Grad-CAM heatmap overlay"
-              className="h-full w-full object-cover"
-              draggable={false}
-            />
-          ) : (
-            /* When custom image is uploaded without external heatmap: apply dynamic thermal Grad-CAM on top of the uploaded photo */
-            <div className="relative h-full w-full">
-              <img src={originalSrc} alt="Lesion with attention heatmap" className="h-full w-full object-cover" draggable={false} />
-              <div
-                className="pointer-events-none absolute inset-0 mix-blend-color"
-                style={{
-                  background: 'radial-gradient(ellipse 55% 45% at 50% 50%, rgba(220, 38, 38, 0.88) 0%, rgba(234, 179, 8, 0.78) 35%, rgba(6, 182, 212, 0.55) 60%, rgba(30, 58, 138, 0.25) 80%, transparent 95%)',
-                }}
-              />
-              <div
-                className="pointer-events-none absolute inset-0 mix-blend-overlay opacity-90"
-                style={{
-                  background: 'radial-gradient(ellipse 45% 38% at 50% 50%, rgba(239, 68, 68, 0.95) 0%, rgba(245, 158, 11, 0.75) 40%, rgba(14, 165, 233, 0.45) 70%, transparent 90%)',
-                }}
-              />
+      {/* Right overlay: Grad-CAM attention heatmap (clipped from slider% to 100%) */}
+      <div
+        className="absolute inset-0 overflow-hidden pointer-events-none"
+        style={{ clipPath: `inset(0 0 0 ${slider}%)` }}
+      >
+        {heatmapSrc ? (
+          <img
+            src={heatmapSrc}
+            alt="Grad-CAM heatmap overlay"
+            className="absolute inset-0 h-full w-full object-contain pointer-events-none"
+            draggable={false}
+          />
+        ) : (
+          <div className="absolute inset-0 flex items-center justify-center bg-slate-950/60 backdrop-blur-[1px]">
+            <div className="rounded-xl border border-sky-500/30 bg-slate-900/90 px-3.5 py-1.5 text-center text-[11px] text-sky-200 shadow-md">
+              <span className="font-semibold block text-white text-xs">Awaiting Inference</span>
+              Run screening to compute dual-backbone Grad-CAM
             </div>
-          )}
-        </div>
-        <div
-          className="pointer-events-none absolute inset-y-0 w-0.5 bg-white shadow-[0_0_0_1px_rgba(32,58,53,.25)]"
-          style={{ left: `${slider}%` }}
-        >
-          <div className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 flex size-8 items-center justify-center rounded-full bg-white shadow-md">
-            <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
-              <path d="M4 7H1M4 7L2 5M4 7L2 9M10 7H13M10 7L12 5M10 7L12 9" stroke="#0284c7" strokeWidth="1.5" strokeLinecap="round"/>
-            </svg>
           </div>
-        </div>
-        <span className="absolute bottom-3 left-3 rounded-md bg-[#0f172a]/80 px-2 py-1 text-[10px] font-bold uppercase tracking-widest text-white">Original</span>
-        <span className="absolute bottom-3 right-3 rounded-md bg-[#0f172a]/80 px-2 py-1 text-[10px] font-bold uppercase tracking-widest text-white">Grad-CAM</span>
-        <span className="absolute right-3 top-3 rounded-full bg-[#0284c7]/90 px-3 py-1 text-[10px] font-bold text-white shadow-xs">{slider}% heatmap</span>
+        )}
       </div>
-      <input type="range" min={5} max={95} value={slider} onChange={e => setSlider(Number(e.target.value))} className="w-full accent-[#0284c7]" aria-label="Grad-CAM split slider" />
-      <p className="text-center text-[11px] text-[#64748b]">Drag image or slider — real pixel-locked Grad-CAM, zero distortion</p>
+
+      {/* Vertical divider handle */}
+      <div
+        className="pointer-events-none absolute inset-y-0 w-0.5 bg-white shadow-[0_0_0_1px_rgba(32,58,53,.25)]"
+        style={{ left: `${slider}%` }}
+      >
+        <div className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 flex size-7 items-center justify-center rounded-full bg-white shadow-md border border-slate-200">
+          <svg width="12" height="12" viewBox="0 0 14 14" fill="none">
+            <path d="M4 7H1M4 7L2 5M4 7L2 9M10 7H13M10 7L12 5M10 7L12 9" stroke="#0284c7" strokeWidth="1.5" strokeLinecap="round"/>
+          </svg>
+        </div>
+      </div>
+
+      {/* Top Left: Optional Quality Passed Badge */}
+      {showQualityBadge && (
+        <div className="absolute left-3 top-3 z-10 flex items-center gap-1.5 rounded-full bg-white/90 px-2.5 py-1 text-[10px] font-bold text-[#2c6650] backdrop-blur-sm shadow-xs border border-emerald-100">
+          <span className="size-1.5 rounded-full bg-[#10b981]" />
+          QUALITY PASSED
+        </div>
+      )}
+
+      {/* Floating clinical labels */}
+      <span className="absolute bottom-2.5 left-2.5 rounded-md bg-[#0f172a]/85 px-2 py-0.5 text-[9px] font-bold uppercase tracking-wider text-white">Original</span>
+      <span className="absolute bottom-2.5 right-2.5 rounded-md bg-[#0f172a]/85 px-2 py-0.5 text-[9px] font-bold uppercase tracking-wider text-white">Grad-CAM</span>
+      
     </div>
   )
 }

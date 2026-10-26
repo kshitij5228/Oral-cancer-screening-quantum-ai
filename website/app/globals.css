@@ -195,33 +195,6 @@
   font-family: Georgia, 'Times New Roman', serif;
 }
 
-@media print {
-
-  header,
-  section:not(#screening),
-  button,
-  input {
-    display: none !important;
-  }
-
-  #screening,
-  #requisition {
-    display: none !important;
-  }
-
-  #requisition {
-    display: block !important;
-  }
-
-  #screening>div:first-child,
-  #screening>div>div:first-child {
-    display: none !important;
-  }
-
-  body {
-    background: white;
-  }
-}
 
 @media (prefers-color-scheme: dark) {
   :root {
@@ -293,66 +266,84 @@ input[type='range']::-moz-range-thumb {
   }
 }
 
+/* ── Screen Anti-Aliasing for Clinical Slip ────────────────────────── */
+#printable-requisition-slip,
+#printable-requisition-slip * {
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: geometricPrecision;
+}
+
 @media print {
-  /* ── Page setup ────────────────────────────────────────────────── */
+  /* ── Page setup: Standard A4 Portrait ──────────────────────────── */
   @page {
     size: A4 portrait;
-    margin: 14mm 12mm;
+    margin: 8mm 10mm;
   }
 
   html, body {
     background: #ffffff !important;
     margin: 0 !important;
     padding: 0 !important;
+    width: 100% !important;
     -webkit-print-color-adjust: exact !important;
     print-color-adjust: exact !important;
   }
 
-  /* ── Hide everything that is NOT the slip ──────────────────────── */
+  /* ── Hide all non-printable elements completely ─────────────────── */
   .no-print,
-  nav,
+  .no-print *,
   header,
+  nav,
   footer,
   aside,
-  button {
+  button,
+  input {
     display: none !important;
+    visibility: hidden !important;
+    height: 0 !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    border: none !important;
   }
 
-  /* ── Strip page-level layout wrappers ──────────────────────────── */
+  /* ── Reset root page wrapper for printing ──────────────────────── */
   main {
     padding: 0 !important;
     margin: 0 !important;
     background: transparent !important;
   }
 
-  /* Outer max-width wrapper + column grid wrapper – stop before the slip */
-  main > div:not(#printable-requisition-slip),
-  main > div > div:not(#printable-requisition-slip) {
-    padding: 0 !important;
-    margin: 0 !important;
-    display: block !important;
-    max-width: 100% !important;
-  }
-
-  /* ── The slip itself: inline styles do the heavy lifting ───────── */
-  /* Only override things inline styles cannot do (page-break) */
+  /* ── Printable Slip: Pristine Single A4 Page ────────────────────── */
   #printable-requisition-slip {
+    display: block !important;
+    width: 100% !important;
+    max-width: 100% !important;
+    margin: 0 auto !important;
     page-break-inside: avoid !important;
     break-inside: avoid !important;
-    max-width: 100% !important;
+    page-break-before: avoid !important;
+    break-before: avoid !important;
+    page-break-after: avoid !important;
+    break-after: avoid !important;
     -webkit-print-color-adjust: exact !important;
     print-color-adjust: exact !important;
+    -webkit-font-smoothing: antialiased !important;
+    -moz-osx-font-smoothing: grayscale !important;
+    text-rendering: geometricPrecision !important;
   }
 
-  /* Colour fidelity for every child element */
   #printable-requisition-slip * {
     -webkit-print-color-adjust: exact !important;
     print-color-adjust: exact !important;
+    -webkit-font-smoothing: antialiased !important;
+    -moz-osx-font-smoothing: grayscale !important;
+    text-rendering: geometricPrecision !important;
   }
 
-  /* Images – preserve full uncropped view */
+  /* Figure images: clean uncropped display fitting within 1 page */
   #printable-requisition-slip img {
-    max-height: 195px !important;
+    max-height: 185px !important;
     object-fit: contain !important;
     object-position: center !important;
   }

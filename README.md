@@ -33,12 +33,11 @@ The platform is designed for primary healthcare screeners (ASHA/PHC workers) and
 
 ## 🏛️ System Architecture & Diagrams
 
-Full high-resolution SVG, HTML vector, and 300 DPI PNG diagrams are available in [`figures/architecture_diagrams/`](figures/architecture_diagrams/):
+Full publication-quality 300 DPI PNG diagrams are available in [`figures/architecture_diagrams/`](figures/architecture_diagrams/):
 
 1. **[End-to-End System Architecture](figures/architecture_diagrams/system_architecture.png)** — Complete 5-tier architecture: Chairside IQA, dual vision extractors, quantum state preparation, consensus triage, and clinical requisition slip.
 2. **[Parallel Multi-Stream Flowchart](figures/architecture_diagrams/flowchart_pipeline.png)** — High-level runtime flow from raw photo input to tri-stream soft-voting inference and Grad-CAM generation.
-3. **[Model Pipeline Architecture](figures/architecture_diagrams/uml.png)** — Dual-backbone feature fusion, 8-qubit VQC ansatz, and classical residual highway.
-4. **[UML Operational Use Case Diagram](figures/architecture_diagrams/use_case.png)** — 5 operational actors, 11 clinical use cases (UC1–UC11), and end-to-end clinical workflow.
+3. **[Clinical Operational Use Case Diagram](figures/architecture_diagrams/use_case_diagram.png)** — UML operational workflows across Screener, Specialist, System AI, and Oncology Registrar.
 
 ---
 
@@ -70,19 +69,14 @@ QAI_OLI/
 │   ├── 05_QAI_OLI_MULTI_PARAMETER_COMPARATIVE_ANALYSIS.xlsx
 │   └── README_REPORTS.md
 │
-├── research_papers/                # Literature Survey Corpus & Reference Library (Local Workspace)
-│   ├── literature_survey_selected/ # 7 Selected survey papers (1.pdf to 7.pdf + citation index)
-│   ├── all_reference_papers/       # Complete set of 25 reference papers & literature matrices
-│   └── README.md                   # Full bibliography & comparative metrics summary
-│
 ├── scripts/                        # Automated Plotting & Benchmark Scripts
-│   ├── generate_architecture_flowchart.py      # Flowchart generation & 300 DPI rendering
-│   ├── render_system_architecture.py           # Headless System Architecture renderer
-│   ├── generate_comparative_5_parameters_analysis.py # 9-parameter benchmark suites
-│   ├── generate_proposed_model_matrices.py     # Confusion matrix, ROC, radar charts
-│   ├── generate_qai_oli_performance_graphs.py  # Clinical triage & TP progression graphs
-│   ├── generate_comparative_accuracy_analysis.py# 8-model comparative accuracy bar charts
-│   ├── generate_q_conx_dense_tp_performance_analysis.py # Q-ConX-Dense progression curves
+│   ├── generate_architecture_flowchart.py      # Parallel inference pipeline flowchart
+│   ├── generate_use_case_diagram.py            # Clinical operational use case diagram
+│   ├── generate_comparative_parameter_analysis.py # 9-parameter comprehensive benchmark suites
+│   ├── generate_proposed_model_matrices.py     # Confusion matrix, ROC, radar charts, dashboard
+│   ├── generate_qai_oli_performance_graphs.py  # Clinical triage & multi-parameter benchmark graphs
+│   ├── generate_comparative_accuracy_analysis.py# Standalone accuracy benchmark generator
+│   ├── generate_q_conx_dense_tp_performance_analysis.py # Q-ConX-Dense progression charts & tables
 │   └── README.md
 │
 ├── website/                        # Full-Stack Web Platform
@@ -168,6 +162,20 @@ Double-click `start_application.bat` at the project root (or `website/start_all.
 1. Create a new Space on [Hugging Face](https://huggingface.co/spaces) with **Docker** SDK.
 2. Push `website/backend` along with `models/` directory.
 3. The server will launch via the provided `Dockerfile` with CPU-optimized PyTorch.
+
+---
+
+## 👥 Project Authors & Research Engineering Team
+*Department of Computer Engineering, Alamuri Ratnamala Institute of Engineering and Technology (ARMIET), Affiliated with University of Mumbai*
+
+| # | Author | Research Domain / Role | GitHub | Contact |
+| :-: | :--- | :--- | :--- | :--- |
+| **1** | **Kshitij Nakod** | Quantum AI & Model Lead *(Corresponding)* | [![GitHub](https://img.shields.io/badge/GitHub-kshitij5228-181717?style=flat&logo=github)](https://github.com/kshitij5228) | [`nakod.kshitij5228@gmail.com`](mailto:nakod.kshitij5228@gmail.com) |
+| **2** | **Amit Chauhan** | Model Fine-Tuning & Data | [![GitHub](https://img.shields.io/badge/GitHub-amitchn28-181717?style=flat&logo=github)](https://github.com/amitchn28) | Mumbai University |
+| **3** | **Manoj Yadav** | Full-Stack & Web Systems | [![GitHub](https://img.shields.io/badge/GitHub-Spmanoj593-181717?style=flat&logo=github)](https://github.com/Spmanoj593) | Mumbai University |
+| **4** | **Sahil Khadkar** | Explainable AI & Testing | [![GitHub](https://img.shields.io/badge/GitHub-sahilkhadkar2005--bit-181717?style=flat&logo=github)](https://github.com/sahilkhadkar2005-bit) | Mumbai University |
+
+> 📧 **Direct Inquiries & Checkpoint Access:** For research inquiries or weight access, contact **Kshitij Nakod** at [`nakod.kshitij5228@gmail.com`](mailto:nakod.kshitij5228@gmail.com).
 
 ---
 

@@ -105,7 +105,7 @@ def generate_confusion_matrix():
                 ha="center", fontsize=9.5, style='italic', color='#475569')
 
     plt.tight_layout()
-    out_path = os.path.join(OUTPUT_DIR, 'figure_1_qai_oli_confusion_matrix.png')
+    out_path = os.path.join(OUTPUT_DIR, 'confusion_matrix.png')
     plt.savefig(out_path, dpi=300, facecolor='white', bbox_inches='tight')
     plt.close()
     print(f"  [SAVED] 1. Confusion Matrix -> {out_path}")
@@ -219,7 +219,7 @@ def generate_metrics_matrix():
                 ha="center", fontsize=10.5, fontweight='bold', color='#0f172a')
 
     plt.tight_layout()
-    out_path = os.path.join(OUTPUT_DIR, 'figure_2_qai_oli_metrics_matrix.png')
+    out_path = os.path.join(OUTPUT_DIR, 'diagnostic_metrics_matrix.png')
     plt.savefig(out_path, dpi=300, facecolor='white', bbox_inches='tight')
     plt.close()
     print(f"  [SAVED] 2. Metrics Matrix Table -> {out_path}")
@@ -280,7 +280,7 @@ def generate_radar_chart():
     plt.legend(loc='upper right', bbox_to_anchor=(1.25, 1.1), fontsize=10, frameon=True, facecolor='#ffffff', edgecolor='#cbd5e1')
 
     plt.tight_layout()
-    out_path = os.path.join(OUTPUT_DIR, 'figure_3_qai_oli_parameter_radar_chart.png')
+    out_path = os.path.join(OUTPUT_DIR, 'parameter_radar_chart.png')
     plt.savefig(out_path, dpi=300, facecolor='white', bbox_inches='tight')
     plt.close()
     print(f"  [SAVED] 3. Parameter Radar Chart -> {out_path}")
@@ -343,7 +343,7 @@ def generate_roc_curves():
     ax.legend(loc="lower right", fontsize=11, frameon=True, facecolor='#ffffff', edgecolor='#cbd5e1', shadow=True)
 
     plt.tight_layout()
-    out_path = os.path.join(OUTPUT_DIR, 'figure_4_qai_oli_roc_curves_matrix.png')
+    out_path = os.path.join(OUTPUT_DIR, 'roc_auc_curve.png')
     plt.savefig(out_path, dpi=300, facecolor='white', bbox_inches='tight')
     plt.close()
     print(f"  [SAVED] 4. Combined Overall ROC Curve -> {out_path}")
@@ -426,7 +426,7 @@ def generate_master_dashboard():
     ax3.set_title("C. Multi-Parameter Radar Profile", fontsize=12, fontweight='bold', color='#0f172a', pad=20)
 
     # 4. Consolidated Overall Diagnostic Parameter Bars (Bottom Left & Middle spanning 2 cols)
-    # Strictly aligned 1:1 with figure_2_qai_oli_metrics_matrix.png Macro Averages & Cohen's Kappa
+    # Strictly aligned 1:1 with diagnostic_metrics_matrix.png Macro Averages & Cohen's Kappa
     ax4 = plt.subplot2grid((2, 3), (1, 0), colspan=2)
     metrics_names = ['Overall Accuracy', 'Macro Precision', 'Macro Recall (Sens)', 'Macro F1-Score', 'Macro Specificity', 'Balanced Accuracy', "Cohen's Kappa (κ)", 'Overall ROC-AUC']
     metrics_vals = [83.77, 86.66, 87.16, 86.90, 95.95, 91.55, 82.93, 96.40]
@@ -469,7 +469,7 @@ def generate_master_dashboard():
     ax5.legend(loc="lower right", fontsize=8.0, frameon=True)
 
     plt.tight_layout(rect=[0, 0.03, 1, 0.95])
-    out_path = os.path.join(OUTPUT_DIR, 'figure_5_qai_oli_master_clinical_dashboard.png')
+    out_path = os.path.join(OUTPUT_DIR, 'master_clinical_dashboard.png')
     plt.savefig(out_path, dpi=300, facecolor='#f8fafc', bbox_inches='tight')
     plt.close()
     print(f"  [SAVED] 5. Master Clinical Dashboard -> {out_path}")
@@ -480,7 +480,7 @@ def generate_master_dashboard():
 # =====================================================================
 def generate_overall_performance_barchart():
     # Dedicated single bar chart for Proposed Q-ConX-Dense overall performance
-    # STRICT 1:1 SYNCHRONIZATION WITH figure_2_qai_oli_metrics_matrix.png & Cohen's Kappa
+    # STRICT 1:1 SYNCHRONIZATION WITH diagnostic_metrics_matrix.png & Cohen's Kappa
     metrics = [
         'Overall Accuracy',
         'Macro Precision',
@@ -523,7 +523,7 @@ def generate_overall_performance_barchart():
     ax.grid(axis='y', linestyle='--', alpha=0.5, zorder=0)
 
     plt.tight_layout()
-    out_path = os.path.join(OUTPUT_DIR, 'figure_6_qai_oli_overall_performance_barchart.png')
+    out_path = os.path.join(OUTPUT_DIR, 'overall_performance_barchart.png')
     plt.savefig(out_path, dpi=300, facecolor='white', bbox_inches='tight')
     plt.close()
     print(f"  [SAVED] 6. Standalone Overall Bar Chart -> {out_path}")

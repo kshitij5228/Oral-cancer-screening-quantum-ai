@@ -7,30 +7,27 @@ This directory contains publication-ready (300 DPI) figures, clinical triage cha
 ## 📁 Directory Structure
 
 ### 1. 🏛️ `architecture_diagrams/`
-IEEE-standard architecture diagrams available in vector (SVG, HTML) and 300 DPI high-res raster (PNG):
-- **`system_architecture.png` / `.html`**: Complete End-to-End System Architecture (5 Tiers: Patient IQA, Feature Decoupling, Tri-Stream Consensus, Clinical Outputs, Decision Archival).
-- **`flowchart_pipeline.png` / `.html`**: Clean Parallel Multi-Stream Inference Flowchart (M1 ConvNeXt + M2 DenseNet + M3 PennyLane VQC + Soft-Vote Calibration).
-- **`uml.png` / `uml.svg`**: Model Pipeline Architecture & Quantum-Classical Hybrid Dataflow.
-- **`use_case.png` / `use_case.svg`**: UML Operational Use Case Diagram (5 Actors, 11 Clinical Use Cases).
+IEEE-standard architecture diagrams rendered in publication-quality 300 DPI high-resolution PNG format:
+- **`system_architecture.png`**: Complete End-to-End System Architecture (5 Tiers: Client, Gateway & IQA, Classical Vision, Quantum Co-processor, Decision Ensemble).
+- **`flowchart_pipeline.png`**: Clean Parallel Multi-Stream Inference Flowchart (M1 ConvNeXt + M2 DenseNet + M3 PennyLane VQC + Soft-Vote Calibration).
+- **`use_case_diagram.png`**: Comprehensive Clinical Operational Use Case Diagram (Primary Care Triage, Specialist Verification, Patient Portal, Tele-oncology).
 
 ### 2. 📊 `proposed_model_evaluation/`
 Dedicated multi-metric clinical evaluation suite for the champion model (Q-ConX-Dense):
-- **`figure_1_qai_oli_confusion_matrix.png`**: 4-Class confusion matrix on N=487 held-out test cohort.
-- **`figure_2_qai_oli_metrics_matrix.png`**: Per-class precision, recall, F1, and specificity matrix.
-- **`figure_3_qai_oli_parameter_radar_chart.png`**: Multi-dimensional diagnostic capability radar chart.
-- **`figure_4_qai_oli_roc_curves_matrix.png`**: Multi-class ROC curves and AUC scores.
-- **`figure_5_qai_oli_master_clinical_dashboard.png`**: Integrated master clinical deployment dashboard.
-- **`figure_6_qai_oli_overall_performance_barchart.png`**: Summary bar chart of key clinical triage milestones.
+- **`confusion_matrix.png`**: 4-Class confusion matrix on N=487 held-out test cohort.
+- **`diagnostic_metrics_matrix.png`**: Per-class precision, recall, F1, and specificity matrix.
+- **`parameter_radar_chart.png`**: Multi-dimensional diagnostic capability radar chart.
+- **`roc_auc_curve.png`**: Unified multi-class ROC curves and AUC scores.
+- **`master_clinical_dashboard.png`**: Integrated master clinical deployment dashboard.
+- **`overall_performance_barchart.png`**: Summary bar chart of key clinical triage milestones.
 
 ### 3. 📈 Root Figures (`figures/`)
-- **`figure_qai_oli_clinical_triage_parameters.png`**: Stage-by-stage clinical triage performance vs 80% viability threshold.
-- **`figure_qai_oli_per_class_metrics.png`**: Per-class diagnostic metrics across Healthy, Benign, OPMD, and OCA.
-- **`figure_qai_oli_models_comparison_multi_parameter.png`**: Multi-parameter benchmark comparing classical, quantum, and hybrid models.
-- **`figure_qai_oli_tp_progression_parameters.png`**: Key metric progression across training partitions (TP_40 to TP_90).
-- **`figure_comparative_analysis_accuracy_barchart.png`**: Grouped accuracy progression across training fractions.
-- **`figure_comparative_analysis_accuracy_table.png`**: Formatted high-res accuracy table.
-- **`figure_q_conx_dense_performance_analysis.png`**: Multi-epoch progression analysis for Q-ConX-Dense.
-- **`figure_q_conx_dense_performance_analysis_table.png`**: Multi-epoch progression table.
+- **`clinical_triage_parameters.png`**: Stage-by-stage clinical triage performance vs 80% viability threshold.
+- **`per_class_diagnostic_metrics.png`**: Per-class diagnostic metrics across Healthy, Benign, OPMD, and OCA.
+- **`models_multi_parameter_comparison.png`**: Multi-parameter benchmark comparing classical, quantum, and hybrid models.
+- **`tp_progression_parameters.png`**: Key metric progression across training partitions (TP_40 to TP_90).
+- **`q_conx_dense_epoch_performance_barchart.png`**: Multi-epoch progression analysis bar chart for Q-ConX-Dense.
+- **`q_conx_dense_epoch_performance_table.png`**: Multi-epoch progression publication table for Q-ConX-Dense.
 
 ### 4. 🔬 `comparative_parameter_analysis/`
 Dedicated multi-parameter comparative analysis suite containing matched bar charts and publication tables across training partitions (TP_40% to TP_90%) for 8 core models:
@@ -43,9 +40,9 @@ Dedicated multi-parameter comparative analysis suite containing matched bar char
 - **Balanced Accuracy**: `balanced_accuracy_barchart.png` & `balanced_accuracy_table.png`
 - **Matthews Correlation Coefficient (MCC)**: `mcc_barchart.png` & `mcc_table.png`
 - **Cross-Entropy Test Loss**: `loss_barchart.png` & `loss_table.png`
-- **Master Multi-Sheet Excel**: `comparative_analysis_all_parameters_master.xlsx`
+- **Summary Table**: `comparative_analysis_all_parameters_table.png`
 - **Documentation**: `README.md` with full Markdown tables and embedded previews.
-- **Regeneration Script**: `scripts/generate_comparative_5_parameters_analysis.py`
+- **Regeneration Script**: `scripts/generate_comparative_parameter_analysis.py`
 
 ---
 *Note: All charts are regenerated via automated scripts in [`../scripts/`](../scripts/). Spreadsheets have been relocated to [`../reports/`](../reports/).*

@@ -133,13 +133,14 @@ const MODELS = [
 const ARCHITECTURE_STAGES = [
   {
     num: '0',
-    title: 'Pre-Flight IQA Quality Gate',
+    title: 'Pre-Flight Quality & OOD Gate',
     color: '#0284c7',
     lines: [
-      'Sharpness: Laplacian variance + High-Frequency FFT blur detection',
-      'Illumination: Luminance mean and underexposure verification',
-      'Specular Glare: Overexposed pixel clipping (> 250) check',
-      'Execution: ~5 ms deterministic assessment on CPU',
+      'Sharpness: Laplacian variance motion blur detection (threshold >= 8.0)',
+      'Illumination & Glare: Luminance mean and specular saliva reflection check',
+      'Anatomical Screening: Vascular oral mucosal perfusion (R > G, R > B) & dentition verification',
+      'OOD Protection: Rejects foreign colors (> 8% green/blue), facial selfies, and non-medical objects',
+      'Execution: ~5 ms deterministic assessment on CPU before neural inference',
     ],
   },
   {
@@ -184,7 +185,7 @@ const ARCHITECTURE_STAGES = [
       'Multi-backbone consensus triage resolving Benign vs OPMD diagnostic ambiguity',
       'Calibrated Softmax probability distribution across [Benign, Healthy, OCA, OPMD]',
       'Dual-stream Grad-CAM saliency heatmaps with clinician explainability',
-      'Automated printable Doctor Pathology Requisition generation',
+      'Automated printable AI Screening & Consultation Slip generation',
     ],
   },
 ]

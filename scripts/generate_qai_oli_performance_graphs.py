@@ -10,10 +10,10 @@ Proposed Q-ConX-Dense model across various parameters:
   4. Training Partition (TP_40 to TP_90) Multi-Metric Progression
 
 Destination:
-  - figures/figure_qai_oli_per_class_metrics.png
-  - figures/figure_qai_oli_models_comparison_multi_parameter.png
-  - figures/figure_qai_oli_clinical_triage_parameters.png
-  - figures/figure_qai_oli_tp_progression_parameters.png
+  - figures/per_class_diagnostic_metrics.png
+  - figures/models_multi_parameter_comparison.png
+  - figures/clinical_triage_parameters.png
+  - figures/tp_progression_parameters.png
 =============================================================================
 """
 
@@ -90,7 +90,7 @@ def generate_graph1_per_class_metrics():
               facecolor='#ffffff', edgecolor='#cbd5e1', fontsize=11, shadow=True, framealpha=0.95)
 
     plt.tight_layout()
-    out_path = os.path.join(FIGURES_DIR, 'figure_qai_oli_per_class_metrics.png')
+    out_path = os.path.join(FIGURES_DIR, 'per_class_diagnostic_metrics.png')
     plt.savefig(out_path, dpi=300, facecolor='white', edgecolor='none')
     plt.close()
     print(f"  [SAVED] Graph 1 -> {out_path}")
@@ -165,7 +165,7 @@ def generate_graph2_models_comparison_multi_parameter():
     ax.legend(loc='upper left', frameon=True, facecolor='#ffffff', edgecolor='#cbd5e1', fontsize=11, shadow=True)
 
     plt.tight_layout()
-    out_path = os.path.join(FIGURES_DIR, 'figure_qai_oli_models_comparison_multi_parameter.png')
+    out_path = os.path.join(FIGURES_DIR, 'models_multi_parameter_comparison.png')
     plt.savefig(out_path, dpi=300, facecolor='white', edgecolor='none')
     plt.close()
     print(f"  [SAVED] Graph 2 -> {out_path}")
@@ -228,7 +228,7 @@ def generate_graph3_clinical_triage_parameters():
     ax.legend(loc='upper right', frameon=True, facecolor='#ffffff', edgecolor='#cbd5e1', fontsize=11, shadow=True)
 
     plt.tight_layout()
-    out_path = os.path.join(FIGURES_DIR, 'figure_qai_oli_clinical_triage_parameters.png')
+    out_path = os.path.join(FIGURES_DIR, 'clinical_triage_parameters.png')
     plt.savefig(out_path, dpi=300, facecolor='white', edgecolor='none')
     plt.close()
     print(f"  [SAVED] Graph 3 -> {out_path}")
@@ -288,7 +288,7 @@ def generate_graph4_tp_progression_parameters():
     ax.legend(loc='upper left', frameon=True, facecolor='#ffffff', edgecolor='#cbd5e1', fontsize=11, shadow=True)
 
     plt.tight_layout()
-    out_path = os.path.join(FIGURES_DIR, 'figure_qai_oli_tp_progression_parameters.png')
+    out_path = os.path.join(FIGURES_DIR, 'tp_progression_parameters.png')
     plt.savefig(out_path, dpi=300, facecolor='white', edgecolor='none')
     plt.close()
     print(f"  [SAVED] Graph 4 -> {out_path}")

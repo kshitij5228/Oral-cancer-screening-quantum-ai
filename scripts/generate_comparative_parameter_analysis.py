@@ -287,17 +287,17 @@ def generate_table_image(param_meta, out_dir):
     for model_name, values in data_dict.items():
         row_data.append([model_name] + [f'{v:.5f}' for v in values])
 
-    fig, ax = plt.subplots(figsize=(13.8, 5.5), dpi=300)
+    fig, ax = plt.subplots(figsize=(15.5, 6.4), dpi=300)
     fig.patch.set_facecolor('white')
     ax.axis('off')
 
     # Prominent parameter title and clinical cohort subtitle above table
-    ax.text(0.5, 0.96, f"Comparative Analysis: {param_meta['title']} Progression",
-            ha='center', va='center', fontsize=14, fontweight='bold', color='#0f172a', family='sans-serif')
-    ax.text(0.5, 0.90, "Evaluated across Training Partitions (TP_40 to TP_90) on Frozen Multi-Center Test Cohort (N = 487)",
-            ha='center', va='center', fontsize=10.5, style='italic', color='#64748b', family='sans-serif')
+    ax.text(0.5, 0.965, f"Comparative Analysis: {param_meta['title']} Progression",
+            ha='center', va='center', fontsize=18, fontweight='bold', color='#0f172a', family='sans-serif')
+    ax.text(0.5, 0.915, "Evaluated across Training Partitions (TP_40 to TP_90) on Frozen Multi-Center Test Cohort (N = 487)",
+            ha='center', va='center', fontsize=12.5, style='italic', color='#64748b', family='sans-serif')
 
-    col_widths = [0.35, 0.108, 0.108, 0.108, 0.108, 0.108, 0.108]
+    col_widths = [0.41, 0.098, 0.098, 0.098, 0.098, 0.098, 0.098]
 
     tab = ax.table(
         cellText=row_data,
@@ -305,34 +305,33 @@ def generate_table_image(param_meta, out_dir):
         colWidths=col_widths,
         cellLoc='center',
         loc='center',
-        bbox=[0.02, 0.03, 0.96, 0.81]
+        bbox=[0.01, 0.03, 0.98, 0.83]
     )
 
     tab.auto_set_font_size(False)
-    tab.set_fontsize(11.0)
 
     for (r, c), cell in tab.get_celld().items():
         cell.set_edgecolor('#c8c8c8')
-        cell.set_linewidth(0.85)
+        cell.set_linewidth(0.9)
         if r == 0:
             cell.set_facecolor('#f8f9fa')
             if c == 0:
-                cell.set_text_props(weight='bold', color='#1e3a8a', size=10.5, ha='left')
+                cell.set_text_props(weight='bold', color='#1e3a8a', size=13.0, ha='left')
             else:
-                cell.set_text_props(weight='bold', color='#111827', size=11.5, ha='center')
-            cell.set_height(0.12)
+                cell.set_text_props(weight='bold', color='#111827', size=14.5, ha='center')
+            cell.set_height(0.125)
         else:
             is_sota = 'Proposed' in row_data[r-1][0]
             if c == 0:
                 cell.set_text_props(ha='left', weight='bold' if is_sota else 'normal',
-                                    color='#0f172a', size=10.8)
+                                    color='#0f172a', size=13.5)
                 cell.set_facecolor('#eff6ff' if is_sota else '#ffffff')
             else:
-                cell.set_text_props(ha='right',
+                cell.set_text_props(ha='center',
                                     weight='bold' if is_sota else 'normal',
-                                    color='#1e3a8a' if is_sota else '#334155', size=10.8)
+                                    color='#1e3a8a' if is_sota else '#334155', size=14.0)
                 cell.set_facecolor('#eff6ff' if is_sota else '#ffffff')
-            cell.set_height(0.098)
+            cell.set_height(0.10)
 
     plt.tight_layout()
     table_filename = f"{param_meta['file_prefix']}_table.png"
@@ -580,14 +579,10 @@ def generate_master_excel_workbook(out_dir):
     for col_letter in ['B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J']:
         ws_summary.column_dimensions[col_letter].width = 18
 
-    excel_path = os.path.join(out_dir, "comparative_analysis_all_parameters_master.xlsx")
-    wb.save(excel_path)
-    print(f"  [SAVED EXCEL] -> {excel_path}")
-
-    # Also save copy to reports/ directory
+    # Save master Excel directly to reports/ directory
     reports_excel_path = os.path.join(REPORTS_DIR, "05_QAI_OLI_MULTI_PARAMETER_COMPARATIVE_ANALYSIS.xlsx")
-    shutil.copyfile(excel_path, reports_excel_path)
-    print(f"  [SAVED REPORT COPY] -> {reports_excel_path}")
+    wb.save(reports_excel_path)
+    print(f"  [SAVED EXCEL REPORT] -> {reports_excel_path}")
 
 
 def generate_documentation_markdown(out_dir):

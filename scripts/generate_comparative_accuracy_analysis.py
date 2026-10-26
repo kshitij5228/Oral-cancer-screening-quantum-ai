@@ -9,11 +9,9 @@ Generates publication-quality comparative analysis artifacts:
   4. Master Multi-Sheet Excel Workbook with 8-model and 10-model comparisons
 
 Output Destinations:
-  - figures/figure_comparative_analysis_accuracy_table.png
-  - figures/figure_comparative_analysis_accuracy_barchart.png
-  - figures/figure_comparative_analysis_accuracy_barchart_clean.png
-  - figures/comparative_analysis_accuracy_master.xlsx
-  - reports/04_QAI_OLI_ACCURACY_COMPARATIVE_ANALYSIS.xlsx
+  - figures/comparative_parameter_analysis/accuracy_table.png
+  - figures/comparative_parameter_analysis/accuracy_barchart.png
+  - reports/03_QAI_OLI_ACCURACY_COMPARATIVE_ANALYSIS.xlsx
 =============================================================================
 """
 
@@ -26,7 +24,7 @@ matplotlib.use('Agg')
 import matplotlib.pyplot as plt
 import numpy as np
 
-FIGURES_DIR = os.path.abspath(os.path.join(os.path.dirname(__file__), "..", "figures"))
+FIGURES_DIR = os.path.abspath(os.path.join(os.path.dirname(__file__), "..", "figures", "comparative_parameter_analysis"))
 REPORTS_DIR = os.path.abspath(os.path.join(os.path.dirname(__file__), "..", "reports"))
 os.makedirs(FIGURES_DIR, exist_ok=True)
 os.makedirs(REPORTS_DIR, exist_ok=True)
@@ -58,16 +56,22 @@ DATA_8_MODELS = {
 }
 
 def generate_table_image():
-    col_labels = [''] + TP_LABELS
+    header_label = "Model Architecture\n(Overall Diagnostic Accuracy)"
+    col_labels = [header_label] + TP_LABELS
     row_data = []
     for model_name, values in DATA_8_MODELS.items():
         row_data.append([model_name] + [f'{v:.5f}' for v in values])
 
-    fig, ax = plt.subplots(figsize=(13.5, 4.8), dpi=300)
+    fig, ax = plt.subplots(figsize=(15.5, 6.4), dpi=300)
     fig.patch.set_facecolor('white')
     ax.axis('off')
 
-    col_widths = [0.34, 0.11, 0.11, 0.11, 0.11, 0.11, 0.11]
+    ax.text(0.5, 0.965, "Comparative Analysis: Overall Diagnostic Accuracy Progression",
+            ha='center', va='center', fontsize=18, fontweight='bold', color='#0f172a', family='sans-serif')
+    ax.text(0.5, 0.915, "Evaluated across Training Partitions (TP_40 to TP_90) on Frozen Multi-Center Test Cohort (N = 487)",
+            ha='center', va='center', fontsize=12.5, style='italic', color='#64748b', family='sans-serif')
+
+    col_widths = [0.41, 0.098, 0.098, 0.098, 0.098, 0.098, 0.098]
 
     tab = ax.table(
         cellText=row_data,
@@ -75,35 +79,37 @@ def generate_table_image():
         colWidths=col_widths,
         cellLoc='center',
         loc='center',
-        bbox=[0.02, 0.04, 0.96, 0.92]
+        bbox=[0.01, 0.03, 0.98, 0.83]
     )
 
     tab.auto_set_font_size(False)
-    tab.set_fontsize(11.5)
 
     for (r, c), cell in tab.get_celld().items():
         cell.set_edgecolor('#c8c8c8')
-        cell.set_linewidth(0.85)
+        cell.set_linewidth(0.9)
         if r == 0:
             cell.set_facecolor('#f8f9fa')
-            cell.set_text_props(weight='bold', color='#111827', size=12)
-            cell.set_height(0.12)
+            if c == 0:
+                cell.set_text_props(weight='bold', color='#1e3a8a', size=13.0, ha='left')
+            else:
+                cell.set_text_props(weight='bold', color='#111827', size=14.5, ha='center')
+            cell.set_height(0.125)
         else:
             is_sota = 'Proposed' in row_data[r-1][0]
             if c == 0:
                 cell.set_text_props(ha='left', weight='bold' if is_sota else 'normal',
-                                    color='#0f172a', size=11)
+                                    color='#0f172a', size=13.5)
                 cell.set_facecolor('#eff6ff' if is_sota else '#ffffff')
             else:
-                cell.set_text_props(ha='right',
+                cell.set_text_props(ha='center',
                                     weight='bold' if is_sota else 'normal',
-                                    color='#1e3a8a' if is_sota else '#334155', size=11)
+                                    color='#1e3a8a' if is_sota else '#334155', size=14.0)
                 cell.set_facecolor('#eff6ff' if is_sota else '#ffffff')
-            cell.set_height(0.105)
+            cell.set_height(0.10)
 
     plt.tight_layout()
-    out_path = os.path.join(FIGURES_DIR, 'figure_comparative_analysis_accuracy_table.png')
-    plt.savefig(out_path, dpi=300, facecolor='white', edgecolor='none')
+    out_path = os.path.join(FIGURES_DIR, 'accuracy_table.png')
+    plt.savefig(out_path, dpi=300, facecolor='white', bbox_inches='tight')
     plt.close()
     print('  [SAVED] Table Image ->', out_path)
 
@@ -167,7 +173,7 @@ def generate_bar_chart():
     legend.get_frame().set_linewidth(0.9)
 
     plt.tight_layout()
-    chart_path = os.path.join(FIGURES_DIR, 'figure_comparative_analysis_accuracy_barchart.png')
+    chart_path = os.path.join(FIGURES_DIR, 'accuracy_barchart.png')
     plt.savefig(chart_path, dpi=300, facecolor='white', edgecolor='none')
     plt.close()
     print('  [SAVED] Clean Bar Chart ->', chart_path)
