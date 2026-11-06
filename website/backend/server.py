@@ -125,6 +125,26 @@ def get_models():
 
         # 1. Model 1: ConvNeXt-V2-Tiny
         p1 = os.path.join(MODELS_DIR, "01_mahanet_convnextv2_tiny.pth")
+        p2 = os.path.join(MODELS_DIR, "02_mahanet_densenet121.pth")
+        p3 = os.path.join(MODELS_DIR, "03_mahanet_quantum_8q_vqc.pth")
+
+        # Auto-download models from Hugging Face if not found on disk
+        hf_repo = os.getenv("HF_MODEL_REPO", "Nakod69/qai-oli-models")
+        for model_fname, model_target in [
+            ("01_mahanet_convnextv2_tiny.pth", p1),
+            ("02_mahanet_densenet121.pth", p2),
+            ("03_mahanet_quantum_8q_vqc.pth", p3),
+        ]:
+            if not os.path.exists(model_target):
+                try:
+                    os.makedirs(MODELS_DIR, exist_ok=True)
+                    print(f"[*] Downloading {model_fname} from Hugging Face Hub ({hf_repo})...")
+                    from huggingface_hub import hf_hub_download
+                    hf_hub_download(repo_id=hf_repo, filename=model_fname, local_dir=MODELS_DIR)
+                    print(f"[+] Downloaded {model_fname} successfully!")
+                except Exception as dl_err:
+                    print(f"[!] Warning: Could not auto-download {model_fname} from HF: {dl_err}")
+
         if os.path.exists(p1):
             m1 = ConvNeXtV2Classifier().to(_device)
             m1.load_state_dict(torch.load(p1, map_location="cpu", weights_only=True))
@@ -133,7 +153,6 @@ def get_models():
             print(f"[+] [1/3] ConvNeXt-V2-Tiny loaded from {p1}")
 
         # 2. Model 2: DenseNet-121
-        p2 = os.path.join(MODELS_DIR, "02_mahanet_densenet121.pth")
         if os.path.exists(p2):
             m2 = DenseNet121Classifier().to(_device)
             m2.load_state_dict(torch.load(p2, map_location="cpu", weights_only=True))

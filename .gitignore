@@ -58,5 +58,6 @@ adapters/
 scripts/validation/
 website/CLAUDE.md
 website/AGENTS.md
+cloudflared.exe
 
 
