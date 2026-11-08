@@ -19,7 +19,11 @@ RUN pip install --no-cache-dir --upgrade pip && \
 # Copy backend source code
 COPY . /app
 
-ENV PORT=8000
-EXPOSE 8000
+# HF Spaces uses port 7860 by default; also keep 8000 for local use
+ENV PORT=7860
+ENV HF_MODEL_REPO=Nakod69/qai-oli-models
+ENV MODELS_DIR=/app/models
 
-CMD ["uvicorn", "server:app", "--host", "0.0.0.0", "--port", "8000"]
+EXPOSE 7860
+
+CMD ["uvicorn", "server:app", "--host", "0.0.0.0", "--port", "7860"]
