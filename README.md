@@ -6,7 +6,7 @@
 [![FastAPI](https://img.shields.io/badge/Backend-FastAPI-009688?logo=fastapi)](https://fastapi.tiangolo.com/)
 [![PyTorch](https://img.shields.io/badge/Deep%20Learning-PyTorch%202.x-EE4C2C?logo=pytorch)](https://pytorch.org/)
 [![PennyLane](https://img.shields.io/badge/Quantum-PennyLane%200.35-blueviolet)](https://pennylane.ai/)
-[![License](https://img.shields.io/badge/License-Academic%20Research-blue)](LICENSE)
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
 
 ---
 
@@ -179,6 +179,91 @@ Double-click `start_application.bat` at the project root (or `website/start_all.
 
 ---
 
+## 🤝 Contributing
+
+We welcome contributions from the research and developer community!
+
+Before contributing, please read:
+
+- [**CONTRIBUTING.md**](CONTRIBUTING.md) — full contributor guide (fork, setup, branch conventions, PR process)
+- [**CODE_OF_CONDUCT.md**](CODE_OF_CONDUCT.md) — community standards
+- [**SECURITY.md**](SECURITY.md) — responsible disclosure and security guidelines
+
+**Quick start for contributors:**
+
+```bash
+# 1. Fork the repository on GitHub
+# 2. Clone your fork
+git clone https://github.com/<your-username>/Oral-cancer-screening-quantum-ai.git
+cd Oral-cancer-screening-quantum-ai
+
+# 3. Set up backend
+cd website/backend
+python -m venv .venv && .venv\Scripts\activate   # Windows
+pip install -r requirements.txt
+
+# 4. Set up frontend
+cd ../../website
+pnpm install
+
+# 5. Create a feature branch and start contributing
+git checkout -b feat/your-feature-name
+```
+
+Use the [GitHub Issues](https://github.com/kshitij5228/Oral-cancer-screening-quantum-ai/issues)
+page to report bugs, propose features, or flag documentation gaps. Issue templates are
+provided for bugs, features, model performance concerns, documentation, and dataset integrity.
+
+---
+
 ## 📄 License & Attribution
-Developed for oral oncology clinical triaging and research validation.  
-All experimental data, architecture models, and validation benchmarks are documented in [`docs/PROJECT_MASTER_DOCUMENTATION_REPORT.md`](docs/PROJECT_MASTER_DOCUMENTATION_REPORT.md).
+
+This project is released under the **MIT License** — see the [LICENSE](LICENSE) file for the
+full text, including third-party component attributions.
+
+**Key points:**
+- The source code (backend, frontend, scripts) is MIT-licensed.
+- Pre-trained model checkpoints are separately governed — see [models/README.md](models/README.md).
+- The ConvNeXt-V2 backbone weights (pre-trained on ImageNet) are sourced from Meta Research
+  under CC BY-NC 4.0 (non-commercial). Ensure compliance for your use case.
+- Clinical benchmark data, patient images, and experimental datasets are **not** distributed
+  with this repository.
+
+All experimental data, architecture models, and validation benchmarks are documented in
+[`docs/PROJECT_MASTER_DOCUMENTATION_REPORT.md`](docs/PROJECT_MASTER_DOCUMENTATION_REPORT.md).
+
+---
+
+## 📖 Citation
+
+If you use QAI-OLI code, methodology, or benchmarks in your research, please cite this
+repository and the ARMIET research group:
+
+```bibtex
+@software{nakod2026qaoli,
+  author       = {Nakod, Kshitij and Chauhan, Amit and Yadav, Manoj and Khadkar, Sahil},
+  title        = {{QAI-OLI}: Hybrid Quantum-Classical Oral Oncology Diagnostic Platform},
+  year         = {2026},
+  url          = {https://github.com/kshitij5228/Oral-cancer-screening-quantum-ai},
+  institution  = {Department of Computer Engineering, ARMIET, University of Mumbai},
+  version      = {1.6.0},
+  note         = {Supervisor: Dr. Vivek Pandey}
+}
+```
+
+---
+
+## ⚕️ Medical Disclaimer
+
+> **THIS SOFTWARE IS A RESEARCH PROTOTYPE AND IS NOT A CLINICALLY VALIDATED OR
+> REGULATORY-APPROVED MEDICAL DEVICE.**
+>
+> QAI-OLI is designed exclusively for academic research, computer science education,
+> and preliminary benchmarking purposes. It must not be used as a substitute for
+> professional medical examination, clinical diagnosis, histopathological confirmation,
+> or oncological treatment planning.
+>
+> Any clinical application of this system without formal regulatory approval (e.g.,
+> CE Mark, CDSCO approval, FDA clearance) is strictly the responsibility of the
+> deploying institution. The authors and ARMIET accept no liability for clinical
+> decisions made based on the output of this system.

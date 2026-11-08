@@ -1,0 +1,124 @@
+name: "🐛 Bug Report"
+description: "Report a reproducible bug in the QAI-OLI platform."
+title: "[Bug]: "
+labels: ["bug", "needs-triage"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thank you for taking the time to file a bug report.
+        Please fill in every section to help us reproduce and fix the issue promptly.
+        **Do NOT include real patient photographs or any patient-identifiable data.**
+
+  - type: dropdown
+    id: component
+    attributes:
+      label: "Affected Component"
+      description: "Which part of QAI-OLI is affected?"
+      options:
+        - "FastAPI Backend (server.py)"
+        - "Image Quality Gate (quality_gate.py)"
+        - "Grad-CAM / Explainable AI (qai_explainable_ai.py)"
+        - "Quantum VQC Model (model_qai.py)"
+        - "ConvNeXt-V2 Backbone (model_v2.py)"
+        - "DenseNet-121 Backbone (model_advanced.py)"
+        - "Next.js Frontend"
+        - "Screening Page UI"
+        - "Research / Benchmarks Page"
+        - "Docker / Deployment"
+        - "Scripts (figures / reports)"
+        - "Other"
+    validations:
+      required: true
+
+  - type: textarea
+    id: description
+    attributes:
+      label: "Bug Description"
+      description: "A clear and concise description of what the bug is."
+      placeholder: "When I upload an image to the screening page, the Grad-CAM overlay never loads..."
+    validations:
+      required: true
+
+  - type: textarea
+    id: steps
+    attributes:
+      label: "Steps to Reproduce"
+      description: "Provide minimal, numbered steps to reproduce the behaviour."
+      placeholder: |
+        1. Start the backend with `uvicorn server:app --port 8000`
+        2. Start the frontend with `pnpm dev`
+        3. Navigate to http://localhost:3000/screening
+        4. Upload a sample image from `website/public/samples/`
+        5. Observe the error in the browser console
+    validations:
+      required: true
+
+  - type: textarea
+    id: expected
+    attributes:
+      label: "Expected Behaviour"
+      description: "What did you expect to happen?"
+    validations:
+      required: true
+
+  - type: textarea
+    id: actual
+    attributes:
+      label: "Actual Behaviour"
+      description: "What actually happened? Include error messages, stack traces, or console logs."
+      render: "shell"
+    validations:
+      required: true
+
+  - type: input
+    id: os
+    attributes:
+      label: "Operating System"
+      placeholder: "e.g. Windows 11, Ubuntu 22.04, macOS 14"
+    validations:
+      required: true
+
+  - type: input
+    id: python_version
+    attributes:
+      label: "Python Version"
+      placeholder: "e.g. 3.11.6"
+    validations:
+      required: false
+
+  - type: input
+    id: node_version
+    attributes:
+      label: "Node.js Version"
+      placeholder: "e.g. 20.11.0"
+    validations:
+      required: false
+
+  - type: input
+    id: qai_oli_version
+    attributes:
+      label: "QAI-OLI Version / Commit SHA"
+      placeholder: "e.g. 1.6.0 or git commit abc1234"
+    validations:
+      required: false
+
+  - type: textarea
+    id: additional
+    attributes:
+      label: "Additional Context"
+      description: "Screenshots (no patient data), environment details, or anything else that might help."
+    validations:
+      required: false
+
+  - type: checkboxes
+    id: checklist
+    attributes:
+      label: "Pre-submission Checklist"
+      options:
+        - label: "I have searched existing issues and this is not a duplicate."
+          required: true
+        - label: "I have NOT included real patient photographs or patient-identifiable information."
+          required: true
+        - label: "I have NOT included API keys or credentials in this report."
+          required: true

@@ -1,0 +1,11 @@
+blank_issues_enabled: false
+contact_links:
+  - name: "💬 Research Discussion"
+    url: https://github.com/kshitij5228/Oral-cancer-screening-quantum-ai/discussions
+    about: "Ask questions, share ideas, or discuss the QAI-OLI research methodology."
+  - name: "📧 Model Weights Access Request"
+    url: https://github.com/kshitij5228/Oral-cancer-screening-quantum-ai#-model-weights-access-policy
+    about: "To request access to trained model checkpoints, follow the instructions in the README."
+  - name: "🔒 Security Vulnerability"
+    url: https://github.com/kshitij5228/Oral-cancer-screening-quantum-ai/blob/main/SECURITY.md
+    about: "For security vulnerabilities, please follow the responsible disclosure policy in SECURITY.md instead of opening a public issue."

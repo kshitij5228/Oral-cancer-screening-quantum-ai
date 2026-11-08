@@ -1,0 +1,113 @@
+name: "📉 Model Performance / Research Issue"
+description: "Report unexpected model outputs, accuracy regressions, or research reproducibility concerns."
+title: "[Model]: "
+labels: ["model-performance", "research", "needs-triage"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Use this template to report issues with model inference results, benchmark
+        reproducibility, quantum circuit behaviour, or clinical triage accuracy.
+
+        > ⚠️ **This template is for research concerns only.**
+        > Do not use it to report clinical decisions or seek medical advice.
+        > This system is NOT a certified medical device.
+
+  - type: dropdown
+    id: model_component
+    attributes:
+      label: "Affected Model / Component"
+      options:
+        - "Full Q-ConX-Dense Ensemble (all 3 streams)"
+        - "Stream 1 — ConvNeXt-V2-Tiny (01_mahanet_convnextv2_tiny.pth)"
+        - "Stream 2 — DenseNet-121 (02_mahanet_densenet121.pth)"
+        - "Stream 3 — 8-Qubit VQC Hybrid (03_mahanet_quantum_8q_vqc.pth)"
+        - "Soft-Voting Fusion Logic"
+        - "Quantum Polarization Score (QPS)"
+        - "Grad-CAM / Explainability"
+        - "Image Quality Gate (Pre-flight)"
+        - "Benchmark Reproducibility"
+        - "Other"
+    validations:
+      required: true
+
+  - type: dropdown
+    id: issue_type
+    attributes:
+      label: "Issue Type"
+      options:
+        - "Unexpected prediction for a known test case"
+        - "Accuracy does not match published benchmark (83.77%)"
+        - "Quantum circuit produces NaN or out-of-range values"
+        - "Class probability sums do not equal 1.0"
+        - "Grad-CAM heatmap is blank or misaligned"
+        - "Model fails to load from checkpoint"
+        - "Inference latency significantly worse than expected"
+        - "Other"
+    validations:
+      required: true
+
+  - type: textarea
+    id: description
+    attributes:
+      label: "Description"
+      description: "Describe the unexpected behaviour in detail."
+    validations:
+      required: true
+
+  - type: textarea
+    id: reproduction
+    attributes:
+      label: "Steps to Reproduce"
+      description: "Provide exact steps, including which sample image you used (from `website/public/samples/` if applicable)."
+      placeholder: |
+        1. Loaded the full ensemble using `get_models()` in server.py
+        2. Uploaded `website/public/samples/opmd_original.jpg` via `/api/predict`
+        3. Received `prediction: "Healthy"` with 95% confidence
+        4. Expected `prediction: "OPMD"` based on the reference heatmap
+    validations:
+      required: true
+
+  - type: textarea
+    id: expected_vs_actual
+    attributes:
+      label: "Expected vs. Actual Output"
+      description: "Paste the full JSON response or relevant numbers."
+      render: "json"
+    validations:
+      required: true
+
+  - type: textarea
+    id: environment
+    attributes:
+      label: "Environment"
+      description: "Python version, PyTorch version, PennyLane version, CUDA availability."
+      render: "shell"
+      placeholder: |
+        Python 3.11.6
+        PyTorch 2.3.0+cpu
+        PennyLane 0.35.0
+        CUDA: Not available
+    validations:
+      required: true
+
+  - type: textarea
+    id: checkpoint_info
+    attributes:
+      label: "Checkpoint / Weight File Info"
+      description: "Which checkpoint files are you using? How were they obtained?"
+      placeholder: "Downloaded via HF Hub (Nakod69/qai-oli-models) on YYYY-MM-DD."
+    validations:
+      required: false
+
+  - type: checkboxes
+    id: checklist
+    attributes:
+      label: "Pre-submission Checklist"
+      options:
+        - label: "I confirm this is a reproducibility or performance concern, NOT a request for medical advice."
+          required: true
+        - label: "I have NOT attached real patient photographs."
+          required: true
+        - label: "I have checked that my checkpoint files match the expected sizes listed in models/README.md."
+          required: true

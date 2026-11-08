@@ -1,0 +1,74 @@
+MIT License
+
+Copyright (c) 2026 Kshitij Nakod, Amit Chauhan, Manoj Yadav, Sahil Khadkar
+Department of Computer Engineering, Alamuri Ratnamala Institute of Engineering
+and Technology (ARMIET), Affiliated with University of Mumbai.
+
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the "Software"), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in all
+copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+SOFTWARE.
+
+-------------------------------------------------------------------------------
+THIRD-PARTY COMPONENTS AND ATTRIBUTION
+-------------------------------------------------------------------------------
+
+This software integrates the following third-party frameworks, libraries, and
+pre-trained model architectures. Each is governed by its own separate license
+and all rights remain with their respective authors:
+
+  - PyTorch (BSD-style license)      https://github.com/pytorch/pytorch
+  - PennyLane (Apache 2.0)           https://github.com/PennyLaneAI/pennylane
+  - timm / pytorch-image-models      https://github.com/huggingface/pytorch-image-models
+    (Apache 2.0)
+  - ConvNeXt-V2 architecture         https://github.com/facebookresearch/ConvNeXt-V2
+    (CC BY-NC 4.0 — non-commercial use; original ImageNet weights)
+  - DenseNet-121 architecture        https://github.com/liuzhuang13/DenseNets
+    (originally described in: Huang et al., CVPR 2017)
+  - FastAPI (MIT)                    https://github.com/tiangolo/fastapi
+  - Albumentations (MIT)             https://github.com/albumentations-team/albumentations
+  - OpenCV (Apache 2.0)              https://github.com/opencv/opencv
+  - scikit-learn (BSD-3-Clause)      https://github.com/scikit-learn/scikit-learn
+  - Next.js (MIT)                    https://github.com/vercel/next.js
+  - Tailwind CSS (MIT)               https://github.com/tailwindlabs/tailwindcss
+
+-------------------------------------------------------------------------------
+DATASET AND CLINICAL DATA NOTICE
+-------------------------------------------------------------------------------
+
+The model checkpoints distributed alongside this software (.pth files) were
+trained on a multi-center clinical oral mucosal photography dataset. This
+dataset is NOT included in this repository and is NOT redistributed under
+this license. All patient data was handled under institutional ethics review
+and applicable data-protection regulations. No patient-identifiable
+information is encoded in the model weights.
+
+This software does NOT claim ownership over any third-party dataset,
+pre-trained feature extractor weights, or external benchmark data.
+
+-------------------------------------------------------------------------------
+MEDICAL DISCLAIMER
+-------------------------------------------------------------------------------
+
+THIS SOFTWARE IS PROVIDED FOR RESEARCH AND EDUCATIONAL PURPOSES ONLY.
+IT IS NOT A CLINICALLY VALIDATED MEDICAL DEVICE AND MUST NOT BE USED AS
+A SUBSTITUTE FOR PROFESSIONAL MEDICAL ADVICE, CLINICAL DIAGNOSIS, OR
+TREATMENT. ANY CLINICAL USE OF THIS SOFTWARE WITHOUT FORMAL REGULATORY
+APPROVAL (e.g., CE Mark, FDA 510(k)/De Novo clearance) IS SOLELY THE
+RESPONSIBILITY OF THE USER.
+
+The authors and institution accept no liability for clinical decisions made
+based on the output of this system.

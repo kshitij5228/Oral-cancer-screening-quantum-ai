@@ -1,0 +1,83 @@
+name: "📚 Documentation Improvement"
+description: "Report errors, gaps, or unclear sections in QAI-OLI documentation."
+title: "[Docs]: "
+labels: ["documentation"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Good documentation is as important as good code in a research project.
+        Thank you for helping improve QAI-OLI's docs!
+
+  - type: dropdown
+    id: doc_location
+    attributes:
+      label: "Documentation Location"
+      description: "Which document or file needs improvement?"
+      options:
+        - "README.md (root)"
+        - "CONTRIBUTING.md"
+        - "SECURITY.md"
+        - "CODE_OF_CONDUCT.md"
+        - "docs/PROJECT_MASTER_DOCUMENTATION_REPORT.md"
+        - "docs/TRAINING_APPROACH_CHRONOLOGY.md"
+        - "models/README.md"
+        - "figures/README.md"
+        - "reports/README_REPORTS.md"
+        - "scripts/README.md"
+        - "website/README.md"
+        - "In-code docstrings / comments"
+        - "Other"
+    validations:
+      required: true
+
+  - type: dropdown
+    id: issue_type
+    attributes:
+      label: "Type of Issue"
+      options:
+        - "Factual error or outdated information"
+        - "Missing explanation or section"
+        - "Unclear or ambiguous wording"
+        - "Broken link or file reference"
+        - "Formatting problem"
+        - "Missing code example"
+        - "Grammatical / spelling error"
+        - "Other"
+    validations:
+      required: true
+
+  - type: textarea
+    id: location
+    attributes:
+      label: "Specific Location"
+      description: "Provide the exact section heading, line numbers, or URL anchor where the issue occurs."
+      placeholder: "README.md, line 125, 'Option B: Manual Launch' section — the pip install command is missing the --upgrade flag."
+    validations:
+      required: true
+
+  - type: textarea
+    id: current_text
+    attributes:
+      label: "Current Text (if applicable)"
+      description: "Quote the existing text that is incorrect or unclear."
+    validations:
+      required: false
+
+  - type: textarea
+    id: suggested_improvement
+    attributes:
+      label: "Suggested Improvement"
+      description: "Provide your corrected or expanded text, or describe what should be added."
+    validations:
+      required: true
+
+  - type: checkboxes
+    id: checklist
+    attributes:
+      label: "Pre-submission Checklist"
+      options:
+        - label: "I have checked that this is not already reported in an open issue."
+          required: true
+        - label: "My suggested improvement does not introduce unverified benchmark numbers or clinical claims."
+          required: true

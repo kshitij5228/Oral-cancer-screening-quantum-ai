@@ -1,0 +1,88 @@
+name: "✨ Feature Request"
+description: "Propose a new feature or enhancement for QAI-OLI."
+title: "[Feature]: "
+labels: ["enhancement", "needs-triage"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thank you for proposing an improvement to QAI-OLI.
+        Please describe the feature as precisely as possible, including its clinical or
+        research motivation. Features that could harm clinical safety will not be accepted.
+
+  - type: dropdown
+    id: area
+    attributes:
+      label: "Feature Area"
+      description: "Which part of QAI-OLI does this feature relate to?"
+      options:
+        - "ML / Model Architecture"
+        - "Quantum Circuit (VQC)"
+        - "Explainability / Grad-CAM"
+        - "FastAPI Backend"
+        - "Image Quality Gate"
+        - "Next.js Frontend / UI"
+        - "Screening Workflow"
+        - "Clinical Reporting / PDF Output"
+        - "Deployment / Docker / Cloud"
+        - "Documentation"
+        - "Benchmarking / Evaluation Scripts"
+        - "Other"
+    validations:
+      required: true
+
+  - type: textarea
+    id: problem
+    attributes:
+      label: "Problem / Motivation"
+      description: |
+        Describe the problem this feature solves or the gap it fills.
+        What limitation of the current system prompted this request?
+      placeholder: "Currently, the screening page only shows a single Grad-CAM heatmap. For multi-class cases, it would be useful to show class-specific activation maps for each of the 4 diagnostic categories."
+    validations:
+      required: true
+
+  - type: textarea
+    id: solution
+    attributes:
+      label: "Proposed Solution"
+      description: "Describe the feature you would like to see, as specifically as possible."
+    validations:
+      required: true
+
+  - type: textarea
+    id: alternatives
+    attributes:
+      label: "Alternatives Considered"
+      description: "Have you considered any alternative approaches? Why is your proposed solution preferable?"
+    validations:
+      required: false
+
+  - type: textarea
+    id: clinical_relevance
+    attributes:
+      label: "Clinical / Research Relevance"
+      description: "Explain how this feature improves diagnostic value, research reproducibility, or clinical usability."
+    validations:
+      required: false
+
+  - type: dropdown
+    id: willing_to_implement
+    attributes:
+      label: "Are you willing to implement this feature?"
+      options:
+        - "Yes — I'd like to submit a PR"
+        - "Possibly — I'd need guidance"
+        - "No — submitting for discussion only"
+    validations:
+      required: true
+
+  - type: checkboxes
+    id: checklist
+    attributes:
+      label: "Pre-submission Checklist"
+      options:
+        - label: "I have searched existing issues and this feature has not been requested before."
+          required: true
+        - label: "This feature does not introduce unvalidated clinical claims."
+          required: true

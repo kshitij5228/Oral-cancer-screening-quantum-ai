@@ -1,0 +1,73 @@
+name: "🗄️ Dataset / Data Integrity Issue"
+description: "Report concerns about the dataset, class distribution, labelling quality, or data governance."
+title: "[Data]: "
+labels: ["dataset", "data-integrity", "needs-triage"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Use this template to raise concerns about the clinical dataset underpinning QAI-OLI,
+        including annotation quality, class imbalance, data leakage concerns, or
+        potential privacy issues.
+
+        > ⚠️ **Privacy rule:** Do NOT attach, describe, or reference any patient-identifiable
+        > information in this issue. If you believe a privacy breach has occurred involving
+        > real patient data, follow the [Security Policy](../../SECURITY.md) instead.
+
+  - type: dropdown
+    id: concern_type
+    attributes:
+      label: "Type of Data Concern"
+      options:
+        - "Suspected data leakage between train/test splits"
+        - "Class distribution appears imbalanced or incorrect"
+        - "Labelling / annotation quality concern"
+        - "Missing class representation"
+        - "Data augmentation artefact"
+        - "Potential patient privacy concern (see SECURITY.md)"
+        - "Benchmark reproducibility issue related to data"
+        - "Dataset provenance / attribution concern"
+        - "Other"
+    validations:
+      required: true
+
+  - type: textarea
+    id: description
+    attributes:
+      label: "Description"
+      description: |
+        Describe the concern in detail. For annotation issues, describe the
+        specific classes affected and your reasoning. Do NOT include real patient images.
+    validations:
+      required: true
+
+  - type: textarea
+    id: evidence
+    attributes:
+      label: "Supporting Evidence"
+      description: |
+        Provide statistical evidence, links to papers, code snippets, or
+        benchmark numbers that support your concern.
+        (Synthetic/sample images from `website/public/samples/` are acceptable.)
+    validations:
+      required: false
+
+  - type: textarea
+    id: proposed_resolution
+    attributes:
+      label: "Proposed Resolution"
+      description: "If you have a suggestion for how to address this concern, describe it here."
+    validations:
+      required: false
+
+  - type: checkboxes
+    id: checklist
+    attributes:
+      label: "Pre-submission Checklist"
+      options:
+        - label: "I confirm this issue does NOT contain patient-identifiable data."
+          required: true
+        - label: "I have read the data governance section in docs/TRAINING_APPROACH_CHRONOLOGY.md."
+          required: true
+        - label: "I have searched existing issues to verify this is not already reported."
+          required: true
